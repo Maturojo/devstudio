@@ -49,6 +49,12 @@ const benefits = [
   "Soporte para proyectos personales, negocios y marcas",
 ];
 
+const aboutPoints = [
+  "Trabajo de forma directa con cada cliente, sin vueltas ni intermediarios.",
+  "Busco que cada pagina transmita profesionalismo, confianza y claridad.",
+  "Me enfoco en que tu web no solo se vea bien, sino que te ayude a conseguir consultas y ventas.",
+];
+
 function App() {
   const whatsappLink =
     "https://wa.me/5492235954195?text=Hola%20DevStudio%2C%20quiero%20consultar%20por%20una%20pagina%20web.";
@@ -128,6 +134,29 @@ function App() {
         </header>
 
         <main>
+          <section className="section about">
+            <div className="about-panel">
+              <div className="about-copy">
+                <p className="eyebrow">Sobre mi</p>
+                <h2>Mi nombre es Matias Rojo y ayudo a negocios a verse profesionales en internet.</h2>
+                <p>
+                  Trabajo creando paginas web pensadas para generar confianza desde el
+                  primer momento. Mi objetivo es que cada cliente tenga una presencia
+                  online clara, moderna y preparada para convertir visitas en contactos.
+                </p>
+              </div>
+
+              <div className="about-list">
+                {aboutPoints.map((point) => (
+                  <article className="about-card" key={point}>
+                    <span className="card-dot" />
+                    <p>{point}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section className="section benefits">
             <div className="section-heading">
               <p className="eyebrow">Lo que ofrezco</p>
@@ -229,7 +258,16 @@ function App() {
         aria-label="Contactar por WhatsApp"
       >
         <span className="whatsapp-icon" aria-hidden="true">
-          W
+          <svg viewBox="0 0 32 32" role="img" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M19.11 17.21c-.29-.14-1.72-.85-1.99-.95-.27-.1-.46-.14-.66.14s-.75.95-.92 1.15c-.17.19-.34.22-.63.07-.29-.14-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.57-.49-.5-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-.98 2.45.05 1.45 1.03 2.85 1.17 3.04.14.19 2.02 3.09 4.89 4.33.68.29 1.22.47 1.64.6.69.22 1.32.19 1.81.12.55-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.56-.34Z"
+            />
+            <path
+              fill="currentColor"
+              d="M16.03 3.2c-7.08 0-12.82 5.74-12.82 12.82 0 2.26.59 4.47 1.7 6.41L3.1 28.8l6.55-1.72a12.78 12.78 0 0 0 6.38 1.71h.01c7.08 0 12.82-5.74 12.82-12.82S23.11 3.2 16.03 3.2Zm0 23.45h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.89 1.02 1.04-3.79-.25-.39a10.66 10.66 0 1 1 8.9 4.87Z"
+            />
+          </svg>
         </span>
         <span className="whatsapp-text">WhatsApp</span>
       </a>

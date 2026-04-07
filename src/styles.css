@@ -254,9 +254,39 @@ a {
 
 .benefit-grid,
 .plans-grid,
-.steps {
+.steps,
+.about-list {
   display: grid;
   gap: 18px;
+}
+
+.about-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.about-copy,
+.about-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  padding: 26px;
+}
+
+.about-copy h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.about-copy p,
+.about-card p {
+  color: #ddd3c5;
 }
 
 .benefit-grid {
@@ -406,8 +436,11 @@ a {
   height: 38px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.22);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1rem;
+}
+
+.whatsapp-icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .whatsapp-text {
@@ -416,6 +449,7 @@ a {
 
 @media (max-width: 980px) {
   .hero-content,
+  .about-panel,
   .plans-grid,
   .benefit-grid,
   .steps,
