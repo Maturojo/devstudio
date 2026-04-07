@@ -255,7 +255,8 @@ a {
 .benefit-grid,
 .plans-grid,
 .steps,
-.about-list {
+.about-list,
+.portfolio-grid {
   display: grid;
   gap: 18px;
 }
@@ -291,6 +292,129 @@ a {
 
 .benefit-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.portfolio-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portfolio-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+}
+
+.portfolio-visual {
+  position: relative;
+  min-height: 210px;
+  padding: 22px;
+  display: flex;
+  align-items: end;
+}
+
+.portfolio-warm .portfolio-visual {
+  background:
+    radial-gradient(circle at top left, rgba(255, 166, 77, 0.45), transparent 38%),
+    linear-gradient(160deg, rgba(77, 30, 15, 0.9), rgba(14, 11, 10, 0.95));
+}
+
+.portfolio-dark .portfolio-visual {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 28%),
+    linear-gradient(160deg, rgba(21, 21, 24, 0.95), rgba(8, 8, 10, 1));
+}
+
+.portfolio-gold .portfolio-visual {
+  background:
+    radial-gradient(circle at top center, rgba(255, 209, 102, 0.38), transparent 34%),
+    linear-gradient(160deg, rgba(55, 42, 12, 0.92), rgba(14, 12, 10, 0.98));
+}
+
+.portfolio-glow {
+  position: absolute;
+  inset: auto auto 22px 22px;
+  width: 82px;
+  height: 82px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(18px);
+}
+
+.portfolio-window {
+  position: relative;
+  width: 100%;
+  border-radius: 22px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-dots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.portfolio-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.portfolio-lines {
+  display: grid;
+  gap: 12px;
+}
+
+.line {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.line-main {
+  width: 72%;
+  height: 18px;
+}
+
+.line.short {
+  width: 48%;
+}
+
+.portfolio-copy {
+  padding: 22px;
+}
+
+.portfolio-copy h3 {
+  margin: 0 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.05;
+}
+
+.portfolio-copy p {
+  margin: 0;
+  color: #ddd3c5;
+}
+
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.portfolio-tags span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f0e7da;
+  font-size: 0.9rem;
 }
 
 .info-card,
@@ -499,6 +623,7 @@ a {
 @media (max-width: 980px) {
   .hero-content,
   .about-panel,
+  .portfolio-grid,
   .footer-grid,
   .plans-grid,
   .benefit-grid,

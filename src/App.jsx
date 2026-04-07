@@ -52,6 +52,30 @@ const benefits = [
   "Soporte para proyectos personales, negocios y marcas",
 ];
 
+const portfolioItems = [
+  {
+    title: "Generador de carteles con base de datos",
+    description:
+      "Sistema pensado para crear, guardar y administrar carteles de forma rapida, con informacion organizada en base de datos y una interfaz clara para el usuario.",
+    tone: "warm",
+    tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
+  },
+  {
+    title: "Landing comercial para negocios",
+    description:
+      "Paginas orientadas a captar consultas y ventas, con estructura visual persuasiva, contacto directo y contenido pensado para generar confianza.",
+    tone: "dark",
+    tags: ["Responsive", "WhatsApp", "Conversion"],
+  },
+  {
+    title: "Sitio web avanzado a medida",
+    description:
+      "Desarrollo de webs con multiples secciones, formularios, integraciones y una arquitectura preparada para crecer junto al proyecto.",
+    tone: "gold",
+    tags: ["Escalable", "Integraciones", "A medida"],
+  },
+];
+
 const aboutPoints = [
   "Trabajo de forma directa con cada cliente, sin vueltas ni intermediarios.",
   "Diseno cada pagina para transmitir profesionalismo, confianza y claridad desde el primer segundo.",
@@ -176,6 +200,48 @@ function App() {
                 <article className="info-card" key={benefit}>
                   <span className="card-dot" />
                   <p>{benefit}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="section portfolio" id="portfolio">
+            <div className="section-heading">
+              <p className="eyebrow">Portfolio</p>
+              <h2>Algunos tipos de proyectos que puedo desarrollar para tu negocio.</h2>
+            </div>
+
+            <div className="portfolio-grid">
+              {portfolioItems.map((item) => (
+                <article
+                  key={item.title}
+                  className={`portfolio-card portfolio-${item.tone}`}
+                >
+                  <div className="portfolio-visual">
+                    <span className="portfolio-glow" />
+                    <div className="portfolio-window">
+                      <div className="portfolio-dots">
+                        <span />
+                        <span />
+                        <span />
+                      </div>
+                      <div className="portfolio-lines">
+                        <span className="line line-main" />
+                        <span className="line" />
+                        <span className="line short" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="portfolio-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <div className="portfolio-tags">
+                      {item.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
