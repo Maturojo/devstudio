@@ -51,8 +51,8 @@ const benefits = [
 
 const aboutPoints = [
   "Trabajo de forma directa con cada cliente, sin vueltas ni intermediarios.",
-  "Busco que cada pagina transmita profesionalismo, confianza y claridad.",
-  "Me enfoco en que tu web no solo se vea bien, sino que te ayude a conseguir consultas y ventas.",
+  "Diseno cada pagina para transmitir profesionalismo, confianza y claridad desde el primer segundo.",
+  "Me enfoco en que tu web no solo se vea bien, sino que te ayude a conseguir consultas y ventas reales.",
 ];
 
 function App() {
@@ -138,11 +138,17 @@ function App() {
             <div className="about-panel">
               <div className="about-copy">
                 <p className="eyebrow">Sobre mi</p>
-                <h2>Mi nombre es Matias Rojo y ayudo a negocios a verse profesionales en internet.</h2>
+                <h2>Mi nombre es Matias Rojo y me dedico a crear paginas web que ayudan a dar una imagen profesional y vender mejor.</h2>
                 <p>
-                  Trabajo creando paginas web pensadas para generar confianza desde el
-                  primer momento. Mi objetivo es que cada cliente tenga una presencia
-                  online clara, moderna y preparada para convertir visitas en contactos.
+                  Me gusta trabajar con emprendedores, negocios y marcas que quieren
+                  verse serios en internet y tener una pagina que realmente los represente.
+                  Cada proyecto lo encaro con una mirada visual, tecnica y comercial para
+                  que tu sitio se vea bien, sea facil de usar y genere confianza.
+                </p>
+                <p>
+                  Si estas empezando o quieres mejorar tu presencia online, puedo ayudarte
+                  a construir una web clara, moderna y pensada para convertir visitas en
+                  mensajes, consultas y ventas.
                 </p>
               </div>
 
@@ -269,7 +275,6 @@ function App() {
             />
           </svg>
         </span>
-        <span className="whatsapp-text">WhatsApp</span>
       </a>
     </>
   );

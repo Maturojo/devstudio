@@ -414,8 +414,9 @@ a {
   z-index: 50;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 18px 12px 12px;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
   border-radius: 999px;
   background: linear-gradient(135deg, #25d366, #7bf29a);
   color: #0f1d13;
@@ -432,8 +433,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.22);
 }
@@ -441,10 +442,6 @@ a {
 .whatsapp-icon svg {
   width: 20px;
   height: 20px;
-}
-
-.whatsapp-text {
-  white-space: nowrap;
 }
 
 @media (max-width: 980px) {
@@ -496,10 +493,5 @@ a {
   .whatsapp-float {
     right: 14px;
     bottom: 14px;
-    padding-right: 14px;
-  }
-
-  .whatsapp-text {
-    display: none;
   }
 }
