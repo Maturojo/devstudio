@@ -79,7 +79,7 @@ function App() {
           <div className="hero-content">
             <div className="hero-copy">
               <p className="eyebrow">Matias Rojo | Desarrollo web a medida</p>
-              <h1>Soy Matias Rojo y creo paginas web pensadas para dar confianza y generar ventas.</h1>
+              <h1>Diseno y desarrollo paginas web a medida con enfoque comercial.</h1>
               <p className="hero-text">
                 Ayudo a emprendedores, negocios y marcas a tener una presencia online
                 profesional. Desarrollo desde paginas simples hasta sitios avanzados
@@ -257,6 +257,30 @@ function App() {
             </div>
           </section>
         </main>
+
+        <footer className="site-footer">
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <p className="footer-title">DevStudio</p>
+              <p>Design by Matias Rojo</p>
+            </div>
+
+            <div className="footer-links">
+              <a href="#planes">Planes</a>
+              <a href="#contacto">Contacto</a>
+              <a href={`mailto:maturojo123mdq@gmail.com`}>Email</a>
+            </div>
+
+            <div className="footer-meta">
+              <p>Desarrollo web a medida</p>
+              <p>Dominio, hosting y SSL incluidos por 1 ano</p>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>© 2026 DevStudio. Todos los derechos reservados.</p>
+          </div>
+        </footer>
       </div>
 
       <a
