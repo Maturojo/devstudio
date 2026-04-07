@@ -307,83 +307,17 @@ a {
 }
 
 .portfolio-visual {
-  position: relative;
-  min-height: 210px;
-  padding: 22px;
-  display: flex;
-  align-items: end;
-}
-
-.portfolio-warm .portfolio-visual {
-  background:
-    radial-gradient(circle at top left, rgba(255, 166, 77, 0.45), transparent 38%),
-    linear-gradient(160deg, rgba(77, 30, 15, 0.9), rgba(14, 11, 10, 0.95));
-}
-
-.portfolio-dark .portfolio-visual {
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 28%),
-    linear-gradient(160deg, rgba(21, 21, 24, 0.95), rgba(8, 8, 10, 1));
-}
-
-.portfolio-gold .portfolio-visual {
-  background:
-    radial-gradient(circle at top center, rgba(255, 209, 102, 0.38), transparent 34%),
-    linear-gradient(160deg, rgba(55, 42, 12, 0.92), rgba(14, 12, 10, 0.98));
-}
-
-.portfolio-glow {
-  position: absolute;
-  inset: auto auto 22px 22px;
-  width: 82px;
-  height: 82px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.08);
-  filter: blur(18px);
-}
-
-.portfolio-window {
-  position: relative;
   width: 100%;
-  border-radius: 22px;
-  padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #1a1715;
 }
 
-.portfolio-dots {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.portfolio-dots span {
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.portfolio-lines {
-  display: grid;
-  gap: 12px;
-}
-
-.line {
+.portfolio-visual img {
   display: block;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.28);
-}
-
-.line-main {
-  width: 72%;
-  height: 18px;
-}
-
-.line.short {
-  width: 48%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .portfolio-copy {

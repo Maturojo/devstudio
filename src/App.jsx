@@ -57,21 +57,21 @@ const portfolioItems = [
     title: "Generador de carteles con base de datos",
     description:
       "Sistema pensado para crear, guardar y administrar carteles de forma rapida, con informacion organizada en base de datos y una interfaz clara para el usuario.",
-    tone: "warm",
+    image: "/portfolio-carteles.svg",
     tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
   },
   {
     title: "Landing comercial para negocios",
     description:
       "Paginas orientadas a captar consultas y ventas, con estructura visual persuasiva, contacto directo y contenido pensado para generar confianza.",
-    tone: "dark",
+    image: "/portfolio-landing.svg",
     tags: ["Responsive", "WhatsApp", "Conversion"],
   },
   {
     title: "Sitio web avanzado a medida",
     description:
       "Desarrollo de webs con multiples secciones, formularios, integraciones y una arquitectura preparada para crecer junto al proyecto.",
-    tone: "gold",
+    image: "/portfolio-avanzado.svg",
     tags: ["Escalable", "Integraciones", "A medida"],
   },
 ];
@@ -213,24 +213,9 @@ function App() {
 
             <div className="portfolio-grid">
               {portfolioItems.map((item) => (
-                <article
-                  key={item.title}
-                  className={`portfolio-card portfolio-${item.tone}`}
-                >
+                <article key={item.title} className="portfolio-card">
                   <div className="portfolio-visual">
-                    <span className="portfolio-glow" />
-                    <div className="portfolio-window">
-                      <div className="portfolio-dots">
-                        <span />
-                        <span />
-                        <span />
-                      </div>
-                      <div className="portfolio-lines">
-                        <span className="line line-main" />
-                        <span className="line" />
-                        <span className="line short" />
-                      </div>
-                    </div>
+                    <img src={item.image} alt={item.title} />
                   </div>
 
                   <div className="portfolio-copy">
