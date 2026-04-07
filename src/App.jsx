@@ -76,6 +76,29 @@ const portfolioItems = [
   },
 ];
 
+const faqs = [
+  {
+    question: "Que incluye cada plan?",
+    answer:
+      "Cada plan incluye diseno responsive, desarrollo web, dominio, hosting y certificado SSL por 1 ano. La diferencia esta en el nivel de personalizacion, cantidad de secciones y funcionalidades.",
+  },
+  {
+    question: "Cuanto tarda en estar lista una pagina?",
+    answer:
+      "Depende del tipo de proyecto, pero una landing simple puede estar lista en pocos dias y una web mas avanzada puede requerir mas tiempo segun la cantidad de contenido y funciones.",
+  },
+  {
+    question: "Puedo pedir cambios una vez terminada?",
+    answer:
+      "Si, siempre podemos hacer ajustes y mejoras. La idea es que tu pagina quede alineada con tu negocio y se vea profesional antes de publicarla.",
+  },
+  {
+    question: "Trabajas con negocios pequenos o solo proyectos grandes?",
+    answer:
+      "Trabajo con emprendedores, marcas personales, negocios pequenos y tambien proyectos mas completos. Podemos encontrar una solucion segun tu necesidad y presupuesto.",
+  },
+];
+
 const aboutPoints = [
   "Trabajo de forma directa con cada cliente, sin vueltas ni intermediarios.",
   "Diseno cada pagina para transmitir profesionalismo, confianza y claridad desde el primer segundo.",
@@ -228,6 +251,22 @@ function App() {
                     </div>
                   </div>
                 </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="section faq" id="faq">
+            <div className="section-heading">
+              <p className="eyebrow">Preguntas frecuentes</p>
+              <h2>Respuestas claras para que sepas exactamente que esperar del servicio.</h2>
+            </div>
+
+            <div className="faq-list">
+              {faqs.map((item) => (
+                <details className="faq-item" key={item.question}>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
               ))}
             </div>
           </section>
