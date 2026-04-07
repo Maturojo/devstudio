@@ -1,30 +1,40 @@
 <svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="900" rx="40" fill="#111214"/>
-  <rect x="48" y="48" width="1104" height="804" rx="30" fill="#1A1C20"/>
-  <rect x="88" y="88" width="1024" height="62" rx="18" fill="#24272D"/>
+  <rect width="1200" height="900" rx="40" fill="#101112"/>
+  <rect x="48" y="48" width="1104" height="804" rx="30" fill="#181A1E"/>
+  <rect x="88" y="88" width="1024" height="62" rx="18" fill="#23262B"/>
   <circle cx="123" cy="119" r="8" fill="#FF8A5B"/>
   <circle cx="151" cy="119" r="8" fill="#FFD166"/>
   <circle cx="179" cy="119" r="8" fill="#6EE7A8"/>
-  <rect x="850" y="104" width="220" height="28" rx="14" fill="#F6A35C"/>
+  <rect x="244" y="104" width="126" height="28" rx="14" fill="#31353B"/>
+  <rect x="840" y="104" width="104" height="28" rx="14" fill="#31353B"/>
+  <rect x="962" y="104" width="120" height="28" rx="14" fill="#F6A35C"/>
   <rect x="88" y="186" width="1024" height="280" rx="26" fill="url(#paint0_linear)"/>
-  <rect x="136" y="236" width="410" height="38" rx="12" fill="#FFF6EE"/>
-  <rect x="136" y="292" width="340" height="38" rx="12" fill="#FFF6EE"/>
-  <rect x="136" y="358" width="250" height="18" rx="9" fill="#D8B8A0"/>
-  <rect x="136" y="392" width="300" height="18" rx="9" fill="#D8B8A0"/>
-  <rect x="136" y="432" width="170" height="42" rx="21" fill="#F6A35C"/>
-  <rect x="730" y="226" width="300" height="200" rx="24" fill="#FFF6EE" fill-opacity="0.1"/>
-  <rect x="754" y="254" width="252" height="18" rx="9" fill="#FFF6EE"/>
-  <rect x="754" y="294" width="180" height="18" rx="9" fill="#E5C9B5"/>
-  <rect x="754" y="342" width="100" height="56" rx="16" fill="#F6A35C"/>
-  <rect x="88" y="506" width="320" height="280" rx="24" fill="#24272D"/>
-  <rect x="440" y="506" width="320" height="280" rx="24" fill="#24272D"/>
-  <rect x="792" y="506" width="320" height="280" rx="24" fill="#24272D"/>
+  <rect x="136" y="236" width="420" height="40" rx="12" fill="#FFF6EE"/>
+  <rect x="136" y="292" width="350" height="40" rx="12" fill="#FFF6EE"/>
+  <rect x="136" y="352" width="284" height="18" rx="9" fill="#D8B8A0"/>
+  <rect x="136" y="386" width="322" height="18" rx="9" fill="#D8B8A0"/>
+  <rect x="136" y="432" width="170" height="44" rx="22" fill="#F6A35C"/>
+  <rect x="332" y="432" width="150" height="44" rx="22" fill="#FFF6EE" fill-opacity="0.14"/>
+  <rect x="742" y="224" width="290" height="214" rx="24" fill="#FFF6EE" fill-opacity="0.08"/>
+  <rect x="768" y="252" width="236" height="18" rx="9" fill="#FFF6EE"/>
+  <rect x="768" y="290" width="180" height="18" rx="9" fill="#E5C9B5"/>
+  <rect x="768" y="336" width="90" height="54" rx="16" fill="#F6A35C"/>
+  <rect x="882" y="336" width="122" height="54" rx="16" fill="#FFF6EE" fill-opacity="0.12"/>
+  <rect x="88" y="506" width="320" height="280" rx="24" fill="#23262B"/>
+  <rect x="440" y="506" width="320" height="280" rx="24" fill="#23262B"/>
+  <rect x="792" y="506" width="320" height="280" rx="24" fill="#23262B"/>
   <rect x="116" y="536" width="180" height="18" rx="9" fill="#FFF6EE"/>
   <rect x="468" y="536" width="160" height="18" rx="9" fill="#FFF6EE"/>
   <rect x="820" y="536" width="190" height="18" rx="9" fill="#FFF6EE"/>
-  <rect x="116" y="580" width="264" height="140" rx="18" fill="#1B1E23"/>
-  <rect x="468" y="580" width="264" height="140" rx="18" fill="#1B1E23"/>
-  <rect x="820" y="580" width="264" height="140" rx="18" fill="#1B1E23"/>
+  <rect x="116" y="580" width="264" height="140" rx="18" fill="#1A1C20"/>
+  <rect x="468" y="580" width="264" height="140" rx="18" fill="#1A1C20"/>
+  <rect x="820" y="580" width="264" height="140" rx="18" fill="#1A1C20"/>
+  <rect x="140" y="606" width="110" height="14" rx="7" fill="#F3E5D8"/>
+  <rect x="492" y="606" width="92" height="14" rx="7" fill="#F3E5D8"/>
+  <rect x="844" y="606" width="122" height="14" rx="7" fill="#F3E5D8"/>
+  <rect x="140" y="634" width="198" height="14" rx="7" fill="#6B7078"/>
+  <rect x="492" y="634" width="190" height="14" rx="7" fill="#6B7078"/>
+  <rect x="844" y="634" width="190" height="14" rx="7" fill="#6B7078"/>
   <defs>
     <linearGradient id="paint0_linear" x1="88" y1="186" x2="1112" y2="466" gradientUnits="userSpaceOnUse">
       <stop stop-color="#3D241A"/>
