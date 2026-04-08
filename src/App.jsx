@@ -1,7 +1,7 @@
 const plans = [
   {
     name: "Basico",
-    price: "USD 80",
+    price: "USD 80 - pago unico",
     description: "Ideal para presencia digital rapida y profesional.",
     features: [
       "Landing page de una sola seccion o varias secciones simples",
@@ -13,7 +13,7 @@ const plans = [
   },
   {
     name: "Intermedio",
-    price: "USD 180",
+    price: "USD 180 - pago unico",
     description: "Para negocios que necesitan una web mas completa y persuasiva.",
     featured: true,
     features: [
@@ -26,7 +26,7 @@ const plans = [
   },
   {
     name: "Avanzado",
-    price: "USD 360",
+    price: "USD 360 - pago unico",
     description: "Pensado para proyectos que requieren mas logica y personalizacion.",
     features: [
       "Paneles, integraciones o funcionalidades a medida",
