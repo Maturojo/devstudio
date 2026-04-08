@@ -16,6 +16,7 @@ const plans = [
     price: "USD 180",
     description: "Para negocios que necesitan una web mas completa y persuasiva.",
     featured: true,
+    badge: "Mas elegido",
     features: [
       "Sitio con multiples paginas o secciones avanzadas",
       "Animaciones suaves y mejor estructura visual",
@@ -283,7 +284,8 @@ function App() {
                   key={plan.name}
                   className={`plan-card ${plan.featured ? "featured" : ""}`}
                 >
-                  <div className="plan-header">
+                <div className="plan-header">
+                  {plan.badge ? <p className="plan-badge">{plan.badge}</p> : null}
                   <p className="plan-name">{plan.name}</p>
                   <h3>{plan.price}</h3>
                   <p className="plan-note">Unico pago</p>
