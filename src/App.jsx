@@ -57,8 +57,8 @@ const portfolioItems = [
   {
     title: "Generador de carteles con base de datos",
     description:
-      "Sistema pensado para crear, guardar y administrar carteles de forma rapida, con informacion organizada en base de datos y una interfaz clara para el usuario.",
-    image: "/portfolio-carteles.svg",
+      "Sistema real para buscar, filtrar y administrar productos con datos dinamicos, pensado para trabajar de forma rapida, ordenada y con una interfaz clara para el usuario.",
+    image: "/portfolio-carteles-real.jpeg",
     tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
   },
   {
