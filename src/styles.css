@@ -361,6 +361,60 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.portfolio-showcase {
+  display: grid;
+  gap: 24px;
+}
+
+.portfolio-heading {
+  margin-bottom: 0;
+}
+
+.portfolio-intro {
+  max-width: 70ch;
+  margin: 18px 0 0;
+  color: #d7cbbb;
+  font-size: 1.03rem;
+}
+
+.portfolio-client {
+  display: flex;
+}
+
+.portfolio-client-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 44px rgba(0, 0, 0, 0.14);
+}
+
+.portfolio-client-logo {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.portfolio-client-name {
+  margin: 0 0 6px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f4efe7;
+}
+
+.portfolio-client-text {
+  margin: 0;
+  color: #cbbcab;
+  max-width: 56ch;
+}
+
 .portfolio-card {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -894,6 +948,11 @@ a {
 
   .contact-panel {
     display: grid;
+  }
+
+  .portfolio-client-card {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .hero-card {

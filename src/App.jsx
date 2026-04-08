@@ -233,35 +233,59 @@ function App() {
           </section>
 
           <section className="section portfolio" id="portfolio">
-            <div className="section-heading">
-              <p className="eyebrow">Portfolio</p>
-              <h2>Algunos tipos de proyectos que puedo desarrollar para tu negocio.</h2>
-            </div>
+            <div className="portfolio-showcase">
+              <div className="section-heading portfolio-heading">
+                <p className="eyebrow">Ultimos proyectos</p>
+                <h2>Trabajo con negocios reales y desarrollo soluciones pensadas para su operacion diaria.</h2>
+                <p className="portfolio-intro">
+                  Estas muestras forman parte de trabajos recientes donde el foco estuvo
+                  en mejorar la experiencia de uso, ordenar informacion y crear interfaces
+                  claras para equipos y clientes.
+                </p>
+              </div>
 
-            <div className="portfolio-grid">
-              {portfolioItems.map((item) => (
-                <article key={item.title} className="portfolio-card">
-                  <button
-                    type="button"
-                    className="portfolio-visual"
-                    onClick={() => setActiveImage({ src: item.image, alt: item.title })}
-                    aria-label={`Ver imagen completa de ${item.title}`}
-                  >
-                    <img src={item.image} alt={item.title} />
-                    <span className="portfolio-zoom">Ver imagen completa</span>
-                  </button>
-
-                  <div className="portfolio-copy">
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <div className="portfolio-tags">
-                      {item.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
+              <div className="portfolio-client">
+                <div className="portfolio-client-card">
+                  <img
+                    className="portfolio-client-logo"
+                    src="/sur-maderas-logo.png"
+                    alt="Logo de Sur Maderas"
+                  />
+                  <div>
+                    <p className="portfolio-client-name">Sur Maderas</p>
+                    <p className="portfolio-client-text">
+                      Proyecto real con interfaces y herramientas adaptadas a necesidades
+                      comerciales y de gestion.
+                    </p>
                   </div>
-                </article>
-              ))}
+                </div>
+              </div>
+
+              <div className="portfolio-grid">
+                {portfolioItems.map((item) => (
+                  <article key={item.title} className="portfolio-card">
+                    <button
+                      type="button"
+                      className="portfolio-visual"
+                      onClick={() => setActiveImage({ src: item.image, alt: item.title })}
+                      aria-label={`Ver imagen completa de ${item.title}`}
+                    >
+                      <img src={item.image} alt={item.title} />
+                      <span className="portfolio-zoom">Ver imagen completa</span>
+                    </button>
+
+                    <div className="portfolio-copy">
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                      <div className="portfolio-tags">
+                        {item.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </section>
 
