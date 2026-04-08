@@ -324,27 +324,29 @@ function App() {
 
           <section className="section contact" id="contacto">
             <div className="contact-panel">
-              <div>
+              <div className="contact-copy">
                 <p className="eyebrow">Contacto</p>
-                <h2>Si ya tienes una idea, la convertimos en una pagina lista para vender.</h2>
+                <h2>Si ya tienes una idea, hablemos y la convertimos en una web profesional.</h2>
                 <p>
-                  Puedes cambiar estos datos luego por tu WhatsApp, tu email o un
-                  formulario real conectado a tu servicio favorito. Por ahora, la
-                  pagina ya queda lista para que te contacten directo.
+                  Trabajo de forma directa para ayudarte a lanzar una pagina clara,
+                  moderna y pensada para generar confianza. Puedes escribirme por
+                  email o WhatsApp y coordinamos la mejor opcion para tu proyecto.
                 </p>
               </div>
 
               <div className="contact-actions">
-                <a className="button primary" href="mailto:maturojo123mdq@gmail.com">
-                  maturojo123mdq@gmail.com
+                <a className="contact-card contact-primary" href="mailto:maturojo123mdq@gmail.com">
+                  <span className="contact-label">Email</span>
+                  <strong>maturojo123mdq@gmail.com</strong>
                 </a>
                 <a
-                  className="button secondary"
+                  className="contact-card"
                   href={whatsappLink}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  2235954195
+                  <span className="contact-label">WhatsApp</span>
+                  <strong>2235954195</strong>
                 </a>
               </div>
             </div>
