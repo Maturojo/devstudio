@@ -284,9 +284,11 @@ function App() {
                   key={plan.name}
                   className={`plan-card ${plan.featured ? "featured" : ""}`}
                 >
-                <div className="plan-header">
-                  {plan.badge ? <p className="plan-badge">{plan.badge}</p> : null}
-                  <p className="plan-name">{plan.name}</p>
+                  <div className="plan-header">
+                    <div className="plan-topline">
+                      <p className="plan-name">{plan.name}</p>
+                      {plan.badge ? <p className="plan-badge">{plan.badge}</p> : null}
+                    </div>
                   <h3>{plan.price}</h3>
                   <p className="plan-note">Unico pago</p>
                   <p className="plan-description">{plan.description}</p>
@@ -346,7 +348,6 @@ function App() {
                   rel="noreferrer"
                 >
                   <span className="contact-label">WhatsApp</span>
-                  <strong>2235954195</strong>
                 </a>
               </div>
             </div>

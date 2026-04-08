@@ -505,9 +505,16 @@ a {
   font-weight: 700;
 }
 
+.plan-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .plan-badge {
   display: inline-flex;
-  margin: 0 0 12px;
+  margin: 0;
   padding: 8px 12px;
   border-radius: 999px;
   background: rgba(255, 209, 102, 0.16);
