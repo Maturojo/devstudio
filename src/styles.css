@@ -511,6 +511,14 @@ a {
   font-family: "Space Grotesk", sans-serif;
 }
 
+.plan-note {
+  margin: 6px 0 0;
+  color: #bcae9e;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .feature-list {
   list-style: none;
   padding: 0;

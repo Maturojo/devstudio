@@ -1,7 +1,7 @@
 const plans = [
   {
     name: "Basico",
-    price: "USD 80 - pago unico",
+    price: "USD 80",
     description: "Ideal para presencia digital rapida y profesional.",
     features: [
       "Landing page de una sola seccion o varias secciones simples",
@@ -13,7 +13,7 @@ const plans = [
   },
   {
     name: "Intermedio",
-    price: "USD 180 - pago unico",
+    price: "USD 180",
     description: "Para negocios que necesitan una web mas completa y persuasiva.",
     featured: true,
     features: [
@@ -26,7 +26,7 @@ const plans = [
   },
   {
     name: "Avanzado",
-    price: "USD 360 - pago unico",
+    price: "USD 360",
     description: "Pensado para proyectos que requieren mas logica y personalizacion.",
     features: [
       "Paneles, integraciones o funcionalidades a medida",
@@ -284,10 +284,11 @@ function App() {
                   className={`plan-card ${plan.featured ? "featured" : ""}`}
                 >
                   <div className="plan-header">
-                    <p className="plan-name">{plan.name}</p>
-                    <h3>{plan.price}</h3>
-                    <p className="plan-description">{plan.description}</p>
-                  </div>
+                  <p className="plan-name">{plan.name}</p>
+                  <h3>{plan.price}</h3>
+                  <p className="plan-note">Unico pago</p>
+                  <p className="plan-description">{plan.description}</p>
+                </div>
 
                   <ul className="feature-list">
                     {plan.features.map((feature) => (
