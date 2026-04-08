@@ -383,16 +383,42 @@ a {
 
 .portfolio-visual {
   width: 100%;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #1a1715;
+  border: 0;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
 }
 
 .portfolio-visual img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
+  background: #120f0d;
+}
+
+.portfolio-zoom {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(15, 15, 16, 0.78);
+  color: #f4efe7;
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.portfolio-visual:hover .portfolio-zoom {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .portfolio-copy {
@@ -797,6 +823,39 @@ a {
 .whatsapp-icon svg {
   width: 20px;
   height: 20px;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 8, 10, 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-image {
+  max-width: min(1200px, 100%);
+  max-height: calc(100vh - 80px);
+  border-radius: 20px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+  background: #0f0f10;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4efe7;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 @keyframes pageFade {

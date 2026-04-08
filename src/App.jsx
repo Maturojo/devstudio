@@ -1,3 +1,5 @@
+import React from "react";
+
 const plans = [
   {
     name: "Basico",
@@ -109,6 +111,7 @@ const aboutPoints = [
 function App() {
   const whatsappLink =
     "https://wa.me/5492235954195?text=Hola%20DevStudio%2C%20quiero%20consultar%20por%20una%20pagina%20web.";
+  const [activeImage, setActiveImage] = React.useState(null);
 
   return (
     <>
@@ -238,9 +241,15 @@ function App() {
             <div className="portfolio-grid">
               {portfolioItems.map((item) => (
                 <article key={item.title} className="portfolio-card">
-                  <div className="portfolio-visual">
+                  <button
+                    type="button"
+                    className="portfolio-visual"
+                    onClick={() => setActiveImage({ src: item.image, alt: item.title })}
+                    aria-label={`Ver imagen completa de ${item.title}`}
+                  >
                     <img src={item.image} alt={item.title} />
-                  </div>
+                    <span className="portfolio-zoom">Ver imagen completa</span>
+                  </button>
 
                   <div className="portfolio-copy">
                     <h3>{item.title}</h3>
@@ -378,6 +387,31 @@ function App() {
           </div>
         </footer>
       </div>
+
+      {activeImage ? (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeImage.alt}
+          onClick={() => setActiveImage(null)}
+        >
+          <button
+            type="button"
+            className="lightbox-close"
+            onClick={() => setActiveImage(null)}
+            aria-label="Cerrar imagen"
+          >
+            Cerrar
+          </button>
+          <img
+            className="lightbox-image"
+            src={activeImage.src}
+            alt={activeImage.alt}
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      ) : null}
 
       <a
         className="whatsapp-float"
