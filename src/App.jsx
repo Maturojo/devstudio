@@ -73,8 +73,8 @@ const portfolioItems = [
   {
     title: "Sitio web avanzado a medida",
     description:
-      "Desarrollo de webs con multiples secciones, formularios, integraciones y una arquitectura preparada para crecer junto al proyecto.",
-    image: "/portfolio-avanzado.svg",
+      "Proyecto real con una interfaz mas completa, estructura personalizada y una base preparada para sumar funciones, automatizaciones o integraciones segun la necesidad del cliente.",
+    image: "/portfolio-avanzado-real.png",
     tags: ["Escalable", "Integraciones", "A medida"],
   },
 ];
