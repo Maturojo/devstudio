@@ -2,9 +2,10 @@
   font-family: "DM Sans", sans-serif;
   color: #f4efe7;
   background:
-    radial-gradient(circle at top left, rgba(255, 127, 80, 0.2), transparent 30%),
-    radial-gradient(circle at top right, rgba(255, 214, 102, 0.18), transparent 28%),
-    linear-gradient(180deg, #111111 0%, #171717 48%, #0d0d0d 100%);
+    radial-gradient(circle at top left, rgba(255, 127, 80, 0.22), transparent 26%),
+    radial-gradient(circle at top right, rgba(255, 214, 102, 0.14), transparent 22%),
+    radial-gradient(circle at center top, rgba(255, 255, 255, 0.025), transparent 30%),
+    linear-gradient(180deg, #0f0f10 0%, #171514 48%, #0b0b0c 100%);
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -25,6 +26,9 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(255, 149, 43, 0.08), transparent 22%),
+    linear-gradient(180deg, #0f0f10 0%, #171514 48%, #0b0b0c 100%);
 }
 
 #root {
@@ -140,12 +144,12 @@ a {
 .plan-card.featured .plan-button {
   background: linear-gradient(135deg, #ff7a18, #ffb347);
   color: #161616;
-  box-shadow: 0 14px 36px rgba(255, 122, 24, 0.22);
+  box-shadow: 0 16px 42px rgba(255, 122, 24, 0.22);
 }
 
 .button.secondary {
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   color: #f7f3ec;
 }
 
@@ -214,8 +218,11 @@ a {
 .step-card,
 .contact-panel {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+  backdrop-filter: blur(18px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 44px rgba(0, 0, 0, 0.16);
 }
 
 .hero-metrics li {
@@ -324,10 +331,13 @@ a {
 .about-copy,
 .about-card {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
   backdrop-filter: blur(16px);
   border-radius: 28px;
   padding: 26px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 44px rgba(0, 0, 0, 0.14);
 }
 
 .about-copy h2 {
@@ -354,9 +364,21 @@ a {
 .portfolio-card {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.026));
   backdrop-filter: blur(16px);
   border-radius: 28px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 20px 48px rgba(0, 0, 0, 0.16);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 191, 115, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 28px 56px rgba(0, 0, 0, 0.2);
 }
 
 .portfolio-visual {
@@ -411,10 +433,13 @@ a {
 
 .faq-item {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
   backdrop-filter: blur(16px);
   border-radius: 24px;
   padding: 22px 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 .faq-item summary {
@@ -487,13 +512,37 @@ a {
   display: flex;
   flex-direction: column;
   gap: 22px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plan-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 191, 115, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 26px 54px rgba(0, 0, 0, 0.2);
 }
 
 .plan-card.featured {
   background:
-    linear-gradient(180deg, rgba(255, 122, 24, 0.18), rgba(255, 255, 255, 0.05)),
+    radial-gradient(circle at top, rgba(255, 191, 115, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(255, 122, 24, 0.16), rgba(255, 255, 255, 0.04)),
     rgba(255, 255, 255, 0.04);
   transform: translateY(-8px);
+  border-color: rgba(255, 191, 115, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 30px 70px rgba(255, 122, 24, 0.12);
 }
 
 .plan-name {
@@ -605,9 +654,20 @@ a {
   padding: 18px 22px;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
   color: #f4efe7;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 16px 38px rgba(0, 0, 0, 0.14);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 191, 115, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 22px 44px rgba(0, 0, 0, 0.18);
 }
 
 .contact-card strong {
@@ -684,6 +744,22 @@ a {
   margin-top: 20px;
   padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.info-card,
+.step-card,
+.about-card {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.info-card:hover,
+.step-card:hover,
+.about-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 191, 115, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 48px rgba(0, 0, 0, 0.18);
 }
 
 .whatsapp-float {
@@ -791,6 +867,11 @@ a {
   .nav-cta,
   .button {
     width: 100%;
+  }
+
+  .plan-topline {
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   .whatsapp-float {
