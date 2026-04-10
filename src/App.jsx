@@ -367,22 +367,52 @@ function App() {
                   moderna y pensada para generar confianza. Puedes escribirme por
                   email o WhatsApp y coordinamos la mejor opcion para tu proyecto.
                 </p>
+                <div className="contact-direct">
+                  <a href="mailto:maturojo123mdq@gmail.com">maturojo123mdq@gmail.com</a>
+                  <a href={whatsappLink} target="_blank" rel="noreferrer">
+                    WhatsApp
+                  </a>
+                </div>
               </div>
 
-              <div className="contact-actions">
-                <a className="contact-card contact-primary" href="mailto:maturojo123mdq@gmail.com">
-                  <span className="contact-label">Email</span>
-                  <strong>maturojo123mdq@gmail.com</strong>
-                </a>
-                <a
-                  className="contact-card"
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="contact-label">WhatsApp</span>
-                </a>
-              </div>
+              <form
+                className="contact-form"
+                action="https://formsubmit.co/maturojo123mdq@gmail.com"
+                method="POST"
+              >
+                <input type="hidden" name="_subject" value="Nueva consulta desde DevStudio" />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://devstudio-chi.vercel.app/#contacto"
+                />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
+
+                <label className="form-field">
+                  <span>Nombre</span>
+                  <input type="text" name="name" placeholder="Tu nombre" required />
+                </label>
+
+                <label className="form-field">
+                  <span>Email</span>
+                  <input type="email" name="email" placeholder="tuemail@ejemplo.com" required />
+                </label>
+
+                <label className="form-field">
+                  <span>Mensaje</span>
+                  <textarea
+                    name="message"
+                    rows="5"
+                    placeholder="Cuéntame qué tipo de web necesitas"
+                    required
+                  />
+                </label>
+
+                <button className="button primary form-submit" type="submit">
+                  Enviar consulta
+                </button>
+              </form>
             </div>
           </section>
         </main>
