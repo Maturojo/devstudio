@@ -456,6 +456,7 @@ function App() {
             />
           </svg>
         </span>
+        <span className="whatsapp-label">Escribinos por WhatsApp</span>
       </a>
     </>
   );
