@@ -6,7 +6,7 @@ const plans = [
     price: "USD 80",
     description: "Ideal para presencia digital rapida y profesional.",
     features: [
-      "Landing page de una sola seccion o varias secciones simples",
+      "Landing de una sola pagina con secciones claras y bien ordenadas",
       "Diseno responsive para celular y PC",
       "Boton de contacto a WhatsApp o formulario basico",
       "Incluye dominio, hosting y certificado SSL por 1 ano",
@@ -20,7 +20,7 @@ const plans = [
     featured: true,
     badge: "Mas elegido",
     features: [
-      "Sitio con multiples paginas o secciones avanzadas",
+      "Landing de una sola pagina con mas secciones y estructura avanzada",
       "Animaciones suaves y mejor estructura visual",
       "Galeria, testimonios, servicios y preguntas frecuentes",
       "Incluye dominio, hosting y certificado SSL por 1 ano",
@@ -164,15 +164,13 @@ function App() {
     <>
       <div className="page-shell">
         <header className="hero">
-          <nav className="topbar">
+          <div className="topbar">
             <div className="brand">
               <span className="brand-mark" />
               <span>DevStudio</span>
             </div>
-            <a className="nav-cta" href="#planes">
-              Ver planes
-            </a>
-          </nav>
+            <p className="hero-format">Landing de una sola pagina</p>
+          </div>
 
           <div className="hero-content">
             <div className="hero-copy">
@@ -510,10 +508,7 @@ function App() {
             </div>
 
             <div className="footer-links">
-              <a href="#herramientas">Herramientas</a>
-              <a href="#planes">Planes</a>
-              <a href="#contacto">Contacto</a>
-              <a href={`mailto:maturojo123mdq@gmail.com`}>Email</a>
+              <p>Landing de una sola pagina, pensada para consultas y ventas.</p>
             </div>
 
             <div className="footer-meta">

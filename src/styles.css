@@ -117,6 +117,19 @@ a {
   margin-bottom: 48px;
 }
 
+.hero-format {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #e7dac9;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -134,7 +147,6 @@ a {
   box-shadow: 0 0 24px rgba(255, 122, 24, 0.7);
 }
 
-.nav-cta,
 .button {
   display: inline-flex;
   align-items: center;
@@ -144,7 +156,6 @@ a {
   font-weight: 700;
 }
 
-.nav-cta,
 .button.primary,
 .plan-card.featured .plan-button {
   background: linear-gradient(135deg, #ff7a18, #ffb347);
@@ -158,7 +169,6 @@ a {
   color: #f7f3ec;
 }
 
-.nav-cta:hover,
 .button:hover {
   transform: translateY(-2px);
 }
@@ -893,10 +903,11 @@ a {
 
 .footer-links {
   display: grid;
-  gap: 10px;
+  align-content: start;
 }
 
-.footer-links a {
+.footer-links p {
+  margin: 0;
   color: #e9dfd3;
   font-size: 0.96rem;
 }
