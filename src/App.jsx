@@ -41,6 +41,53 @@ const plans = [
   },
 ];
 
+const standaloneTools = [
+  {
+    name: "Turnero online",
+    price: "Desde USD 60",
+    description:
+      "Para peluquerias, estudios, consultorios o negocios que necesitan ordenar reservas y consultas sin depender de mensajes cruzados.",
+    features: [
+      "Turnos por dia y horario",
+      "Boton directo a WhatsApp o formulario",
+      "Diseno claro para celular y PC",
+    ],
+  },
+  {
+    name: "Calendario de eventos o clases",
+    price: "Desde USD 55",
+    description:
+      "Ideal para talleres, academias, gimnasios o marcas que quieren mostrar fechas, disponibilidad y actividades de forma prolija.",
+    features: [
+      "Vista mensual o por listado",
+      "Fechas destacadas y detalles por evento",
+      "Facil de integrar en una landing o web existente",
+    ],
+  },
+  {
+    name: "Catalogo digital simple",
+    price: "Desde USD 70",
+    description:
+      "Una solucion rapida para mostrar productos, servicios o menus con mejor presentacion y acceso directo a consultas.",
+    features: [
+      "Categorias, imagenes y descripciones",
+      "Pensado para vender por WhatsApp",
+      "Estructura facil de ampliar luego",
+    ],
+  },
+  {
+    name: "Cotizador o formulario inteligente",
+    price: "Desde USD 85",
+    description:
+      "Perfecto para negocios que quieren filtrar consultas, pedir datos importantes y ahorrar tiempo en respuestas repetidas.",
+    features: [
+      "Campos personalizados segun tu rubro",
+      "Entrega de consulta mas ordenada",
+      "Enfoque en conversion y practicidad",
+    ],
+  },
+];
+
 const processSteps = [
   "Analizamos tu idea, objetivo comercial y tipo de cliente.",
   "Disenamos una propuesta clara, moderna y enfocada en conversion.",
@@ -305,6 +352,44 @@ function App() {
             </div>
           </section>
 
+          <section className="section standalone-tools" id="herramientas">
+            <div className="section-heading">
+              <p className="eyebrow">Herramientas por separado</p>
+              <h2>Si no necesitas una web completa, tambien puedo desarrollar funciones puntuales listas para usar y vender.</h2>
+              <p className="standalone-intro">
+                Esta opcion es ideal si ya tienes una pagina, si quieres probar una
+                solucion puntual o si necesitas resolver una necesidad concreta sin
+                contratar un sitio entero desde cero.
+              </p>
+            </div>
+
+            <div className="standalone-grid">
+              {standaloneTools.map((tool) => (
+                <article key={tool.name} className="standalone-card">
+                  <div className="standalone-header">
+                    <div>
+                      <p className="plan-name">{tool.name}</p>
+                      <h3>{tool.price}</h3>
+                    </div>
+                    <span className="standalone-badge">Solucion puntual</span>
+                  </div>
+
+                  <p className="standalone-description">{tool.description}</p>
+
+                  <ul className="feature-list">
+                    {tool.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+
+                  <a className="button secondary standalone-button" href="#contacto">
+                    Quiero esta herramienta
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+
           <section className="section" id="planes">
             <div className="section-heading">
               <p className="eyebrow">Planes</p>
@@ -404,7 +489,7 @@ function App() {
                   <textarea
                     name="message"
                     rows="5"
-                    placeholder="Cuéntame qué tipo de web necesitas"
+                    placeholder="Cuentame que tipo de web o herramienta necesitas"
                     required
                   />
                 </label>
@@ -421,10 +506,11 @@ function App() {
           <div className="footer-grid">
             <div className="footer-brand">
               <p className="footer-title">DevStudio</p>
-              <p>Design by Matias Rojo</p>
+              <p>Diseno y desarrollo por Matias Rojo</p>
             </div>
 
             <div className="footer-links">
+              <a href="#herramientas">Herramientas</a>
               <a href="#planes">Planes</a>
               <a href="#contacto">Contacto</a>
               <a href={`mailto:maturojo123mdq@gmail.com`}>Email</a>
@@ -437,7 +523,7 @@ function App() {
           </div>
 
           <div className="footer-bottom">
-            <p>© 2026 DevStudio. Todos los derechos reservados.</p>
+            <p>&copy; 2026 DevStudio. Todos los derechos reservados.</p>
           </div>
         </footer>
       </div>
@@ -492,3 +578,4 @@ function App() {
 }
 
 export default App;
+
