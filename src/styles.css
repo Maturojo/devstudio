@@ -245,17 +245,6 @@ a {
   min-height: 460px;
 }
 
-.hero-card::before {
-  content: "";
-  position: absolute;
-  inset: 8% 10%;
-  border-radius: 36px;
-  background:
-    linear-gradient(180deg, rgba(255, 122, 24, 0.24), rgba(255, 255, 255, 0.02)),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.14), transparent);
-  filter: blur(0.4px);
-}
-
 .floating-card {
   position: absolute;
   right: 0;
