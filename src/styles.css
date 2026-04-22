@@ -893,3 +893,74 @@ button {
     bottom: 14px;
   }
 }
+
+/* ── Herramientas propias ───────────────────────────────────────────────── */
+.own-tools-grid {
+  margin-top: 32px;
+}
+
+.own-tool-card {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 191, 115, 0.25);
+  background: linear-gradient(135deg, rgba(255, 191, 115, 0.06), rgba(255, 255, 255, 0.02));
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.own-tool-card:hover {
+  border-color: rgba(255, 191, 115, 0.45);
+  transform: translateY(-2px);
+}
+
+.own-tool-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 191, 115, 0.12);
+  color: #ffbf73;
+}
+
+.own-tool-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.own-tool-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.own-tool-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.own-tool-badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 191, 115, 0.15);
+  color: #ffbf73;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.own-tool-button {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .own-tool-card {
+    flex-direction: column;
+  }
+}

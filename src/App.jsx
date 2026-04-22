@@ -456,42 +456,86 @@ function ProjectsPage({ setActiveImage }) {
 
 function ToolsPage({ currentPath }) {
   return (
-    <section className="section standalone-tools">
-      <div className="section-heading">
-        <p className="eyebrow">Herramientas por separado</p>
-        <h2>Si no necesitas un sitio completo, tambien puedo desarrollar funciones puntuales listas para usar y vender.</h2>
-        <p className="standalone-intro">
-          Esta opcion es ideal si ya tienes una web y quieres sumar una herramienta
-          puntual sin rehacer todo el proyecto.
-        </p>
-      </div>
+    <>
+      <section className="section own-tools">
+        <div className="section-heading">
+          <p className="eyebrow">Herramientas propias</p>
+          <h2>Apps que desarrollo y uso yo mismo, disponibles para instalar gratis.</h2>
+        </div>
 
-      <div className="standalone-grid">
-        {standaloneTools.map((tool) => (
-          <article key={tool.name} className="standalone-card">
-            <div className="standalone-header">
-              <div>
-                <p className="plan-name">{tool.name}</p>
-                <h3>{tool.price}</h3>
-              </div>
-              <span className="standalone-badge">Solucion puntual</span>
+        <div className="own-tools-grid">
+          <article className="own-tool-card">
+            <div className="own-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+              </svg>
             </div>
-
-            <p className="standalone-description">{tool.description}</p>
-
-            <ul className="feature-list">
-              {tool.features.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-
-            <NavLink to="/contacto" currentPath={currentPath} className="button secondary standalone-button">
-              Quiero esta herramienta
-            </NavLink>
+            <div className="own-tool-copy">
+              <div className="own-tool-header">
+                <p className="plan-name">Organizador</p>
+                <span className="own-tool-badge">Gratis · PWA</span>
+              </div>
+              <p className="standalone-description">
+                Control de ingresos, gastos y recordatorios. Se instala directo desde el
+                navegador en PC y celular, sin app store. Los datos quedan guardados en tu
+                dispositivo.
+              </p>
+              <ul className="feature-list">
+                <li>Registro de ingresos y egresos por mes</li>
+                <li>Recordatorios con alertas de vencimiento</li>
+                <li>Graficos y balance mensual</li>
+                <li>Funciona sin internet una vez instalada</li>
+              </ul>
+              <a
+                href="/organizador/"
+                target="_blank"
+                rel="noreferrer"
+                className="button primary own-tool-button"
+              >
+                Abrir e instalar
+              </a>
+            </div>
           </article>
-        ))}
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <section className="section standalone-tools">
+        <div className="section-heading">
+          <p className="eyebrow">Herramientas por separado</p>
+          <h2>Si no necesitas un sitio completo, tambien puedo desarrollar funciones puntuales listas para usar y vender.</h2>
+          <p className="standalone-intro">
+            Esta opcion es ideal si ya tienes una web y quieres sumar una herramienta
+            puntual sin rehacer todo el proyecto.
+          </p>
+        </div>
+
+        <div className="standalone-grid">
+          {standaloneTools.map((tool) => (
+            <article key={tool.name} className="standalone-card">
+              <div className="standalone-header">
+                <div>
+                  <p className="plan-name">{tool.name}</p>
+                  <h3>{tool.price}</h3>
+                </div>
+                <span className="standalone-badge">Solucion puntual</span>
+              </div>
+
+              <p className="standalone-description">{tool.description}</p>
+
+              <ul className="feature-list">
+                {tool.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+
+              <NavLink to="/contacto" currentPath={currentPath} className="button secondary standalone-button">
+                Quiero esta herramienta
+              </NavLink>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 
