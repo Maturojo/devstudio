@@ -111,25 +111,41 @@ const benefits = [
   "Soporte para proyectos personales, negocios y marcas",
 ];
 
+const targetClients = [
+  "Emprendedores que quieren verse mas profesionales",
+  "Negocios locales que necesitan recibir consultas por WhatsApp",
+  "Profesionales independientes que quieren mostrar servicios",
+  "Marcas que necesitan ordenar su informacion y vender mejor",
+];
+
 const portfolioItems = [
   {
     title: "Generador de carteles con base de datos",
-    description:
-      "Sistema real para buscar, filtrar y administrar productos con datos dinamicos, pensado para trabajar de forma rapida, ordenada y con una interfaz clara para el usuario.",
+    problem: "El negocio necesitaba crear carteles y consultar productos sin perder tiempo buscando datos manualmente.",
+    solution:
+      "Desarrolle una interfaz para buscar, filtrar y administrar productos con datos dinamicos y una experiencia clara para el equipo.",
+    result:
+      "El proceso quedo mas rapido, ordenado y facil de usar en el trabajo diario.",
     image: "/portfolio-carteles-real.jpeg",
     tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
   },
   {
     title: "Landing comercial para negocios",
-    description:
-      "Pagina orientada a captar consultas y ventas, con estructura visual persuasiva, contacto directo y contenido pensado para generar confianza.",
+    problem: "Muchos negocios tienen redes sociales, pero no un lugar propio donde explicar servicios y generar confianza.",
+    solution:
+      "Arme una pagina orientada a captar consultas, mostrar una propuesta clara y llevar al usuario al contacto directo.",
+    result:
+      "La marca queda mejor presentada y el cliente encuentra rapido que ofrece, por que confiar y como consultar.",
     image: "/portfolio-landing.svg",
     tags: ["Responsive", "WhatsApp", "Conversion"],
   },
   {
     title: "Sitio web avanzado a medida",
-    description:
-      "Proyecto real con una interfaz mas completa, estructura personalizada y una base preparada para sumar funciones, automatizaciones o integraciones segun la necesidad del cliente.",
+    problem: "El proyecto necesitaba una estructura mas completa que una pagina simple y preparada para crecer.",
+    solution:
+      "Construyo una base personalizada con paginas internas, interfaz cuidada y espacio para sumar funciones o integraciones.",
+    result:
+      "El sitio puede evolucionar sin rehacer todo desde cero cuando aparecen nuevas necesidades.",
     image: "/portfolio-avanzado-real.png",
     tags: ["Escalable", "Integraciones", "A medida"],
   },
@@ -181,7 +197,7 @@ const routeMeta = {
     eyebrow: "Casos y trabajos reales",
     title: "Proyectos desarrollados para negocios que necesitan soluciones concretas.",
     text:
-      "Desde interfaces internas hasta sitios comerciales, cada proyecto se diseña segun objetivos reales de uso, gestion y venta.",
+      "Desde interfaces internas hasta sitios comerciales, cada proyecto se disena segun objetivos reales de uso, gestion y venta.",
   },
   "/herramientas": {
     eyebrow: "Funciones para vender mas",
@@ -270,11 +286,11 @@ function HomePage({ whatsappLink, currentPath }) {
         <div className="hero-content">
           <div className="hero-copy">
             <p className="eyebrow">Matias Rojo | Desarrollo web a medida</p>
-            <h1>Diseno sitios web con varias paginas y navegacion clara para vender mejor.</h1>
+            <h1>Creo paginas web profesionales para negocios que quieren conseguir mas consultas.</h1>
             <p className="hero-text">
-              Ayudo a emprendedores, negocios y marcas a tener una presencia online
-              profesional. Desarrollo desde webs institucionales hasta sitios mas
-              completos con paginas internas, herramientas y funciones personalizadas.
+              Ayudo a emprendedores, comercios y marcas a tener una web clara, rapida
+              y preparada para convertir visitas en mensajes por WhatsApp, consultas y
+              ventas reales.
             </p>
 
             <div className="hero-actions">
@@ -288,16 +304,16 @@ function HomePage({ whatsappLink, currentPath }) {
 
             <ul className="hero-metrics">
               <li>
-                <strong>6 paginas</strong>
-                <span>para presentar mejor tu negocio</span>
+                <strong>Oferta inicial</strong>
+                <span>landing profesional desde USD 80</span>
               </li>
               <li>
-                <strong>100%</strong>
-                <span>responsive</span>
+                <strong>WhatsApp</strong>
+                <span>contacto directo para recibir consultas</span>
               </li>
               <li>
-                <strong>Enfoque comercial</strong>
-                <span>desde la estructura</span>
+                <strong>Dominio y hosting</strong>
+                <span>incluidos por 1 ano</span>
               </li>
             </ul>
           </div>
@@ -305,15 +321,15 @@ function HomePage({ whatsappLink, currentPath }) {
           <div className="hero-card">
             <div className="floating-card">
               <p className="card-label">Estructura recomendada</p>
-              <h2>Inicio, servicios, proyectos y contacto</h2>
+              <h2>Landing profesional + WhatsApp + dominio + hosting</h2>
               <p>
-                Una web con varias paginas te permite ordenar mejor la informacion,
-                transmitir mas profesionalismo y facilitar el recorrido de cada cliente.
+                Una oferta simple para empezar a promocionar tu negocio con una web
+                propia, clara y lista para compartir en redes, Google Maps y mensajes.
               </p>
               <div className="card-tags">
-                <span>Navegacion clara</span>
-                <span>Mas confianza</span>
-                <span>Mejor presentacion</span>
+                <span>Desde USD 80</span>
+                <span>Entrega rapida</span>
+                <span>Lista para celular</span>
               </div>
             </div>
           </div>
@@ -330,6 +346,21 @@ function HomePage({ whatsappLink, currentPath }) {
             <article className="info-card" key={benefit}>
               <span className="card-dot" />
               <p>{benefit}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section target-clients">
+        <div className="section-heading">
+          <p className="eyebrow">Para quien es</p>
+          <h2>Una web clara puede ayudar a cualquier negocio que necesita explicar mejor lo que vende.</h2>
+        </div>
+        <div className="target-grid">
+          {targetClients.map((client) => (
+            <article className="info-card" key={client}>
+              <span className="card-dot" />
+              <p>{client}</p>
             </article>
           ))}
         </div>
@@ -439,7 +470,9 @@ function ProjectsPage({ setActiveImage }) {
 
               <div className="portfolio-copy">
                 <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <p><strong>Problema:</strong> {item.problem}</p>
+                <p><strong>Solucion:</strong> {item.solution}</p>
+                <p><strong>Resultado:</strong> {item.result}</p>
                 <div className="portfolio-tags">
                   {item.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
@@ -473,7 +506,7 @@ function ToolsPage({ currentPath }) {
             <div className="own-tool-copy">
               <div className="own-tool-header">
                 <p className="plan-name">Organizador</p>
-                <span className="own-tool-badge">Gratis · PWA</span>
+                <span className="own-tool-badge">Gratis - PWA</span>
               </div>
               <p className="standalone-description">
                 Control de ingresos, gastos y recordatorios. Se instala directo desde el

@@ -68,6 +68,7 @@ button {
 .hero-content,
 .about-panel,
 .benefit-grid,
+.target-grid,
 .portfolio-grid,
 .standalone-grid,
 .plans-grid,
@@ -209,7 +210,7 @@ button {
 
 .hero-copy h1 {
   font-size: clamp(3rem, 7vw, 5.8rem);
-  max-width: 11ch;
+  max-width: 13ch;
 }
 
 .page-hero h1,
@@ -367,6 +368,7 @@ button {
 }
 
 .benefit-grid,
+.target-grid,
 .portfolio-grid,
 .plans-grid,
 .steps,
@@ -378,6 +380,10 @@ button {
 }
 
 .benefit-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.target-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -831,6 +837,7 @@ button {
   .portfolio-grid,
   .plans-grid,
   .benefit-grid,
+  .target-grid,
   .steps,
   .footer-grid,
   .standalone-grid {
