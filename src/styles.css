@@ -204,13 +204,13 @@ button {
 .split-copy h2 {
   margin: 0;
   font-family: "Space Grotesk", sans-serif;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 .hero-copy h1 {
-  font-size: clamp(3rem, 7vw, 5.8rem);
-  max-width: 13ch;
+  font-size: clamp(2.35rem, 5vw, 4.2rem);
+  max-width: 15ch;
 }
 
 .page-hero h1,
@@ -218,7 +218,7 @@ button {
 .contact-panel h2,
 .about-copy h2,
 .split-copy h2 {
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.75rem);
 }
 
 .hero-text,
@@ -485,8 +485,8 @@ button {
 
 .portfolio-copy h3 {
   margin-bottom: 12px;
-  font-size: 1.4rem;
-  line-height: 1.05;
+  font-size: 1.22rem;
+  line-height: 1.14;
 }
 
 .faq-list {
@@ -559,7 +559,8 @@ button {
 .standalone-header h3,
 .plan-header h3 {
   margin-top: 8px;
-  font-size: 2rem;
+  font-size: 1.55rem;
+  line-height: 1.08;
 }
 
 .feature-list {
