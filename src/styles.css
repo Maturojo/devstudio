@@ -42,7 +42,7 @@ a {
 
 button,
 a {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 button {
@@ -50,17 +50,17 @@ button {
 }
 
 .page-shell {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
-  padding-bottom: 56px;
+  padding-bottom: 48px;
 }
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 30;
-  padding-top: 18px;
-  backdrop-filter: blur(18px);
+  padding-top: 14px;
+  backdrop-filter: blur(16px);
 }
 
 .topbar,
@@ -83,15 +83,13 @@ button {
 .site-nav {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 18px;
+  gap: 20px;
   align-items: center;
-  padding: 14px 18px;
+  padding: 12px 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(15, 15, 16, 0.74);
-  border-radius: 24px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 20px 44px rgba(0, 0, 0, 0.16);
+  background: rgba(15, 15, 16, 0.86);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
 }
 
 .brand {
@@ -104,26 +102,26 @@ button {
 }
 
 .brand-mark {
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
   background: linear-gradient(135deg, #ff7a18, #ffd166);
-  box-shadow: 0 0 24px rgba(255, 122, 24, 0.7);
+  box-shadow: 0 0 18px rgba(255, 122, 24, 0.46);
 }
 
 .nav-links,
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 4px;
 }
 
 .nav-link,
 .footer-link {
-  padding: 10px 14px;
-  border-radius: 999px;
+  padding: 9px 11px;
+  border-radius: 8px;
   color: #ddd3c5;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .nav-link:hover,
@@ -138,8 +136,8 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  padding: 14px 22px;
+  border-radius: 10px;
+  padding: 12px 18px;
   font-weight: 700;
   border: 0;
   cursor: pointer;
@@ -150,7 +148,7 @@ button {
 .plan-card.featured .plan-button {
   background: linear-gradient(135deg, #ff7a18, #ffb347);
   color: #161616;
-  box-shadow: 0 16px 42px rgba(255, 122, 24, 0.22);
+  box-shadow: 0 10px 24px rgba(255, 122, 24, 0.16);
 }
 
 .button.secondary {
@@ -161,15 +159,15 @@ button {
 
 .button:hover,
 .nav-cta:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(255, 122, 24, 0.18);
 }
 
 .hero {
-  padding: 36px 0 32px;
+  padding: 42px 0 34px;
 }
 
 .hero-home {
-  padding-top: 44px;
+  padding-top: 54px;
 }
 
 .hero-content,
@@ -177,8 +175,8 @@ button {
 .about-panel,
 .contact-panel {
   display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 28px;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 42px;
   align-items: start;
 }
 
@@ -191,8 +189,8 @@ button {
   margin: 0 0 12px;
   color: #ffbf73;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
   font-weight: 700;
 }
 
@@ -209,8 +207,8 @@ button {
 }
 
 .hero-copy h1 {
-  font-size: clamp(2.35rem, 5vw, 4.2rem);
-  max-width: 15ch;
+  font-size: clamp(2.25rem, 4.3vw, 3.75rem);
+  max-width: 16ch;
 }
 
 .page-hero h1,
@@ -229,7 +227,7 @@ button {
 .about-copy p,
 .contact-copy p {
   color: #ddd3c5;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .hero-text,
@@ -242,16 +240,16 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .hero-metrics {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 10px;
   padding: 0;
-  margin: 34px 0 0;
+  margin: 30px 0 0;
 }
 
 .hero-metrics li,
@@ -267,25 +265,24 @@ button {
 .standalone-card,
 .site-nav {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
-  backdrop-filter: blur(18px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 18px 44px rgba(0, 0, 0, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.018));
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
 }
 
 .hero-metrics li,
 .info-card,
 .step-card,
 .about-card {
-  border-radius: 24px;
-  padding: 22px;
+  border-radius: 12px;
+  padding: 18px;
 }
 
 .hero-metrics strong {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.02rem;
   font-family: "Space Grotesk", sans-serif;
+  line-height: 1.2;
 }
 
 .hero-metrics span,
@@ -306,16 +303,16 @@ button {
 
 .hero-card {
   position: relative;
-  min-height: 420px;
+  min-height: 360px;
 }
 
 .floating-card {
   position: absolute;
   right: 0;
-  bottom: 18px;
-  width: min(100%, 380px);
-  border-radius: 28px;
-  padding: 28px;
+  top: 28px;
+  width: min(100%, 390px);
+  border-radius: 14px;
+  padding: 24px;
 }
 
 .card-label,
@@ -323,8 +320,8 @@ button {
   margin: 0 0 10px;
   color: #ffbf73;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  font-size: 0.76rem;
   font-weight: 700;
 }
 
@@ -350,21 +347,21 @@ button {
 .portfolio-tags span,
 .plan-badge,
 .standalone-badge {
-  padding: 8px 12px;
-  border-radius: 999px;
+  padding: 7px 10px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   color: #ffe3a3;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
 }
 
 .section {
-  padding: 48px 0;
+  padding: 54px 0;
 }
 
 .section-heading {
-  max-width: 800px;
-  margin-bottom: 26px;
+  max-width: 720px;
+  margin-bottom: 22px;
 }
 
 .benefit-grid,
@@ -376,7 +373,7 @@ button {
 .standalone-grid,
 .split-panel {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .benefit-grid {
@@ -411,14 +408,14 @@ button {
 .standalone-card,
 .plan-card,
 .contact-panel {
-  border-radius: 28px;
+  border-radius: 14px;
 }
 
 .about-copy,
 .standalone-card,
 .plan-card,
 .contact-panel {
-  padding: 28px;
+  padding: 24px;
 }
 
 .portfolio-showcase {
@@ -430,7 +427,8 @@ button {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 20px 24px;
+  padding: 18px 20px;
+  border-radius: 14px;
 }
 
 .portfolio-client-logo {
@@ -464,7 +462,7 @@ button {
   right: 14px;
   bottom: 14px;
   padding: 8px 12px;
-  border-radius: 999px;
+  border-radius: 8px;
   background: rgba(15, 15, 16, 0.78);
   color: #f4efe7;
   font-size: 0.82rem;
@@ -480,7 +478,7 @@ button {
 }
 
 .portfolio-copy {
-  padding: 22px;
+  padding: 20px;
 }
 
 .portfolio-copy h3 {
@@ -497,12 +495,10 @@ button {
 .faq-item {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
-  backdrop-filter: blur(16px);
-  border-radius: 24px;
-  padding: 22px 24px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 18px 40px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
 }
 
 .faq-item summary {
@@ -541,11 +537,11 @@ button {
 
 .card-dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
   background: #ffd166;
-  box-shadow: 0 0 18px rgba(255, 209, 102, 0.65);
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.46);
 }
 
 .standalone-header,
@@ -590,7 +586,7 @@ button {
 .plan-card {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -618,15 +614,15 @@ button {
 
 .step-number {
   display: inline-flex;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   color: #ffbf73;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
 .contact-panel {
-  padding: 30px;
+  padding: 26px;
   gap: 24px;
 }
 
@@ -643,7 +639,7 @@ button {
 
 .contact-direct a {
   padding: 10px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.04);
   color: #e8dfd3;
@@ -675,8 +671,8 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
   color: #f4efe7;
-  border-radius: 18px;
-  padding: 18px 22px;
+  border-radius: 10px;
+  padding: 15px 16px;
   font: inherit;
 }
 
@@ -740,11 +736,8 @@ button {
 .contact-direct a:hover,
 .form-field input:focus,
 .form-field textarea:focus {
-  transform: translateY(-4px);
   border-color: rgba(255, 191, 115, 0.18);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 24px 48px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
   outline: none;
 }
 
@@ -794,7 +787,7 @@ button {
 .lightbox-image {
   max-width: min(1200px, 100%);
   max-height: calc(100vh - 80px);
-  border-radius: 20px;
+  border-radius: 12px;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
   background: #0f0f10;
 }
@@ -806,7 +799,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.08);
   color: #f4efe7;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 10px 16px;
   font-weight: 700;
   cursor: pointer;
@@ -909,26 +902,25 @@ button {
 
 .own-tool-card {
   display: flex;
-  gap: 28px;
+  gap: 24px;
   align-items: flex-start;
-  padding: 32px;
-  border-radius: 20px;
+  padding: 26px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 191, 115, 0.25);
   background: linear-gradient(135deg, rgba(255, 191, 115, 0.06), rgba(255, 255, 255, 0.02));
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.2s;
 }
 
 .own-tool-card:hover {
   border-color: rgba(255, 191, 115, 0.45);
-  transform: translateY(-2px);
 }
 
 .own-tool-icon {
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-  padding: 12px;
-  border-radius: 14px;
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  border-radius: 10px;
   background: rgba(255, 191, 115, 0.12);
   color: #ffbf73;
 }
@@ -954,7 +946,7 @@ button {
 
 .own-tool-badge {
   padding: 4px 12px;
-  border-radius: 999px;
+  border-radius: 8px;
   background: rgba(255, 191, 115, 0.15);
   color: #ffbf73;
   font-size: 0.78rem;
