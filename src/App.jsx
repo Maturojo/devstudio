@@ -105,17 +105,17 @@ const processSteps = [
 ];
 
 const benefits = [
-  "Paginas veloces, claras y preparadas para vender",
-  "Diseno moderno que transmite confianza",
-  "Adaptacion total a celular, tablet y escritorio",
-  "Soporte para proyectos personales, negocios y marcas",
+  "Web clara",
+  "Lista para celular",
+  "Contacto directo",
+  "Base para crecer",
 ];
 
 const targetClients = [
-  "Emprendedores que quieren verse mas profesionales",
-  "Negocios locales que necesitan recibir consultas por WhatsApp",
-  "Profesionales independientes que quieren mostrar servicios",
-  "Marcas que necesitan ordenar su informacion y vender mejor",
+  "Emprendedores",
+  "Negocios locales",
+  "Profesionales",
+  "Marcas",
 ];
 
 const portfolioItems = [
@@ -285,12 +285,11 @@ function HomePage({ whatsappLink, currentPath }) {
       <section className="hero hero-home">
         <div className="hero-content">
           <div className="hero-copy">
-            <p className="eyebrow">Matias Rojo | Desarrollo web a medida</p>
-            <h1>Creo paginas web profesionales para negocios que quieren conseguir mas consultas.</h1>
+            <p className="eyebrow">Matias Rojo | Desarrollo web</p>
+            <h1>Paginas web simples, modernas y listas para vender.</h1>
             <p className="hero-text">
-              Ayudo a emprendedores, comercios y marcas a tener una web clara, rapida
-              y preparada para convertir visitas en mensajes por WhatsApp, consultas y
-              ventas reales.
+              Diseno y desarrollo sitios claros para negocios que quieren verse mejor,
+              compartir su propuesta y recibir consultas por WhatsApp.
             </p>
 
             <div className="hero-actions">
@@ -304,42 +303,58 @@ function HomePage({ whatsappLink, currentPath }) {
 
             <ul className="hero-metrics">
               <li>
-                <strong>Oferta inicial</strong>
-                <span>landing profesional desde USD 80</span>
+                <strong>Desde USD 80</strong>
+                <span>landing inicial</span>
               </li>
               <li>
-                <strong>WhatsApp</strong>
-                <span>contacto directo para recibir consultas</span>
+                <strong>1 ano</strong>
+                <span>dominio y hosting</span>
               </li>
               <li>
-                <strong>Dominio y hosting</strong>
-                <span>incluidos por 1 ano</span>
+                <strong>100%</strong>
+                <span>responsive</span>
               </li>
             </ul>
           </div>
 
-          <div className="hero-card">
-            <div className="floating-card">
-              <p className="card-label">Estructura recomendada</p>
-              <h2>Landing profesional + WhatsApp + dominio + hosting</h2>
-              <p>
-                Una oferta simple para empezar a promocionar tu negocio con una web
-                propia, clara y lista para compartir en redes, Google Maps y mensajes.
-              </p>
-              <div className="card-tags">
-                <span>Desde USD 80</span>
-                <span>Entrega rapida</span>
-                <span>Lista para celular</span>
+          <div className="hero-visual" aria-hidden="true">
+            <div className="browser-frame">
+              <div className="browser-top">
+                <span />
+                <span />
+                <span />
               </div>
+              <div className="browser-preview">
+                <div className="preview-nav" />
+                <div className="preview-hero">
+                  <span />
+                  <strong />
+                  <p />
+                  <p />
+                </div>
+                <div className="preview-grid">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
+            </div>
+            <div className="motion-card motion-card-one">
+              <span>WhatsApp</span>
+              <strong>Consulta recibida</strong>
+            </div>
+            <div className="motion-card motion-card-two">
+              <span>Web publicada</span>
+              <strong>Lista para compartir</strong>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section benefits">
+      <section className="section compact-section">
         <div className="section-heading">
           <p className="eyebrow">Lo que ofrezco</p>
-          <h2>Sitios pensados para mostrar, convencer y vender.</h2>
+          <h2>Una presencia online clara, sin vueltas.</h2>
         </div>
         <div className="benefit-grid">
           {benefits.map((benefit) => (
@@ -354,7 +369,7 @@ function HomePage({ whatsappLink, currentPath }) {
       <section className="section target-clients">
         <div className="section-heading">
           <p className="eyebrow">Para quien es</p>
-          <h2>Una web clara puede ayudar a cualquier negocio que necesita explicar mejor lo que vende.</h2>
+          <h2>Hecha para negocios que necesitan verse mas confiables.</h2>
         </div>
         <div className="target-grid">
           {targetClients.map((client) => (
@@ -368,11 +383,11 @@ function HomePage({ whatsappLink, currentPath }) {
 
       <section className="section split-feature">
         <div className="split-copy">
-          <p className="eyebrow">Por que varias paginas</p>
-          <h2>Una estructura multipagina te ayuda a explicar mejor lo que haces.</h2>
+          <p className="eyebrow">Estructura</p>
+          <h2>Todo ordenado para que el cliente entienda rapido.</h2>
           <p>
-            Puedes dedicar espacio real a tus servicios, mostrar proyectos con mas detalle,
-            responder dudas frecuentes y llevar al usuario al contacto con mas claridad.
+            Inicio, servicios, trabajos y contacto. Solo lo necesario para presentar
+            tu negocio y llevar la visita a la consulta.
           </p>
           <NavLink to="/proyectos" currentPath={currentPath} className="button secondary">
             Ver proyectos
@@ -382,15 +397,15 @@ function HomePage({ whatsappLink, currentPath }) {
         <div className="split-panel">
           <article className="info-card">
             <span className="card-dot" />
-            <p>Inicio para presentar tu propuesta y captar atencion.</p>
+            <p>Inicio claro</p>
           </article>
           <article className="info-card">
             <span className="card-dot" />
-            <p>Paginas internas para servicios, trabajos, preguntas y contacto.</p>
+            <p>Servicios visibles</p>
           </article>
           <article className="info-card">
             <span className="card-dot" />
-            <p>Recorrido mas profesional para clientes que quieren comparar y confiar.</p>
+            <p>Contacto directo</p>
           </article>
         </div>
       </section>
@@ -434,11 +449,9 @@ function ProjectsPage({ setActiveImage }) {
       <div className="portfolio-showcase">
         <div className="section-heading portfolio-heading">
           <p className="eyebrow">Ultimos proyectos</p>
-          <h2>Trabajo con negocios reales y desarrollo soluciones pensadas para su operacion diaria.</h2>
+          <h2>Proyectos reales, interfaces claras.</h2>
           <p className="portfolio-intro">
-            Estas muestras forman parte de trabajos recientes donde el foco estuvo
-            en mejorar la experiencia de uso, ordenar informacion y crear interfaces
-            claras para equipos y clientes.
+            Algunas muestras de sitios, paneles y herramientas hechas para negocios.
           </p>
         </div>
 
@@ -470,9 +483,7 @@ function ProjectsPage({ setActiveImage }) {
 
               <div className="portfolio-copy">
                 <h3>{item.title}</h3>
-                <p><strong>Problema:</strong> {item.problem}</p>
-                <p><strong>Solucion:</strong> {item.solution}</p>
-                <p><strong>Resultado:</strong> {item.result}</p>
+                <p>{item.result}</p>
                 <div className="portfolio-tags">
                   {item.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
