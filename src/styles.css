@@ -181,8 +181,62 @@ button {
 }
 
 .page-hero {
-  padding: 50px 0 10px;
-  max-width: 860px;
+  min-height: 360px;
+  padding: 76px 0 30px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.55fr);
+  gap: 48px;
+  align-items: center;
+  max-width: none;
+}
+
+.page-hero-text {
+  max-width: 46ch;
+}
+
+.page-hero-mark {
+  position: relative;
+  min-height: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+    rgba(15, 15, 16, 0.5);
+  overflow: hidden;
+}
+
+.page-hero-mark span {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(255, 191, 115, 0.22);
+  background: rgba(255, 191, 115, 0.08);
+  animation: visualFloat 7s ease-in-out infinite;
+}
+
+.page-hero-mark span:nth-child(1) {
+  width: 72%;
+  height: 62px;
+  left: 28px;
+  top: 36px;
+  border-radius: 12px;
+}
+
+.page-hero-mark span:nth-child(2) {
+  width: 44%;
+  height: 92px;
+  right: 32px;
+  bottom: 30px;
+  border-radius: 14px;
+  animation-delay: -2s;
+}
+
+.page-hero-mark span:nth-child(3) {
+  width: 120px;
+  height: 120px;
+  left: 42px;
+  bottom: 34px;
+  border-radius: 999px;
+  animation-delay: -4s;
 }
 
 .eyebrow {
@@ -643,6 +697,12 @@ button {
   line-height: 1.14;
 }
 
+.portfolio-copy p,
+.standalone-description,
+.plan-description {
+  font-size: 0.94rem;
+}
+
 .faq-list {
   display: grid;
   gap: 16px;
@@ -720,7 +780,8 @@ button {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  font-size: 0.92rem;
 }
 
 .feature-list li {
@@ -742,7 +803,7 @@ button {
 .plan-card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   position: relative;
   overflow: hidden;
 }
@@ -779,7 +840,7 @@ button {
 
 .contact-panel {
   padding: 26px;
-  gap: 24px;
+  gap: 32px;
 }
 
 .contact-copy {
@@ -1001,6 +1062,7 @@ button {
 @media (max-width: 1080px) {
   .site-nav,
   .hero-content,
+  .page-hero,
   .split-feature,
   .about-panel,
   .contact-panel,
@@ -1028,6 +1090,15 @@ button {
 
   .hero-visual {
     min-height: 430px;
+  }
+
+  .page-hero {
+    min-height: auto;
+    gap: 28px;
+  }
+
+  .page-hero-mark {
+    min-height: 220px;
   }
 
   .floating-card {
@@ -1070,6 +1141,14 @@ button {
 
   .hero-visual {
     min-height: 360px;
+  }
+
+  .page-hero {
+    padding: 44px 0 12px;
+  }
+
+  .page-hero-mark {
+    min-height: 180px;
   }
 
   .browser-preview {

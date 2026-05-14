@@ -15,11 +15,9 @@ const plans = [
     price: "USD 80",
     description: "Ideal para una web simple, clara y profesional.",
     features: [
-      "Sitio inicial con estructura clara para tu negocio",
-      "Diseno responsive para celular y PC",
-      "Boton de contacto a WhatsApp o formulario basico",
-      "Incluye dominio, hosting y certificado SSL por 1 ano",
-      "Entrega rapida para emprendedores o negocios pequenos",
+      "Landing clara",
+      "WhatsApp o formulario",
+      "Dominio y hosting 1 ano",
     ],
   },
   {
@@ -29,11 +27,10 @@ const plans = [
     featured: true,
     badge: "Mas elegido",
     features: [
-      "Sitio con varias paginas y estructura mas avanzada",
-      "Animaciones suaves y mejor jerarquia visual",
-      "Galeria, testimonios, servicios y preguntas frecuentes",
-      "Incluye dominio, hosting y certificado SSL por 1 ano",
-      "Optimizacion de contenido para vender mejor",
+      "Varias paginas",
+      "Animaciones suaves",
+      "Contenido mas comercial",
+      "Dominio y hosting 1 ano",
     ],
   },
   {
@@ -41,11 +38,10 @@ const plans = [
     price: "USD 360",
     description: "Pensado para proyectos que requieren mas logica y personalizacion.",
     features: [
-      "Paneles, integraciones o funcionalidades a medida",
-      "Formularios complejos, reservas o catalogos dinamicos",
-      "Arquitectura escalable para crecimiento futuro",
-      "Incluye dominio, hosting y certificado SSL por 1 ano",
-      "Asesoria tecnica para definir la mejor solucion",
+      "Funciones a medida",
+      "Reservas o catalogos",
+      "Integraciones",
+      "Base escalable",
     ],
   },
 ];
@@ -55,7 +51,7 @@ const standaloneTools = [
     name: "Turnero online",
     price: "Desde USD 60",
     description:
-      "Para peluquerias, estudios, consultorios o negocios que necesitan ordenar reservas y consultas sin depender de mensajes cruzados.",
+      "Reservas simples para negocios que trabajan con horarios.",
     features: [
       "Turnos por dia y horario",
       "Boton directo a WhatsApp o formulario",
@@ -66,7 +62,7 @@ const standaloneTools = [
     name: "Calendario de eventos o clases",
     price: "Desde USD 55",
     description:
-      "Ideal para talleres, academias, gimnasios o marcas que quieren mostrar fechas, disponibilidad y actividades de forma prolija.",
+      "Fechas, clases y actividades en una vista clara.",
     features: [
       "Vista mensual o por listado",
       "Fechas destacadas y detalles por evento",
@@ -77,7 +73,7 @@ const standaloneTools = [
     name: "Catalogo digital simple",
     price: "Desde USD 70",
     description:
-      "Una solucion rapida para mostrar productos, servicios o menus con mejor presentacion y acceso directo a consultas.",
+      "Productos o servicios listos para consultar por WhatsApp.",
     features: [
       "Categorias, imagenes y descripciones",
       "Pensado para vender por WhatsApp",
@@ -88,7 +84,7 @@ const standaloneTools = [
     name: "Cotizador o formulario inteligente",
     price: "Desde USD 85",
     description:
-      "Perfecto para negocios que quieren filtrar consultas, pedir datos importantes y ahorrar tiempo en respuestas repetidas.",
+      "Consultas mas ordenadas desde el primer mensaje.",
     features: [
       "Campos personalizados segun tu rubro",
       "Entrega de consulta mas ordenada",
@@ -98,10 +94,10 @@ const standaloneTools = [
 ];
 
 const processSteps = [
-  "Analizamos tu idea, objetivo comercial y tipo de cliente.",
-  "Definimos la estructura del sitio, sus paginas y el recorrido ideal del usuario.",
-  "Desarrollamos la web con React y una base lista para crecer.",
-  "Ajustamos detalles finales y dejamos todo listo para publicar.",
+  "Idea y objetivo",
+  "Estructura visual",
+  "Desarrollo",
+  "Publicacion",
 ];
 
 const benefits = [
@@ -175,9 +171,9 @@ const faqs = [
 ];
 
 const aboutPoints = [
-  "Trabajo de forma directa con cada cliente, sin vueltas ni intermediarios.",
-  "Diseno cada pagina para transmitir profesionalismo, confianza y claridad desde el primer segundo.",
-  "Me enfoco en que tu web no solo se vea bien, sino que te ayude a conseguir consultas y ventas reales.",
+  "Trato directo",
+  "Diseno claro",
+  "Foco comercial",
 ];
 
 const routeMeta = {
@@ -188,34 +184,34 @@ const routeMeta = {
       "Desarrollo sitios web con varias paginas, navegacion clara y foco comercial para emprendedores, marcas y negocios que quieren verse profesionales y convertir mejor.",
   },
   "/sobre-mi": {
-    eyebrow: "Conoce mi enfoque",
-    title: "Trabajo cada proyecto con una mirada visual, tecnica y comercial.",
+    eyebrow: "Enfoque",
+    title: "Diseno sitios claros para negocios reales.",
     text:
-      "No solo pienso en como se ve una web, sino en como guia al usuario, ordena la informacion y convierte visitas en consultas reales.",
+      "Menos vueltas, mas claridad visual y una estructura pensada para convertir visitas en consultas.",
   },
   "/proyectos": {
-    eyebrow: "Casos y trabajos reales",
-    title: "Proyectos desarrollados para negocios que necesitan soluciones concretas.",
+    eyebrow: "Trabajos",
+    title: "Interfaces simples para necesidades concretas.",
     text:
-      "Desde interfaces internas hasta sitios comerciales, cada proyecto se disena segun objetivos reales de uso, gestion y venta.",
+      "Sitios, paneles y herramientas creadas para verse bien y funcionar rapido.",
   },
   "/herramientas": {
-    eyebrow: "Funciones para vender mas",
-    title: "Tambien desarrollo herramientas puntuales para sumar a tu negocio.",
+    eyebrow: "Herramientas",
+    title: "Funciones simples para sumar a tu web.",
     text:
-      "Si ya tienes una pagina o no necesitas un sitio completo, puedo crear soluciones especificas para reservas, consultas, catalogos o formularios.",
+      "Reservas, catalogos, formularios y pequenas apps listas para usar.",
   },
   "/planes": {
-    eyebrow: "Servicios y valores",
-    title: "Planes claros para distintos niveles de proyecto.",
+    eyebrow: "Planes",
+    title: "Elige una base y la hacemos crecer.",
     text:
-      "Desde una web inicial hasta una solucion mas completa, cada propuesta busca orden, buena presencia y resultados comerciales.",
+      "Precios claros para empezar con una web simple o avanzar hacia algo mas completo.",
   },
   "/contacto": {
-    eyebrow: "Hablemos de tu proyecto",
-    title: "Si ya tienes una idea, podemos convertirla en una web profesional.",
+    eyebrow: "Contacto",
+    title: "Contame que necesitas. Lo ordenamos.",
     text:
-      "Puedes escribirme para pedir una pagina, un sitio con varias secciones o una herramienta puntual. Lo vemos y te propongo la mejor opcion.",
+      "Escribime por WhatsApp o dejame un mensaje y vemos la mejor forma de publicarlo.",
   },
 };
 
@@ -272,9 +268,16 @@ function PageHero({ currentPath }) {
 
   return (
     <section className="page-hero">
-      <p className="eyebrow">{meta.eyebrow}</p>
-      <h1>{meta.title}</h1>
-      <p className="page-hero-text">{meta.text}</p>
+      <div>
+        <p className="eyebrow">{meta.eyebrow}</p>
+        <h1>{meta.title}</h1>
+        <p className="page-hero-text">{meta.text}</p>
+      </div>
+      <div className="page-hero-mark" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
     </section>
   );
 }
@@ -419,14 +422,10 @@ function AboutPage() {
       <div className="about-panel">
         <div className="about-copy">
           <p className="eyebrow">Sobre mi</p>
-          <h2>Mi nombre es Matias Rojo y me dedico a crear paginas web que ayudan a dar una imagen profesional y vender mejor.</h2>
+          <h2>Hola, soy Matias. Desarrollo webs simples, prolijas y utiles.</h2>
           <p>
-            Me gusta trabajar con emprendedores, negocios y marcas que quieren verse
-            serios en internet y tener una web que realmente los represente.
-          </p>
-          <p>
-            Cada proyecto lo encaro con una mirada visual, tecnica y comercial para
-            que el sitio se vea bien, sea facil de usar y genere confianza.
+            Trabajo directo con cada cliente para ordenar la idea, darle una buena
+            presencia y dejarla lista para compartir.
           </p>
         </div>
 
@@ -504,7 +503,7 @@ function ToolsPage({ currentPath }) {
       <section className="section own-tools">
         <div className="section-heading">
           <p className="eyebrow">Herramientas propias</p>
-          <h2>Apps que desarrollo y uso yo mismo, disponibles para instalar gratis.</h2>
+          <h2>Apps simples, hechas para resolver cosas concretas.</h2>
         </div>
 
         <div className="own-tools-grid">
@@ -520,9 +519,8 @@ function ToolsPage({ currentPath }) {
                 <span className="own-tool-badge">Gratis - PWA</span>
               </div>
               <p className="standalone-description">
-                Control de ingresos, gastos y recordatorios. Se instala directo desde el
-                navegador en PC y celular, sin app store. Los datos quedan guardados en tu
-                dispositivo.
+                Control de ingresos, gastos y recordatorios. Se instala desde el navegador
+                y funciona en PC o celular.
               </p>
               <ul className="feature-list">
                 <li>Registro de ingresos y egresos por mes</li>
@@ -546,10 +544,9 @@ function ToolsPage({ currentPath }) {
       <section className="section standalone-tools">
         <div className="section-heading">
           <p className="eyebrow">Herramientas por separado</p>
-          <h2>Si no necesitas un sitio completo, tambien puedo desarrollar funciones puntuales listas para usar y vender.</h2>
+          <h2>Funciones puntuales para sumar a tu negocio.</h2>
           <p className="standalone-intro">
-            Esta opcion es ideal si ya tienes una web y quieres sumar una herramienta
-            puntual sin rehacer todo el proyecto.
+            Si ya tienes una web, podemos agregar solo lo que falta.
           </p>
         </div>
 
@@ -589,7 +586,7 @@ function PlansPage({ currentPath }) {
       <section className="section">
         <div className="section-heading">
           <p className="eyebrow">Planes</p>
-          <h2>Elige el nivel de desarrollo que mejor se adapta a tu proyecto.</h2>
+          <h2>Tres formas simples de empezar.</h2>
         </div>
 
         <div className="plans-grid">
@@ -622,7 +619,7 @@ function PlansPage({ currentPath }) {
       <section className="section faq">
         <div className="section-heading">
           <p className="eyebrow">Preguntas frecuentes</p>
-          <h2>Respuestas claras para que sepas exactamente que esperar del servicio.</h2>
+          <h2>Lo importante antes de avanzar.</h2>
         </div>
 
         <div className="faq-list">
@@ -638,7 +635,7 @@ function PlansPage({ currentPath }) {
       <section className="section workflow">
         <div className="section-heading">
           <p className="eyebrow">Proceso</p>
-          <h2>Trabajamos con una metodologia simple, clara y enfocada en resultados.</h2>
+          <h2>De la idea a la web publicada.</h2>
         </div>
 
         <div className="steps">
@@ -660,11 +657,10 @@ function ContactPage({ whatsappLink }) {
       <div className="contact-panel">
         <div className="contact-copy">
           <p className="eyebrow">Contacto</p>
-          <h2>Si ya tienes una idea, hablemos y la convertimos en una web profesional.</h2>
+          <h2>Mandame tu idea y la bajamos a una web clara.</h2>
           <p>
-            Trabajo de forma directa para ayudarte a lanzar un sitio claro, moderno
-            y pensado para generar confianza. Puedes escribirme por email o WhatsApp
-            y coordinamos la mejor opcion para tu proyecto.
+            Podes escribirme por WhatsApp o dejar el mensaje aca. Te respondo con una
+            propuesta simple para empezar.
           </p>
           <div className="contact-direct">
             <a href="mailto:maturojo123mdq@gmail.com">maturojo123mdq@gmail.com</a>
