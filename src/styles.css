@@ -824,9 +824,19 @@ button {
   text-transform: uppercase;
 }
 
-.plan-button,
-.standalone-button {
+.plan-button {
   margin-top: auto;
+}
+
+.standalone-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.standalone-actions .standalone-button {
+  flex: 1;
+  text-align: center;
 }
 
 .step-number {

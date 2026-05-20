@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #ff7f50;
+      --accent-dim: rgba(255,127,80,0.12);
+      --bg: #0f0f10;
+      --surface: #1a1917;
+      --surface2: #211f1d;
+      --border: rgba(255,255,255,0.08);
+      --text: #f4efe7;
+      --muted: #9a9490;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: radial-gradient(circle at top, rgba(255,149,43,0.08), transparent 22%),
+                  linear-gradient(180deg, #0f0f10 0%, #171514 48%, #0b0b0c 100%);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* layout */
+    .app-wrap { display: flex; min-height: 100vh; }
+
+    /* sidebar */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 28px 16px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar-brand { margin-bottom: 28px; }
+    .sidebar-eyebrow { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 4px; }
+    .sidebar-name { font-size: 16px; font-weight: 600; line-height: 1.2; }
+    .sidebar-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    .cat-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+    .cat-list { display: flex; flex-direction: column; gap: 2px; }
+    .cat-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cat-btn:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+    .cat-btn.active { background: var(--accent-dim); color: var(--accent); }
+    .cat-count { font-size: 11px; opacity: 0.6; }
+
+    /* main */
+    .main { flex: 1; padding: 28px 24px 48px; min-width: 0; }
+
+    /* search */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 14px;
+      margin-bottom: 24px;
+      gap: 10px;
+    }
+    .search-bar svg { flex-shrink: 0; color: var(--muted); width: 16px; height: 16px; }
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      padding: 12px 0;
+      outline: none;
+      width: 100%;
+    }
+    .search-bar input::placeholder { color: var(--muted); }
+
+    /* section header */
+    .section-header { margin-bottom: 16px; }
+    .section-title { font-size: 20px; font-weight: 600; }
+    .section-count { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* product grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .product-card:hover { border-color: rgba(255,127,80,0.4); transform: translateY(-2px); }
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 36px;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-body { padding: 14px; }
+    .product-cat { font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 4px; }
+    .product-name { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+    .product-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .product-price { font-size: 16px; font-weight: 600; color: var(--accent); }
+    .product-unit { font-size: 11px; color: var(--muted); font-weight: 400; }
+
+    /* empty state */
+    .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .empty p { margin-top: 8px; font-size: 14px; }
+
+    /* modal */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100; padding: 16px;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 460px; width: 100%;
+      overflow: hidden;
+      animation: slideUp 0.25s ease;
+      position: relative;
+    }
+    .modal-img {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; overflow: hidden;
+    }
+    .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-body { padding: 24px; }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(0,0,0,0.5);
+      border: none; color: var(--text);
+      border-radius: 6px; width: 28px; height: 28px;
+      cursor: pointer; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal-cat { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 6px; }
+    .modal-name { font-size: 22px; font-weight: 600; margin-bottom: 8px; line-height: 1.2; }
+    .modal-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .modal-price { font-size: 28px; font-weight: 600; color: var(--accent); margin-bottom: 16px; }
+    .modal-price span { font-size: 14px; color: var(--muted); font-weight: 400; }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .modal-tag { font-size: 11px; background: rgba(255,255,255,0.06); border-radius: 4px; padding: 4px 10px; color: var(--muted); }
+    .btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #25d366; color: #fff;
+      border: none; border-radius: 8px; padding: 13px 20px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; width: 100%; text-decoration: none;
+    }
+
+    /* mobile sidebar */
+    .mob-cats {
+      display: none;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 0 16px 12px;
+      scrollbar-width: none;
+    }
+    .mob-cats::-webkit-scrollbar { display: none; }
+    .mob-cat-btn {
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 12px; font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .mob-cat-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    .footer-badge { text-align: center; margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge a { color: var(--accent); text-decoration: none; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    @media (max-width: 600px) {
+      .sidebar { display: none; }
+      .main { padding: 20px 16px 40px; }
+      .mob-cats { display: flex; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- mobile top bar -->
+<div style="background:var(--surface); border-bottom:1px solid var(--border); padding:14px 16px 0; display:none;" id="mob-header">
+  <p style="font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; font-weight:500; margin-bottom:2px;" id="mob-eyebrow">Catálogo</p>
+  <p style="font-size:17px; font-weight:600;" id="mob-name">-</p>
+  <div class="mob-cats" id="mob-cats" style="margin-top:12px;"></div>
+</div>
+
+<div class="app-wrap">
+  <!-- sidebar desktop -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <p class="sidebar-eyebrow">Catálogo</p>
+      <p class="sidebar-name" id="biz-name">-</p>
+      <p class="sidebar-sub" id="biz-sub">-</p>
+    </div>
+    <p class="cat-label">Categorías</p>
+    <div class="cat-list" id="cat-list"></div>
+  </aside>
+
+  <!-- main -->
+  <main class="main">
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Buscar producto..." oninput="renderProducts()" />
+    </div>
+    <div class="section-header">
+      <h2 class="section-title" id="section-title">Todos los productos</h2>
+      <p class="section-count" id="section-count"></p>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+    <p class="footer-badge">Hecho por <a href="https://devstudio-chi.vercel.app" target="_blank">DevStudio</a></p>
+  </main>
+</div>
+
+<div id="modal-root"></div>
+
+<script>
+// ── CONFIGURACIÓN ──────────────────────────────────────────────
+const CONFIG = {
+  negocio: "Muebles Artesanales Sur",
+  subtitulo: "Fabricación a medida en madera maciza",
+  whatsapp: "5492235954195",
+  moneda: "$",
+  productos: [
+    {
+      id: 1, nombre: "Mesa de comedor roble", categoria: "Mesas",
+      precio: "85.000", unidad: "por unidad",
+      descripcion: "Mesa de comedor en roble macizo natural. Disponible en medidas desde 120cm a 200cm de largo.",
+      emoji: "🪵",
+      tags: ["Roble macizo", "A medida", "6-8 personas"],
+    },
+    {
+      id: 2, nombre: "Mesa ratona living", categoria: "Mesas",
+      precio: "42.000", unidad: "por unidad",
+      descripcion: "Mesa ratona baja para living con tapa de madera y estructura en hierro negro.",
+      emoji: "🪑",
+      tags: ["Hierro + madera", "40cm alto", "Moderno"],
+    },
+    {
+      id: 3, nombre: "Mesa esquinera", categoria: "Mesas",
+      precio: "28.000", unidad: "por unidad",
+      descripcion: "Mesa esquinera en pino tratado. Ideal para entradas o rincones.",
+      emoji: "🪵",
+      tags: ["Pino tratado", "Compacta"],
+    },
+    {
+      id: 4, nombre: "Silla Windsor", categoria: "Sillas",
+      precio: "18.500", unidad: "por unidad",
+      descripcion: "Silla estilo Windsor en madera torneada. Acabado natural o laqueado.",
+      emoji: "🪑",
+      tags: ["Madera torneada", "Natural o laqueado"],
+    },
+    {
+      id: 5, nombre: "Banco de madera", categoria: "Sillas",
+      precio: "22.000", unidad: "por unidad",
+      descripcion: "Banco recto en madera maciza. Ideal para comedor o entrada. Largo 120cm.",
+      emoji: "🪑",
+      tags: ["120cm", "Sin respaldo"],
+    },
+    {
+      id: 6, nombre: "Biblioteca flotante", categoria: "Estanterías",
+      precio: "35.000", unidad: "por módulo",
+      descripcion: "Estantería flotante modular en MDF enchapado. Distintas alturas disponibles.",
+      emoji: "📚",
+      tags: ["MDF enchapado", "Modular", "Flotante"],
+    },
+    {
+      id: 7, nombre: "Estante industrial", categoria: "Estanterías",
+      precio: "48.000", unidad: "por unidad",
+      descripcion: "Estantería estilo industrial con estructura metálica y estantes en madera maciza.",
+      emoji: "🔩",
+      tags: ["Hierro + madera", "Industrial", "5 niveles"],
+    },
+    {
+      id: 8, nombre: "Cómoda 4 cajones", categoria: "Dormitorio",
+      precio: "68.000", unidad: "por unidad",
+      descripcion: "Cómoda en madera maciza con 4 cajones y tirador de hierro. Terminación en óleo.",
+      emoji: "🛏️",
+      tags: ["4 cajones", "Óleo natural"],
+    },
+    {
+      id: 9, nombre: "Cabecero tapizado", categoria: "Dormitorio",
+      precio: "32.000", unidad: "por unidad (1.40m)",
+      descripcion: "Cabecero tapizado en tela texturada. Disponible en 1.40m y 1.60m de ancho.",
+      emoji: "🛏️",
+      tags: ["Tapizado", "1.40m o 1.60m"],
+    },
+    {
+      id: 10, nombre: "Mesa de luz", categoria: "Dormitorio",
+      precio: "24.000", unidad: "por unidad",
+      descripcion: "Mesa de luz con 1 cajón y 1 estante en madera maciza con pata cónica.",
+      emoji: "💡",
+      tags: ["1 cajón", "Pata cónica"],
+    },
+    {
+      id: 11, nombre: "Deck de madera exterior", categoria: "Exterior",
+      precio: "95.000", unidad: "por m²",
+      descripcion: "Deck en madera tratada para exteriores. Incluye estructura y terminación. Precio por m².",
+      emoji: "🌿",
+      tags: ["Tratada exterior", "Por m²", "Con estructura"],
+    },
+    {
+      id: 12, nombre: "Banco de jardín", categoria: "Exterior",
+      precio: "38.000", unidad: "por unidad",
+      descripcion: "Banco de jardín en madera de pino impregnado. Resistente a la intemperie. Largo 150cm.",
+      emoji: "🌳",
+      tags: ["Pino impregnado", "Intemperie", "150cm"],
+    },
+  ],
+};
+
+let activeCat = "Todos";
+
+function allCats() {
+  const cats = ["Todos", ...new Set(CONFIG.productos.map(p => p.categoria))];
+  return cats;
+}
+
+function filteredProducts() {
+  const q = document.getElementById("search").value.toLowerCase();
+  return CONFIG.productos.filter(p => {
+    const matchCat = activeCat === "Todos" || p.categoria === activeCat;
+    const matchQ = !q || p.nombre.toLowerCase().includes(q) || p.descripcion.toLowerCase().includes(q) || p.categoria.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+}
+
+function setCat(cat) {
+  activeCat = cat;
+  renderCats();
+  renderProducts();
+}
+
+function renderCats() {
+  const cats = allCats();
+
+  // desktop
+  document.getElementById("cat-list").innerHTML = cats.map(c => {
+    const count = c === "Todos" ? CONFIG.productos.length : CONFIG.productos.filter(p => p.categoria === c).length;
+    return `<button class="cat-btn ${activeCat === c ? 'active' : ''}" onclick="setCat('${c}')">
+      ${c} <span class="cat-count">${count}</span>
+    </button>`;
+  }).join("");
+
+  // mobile
+  document.getElementById("mob-cats").innerHTML = cats.map(c =>
+    `<button class="mob-cat-btn ${activeCat === c ? 'active' : ''}" onclick="setCat('${c}')">${c}</button>`
+  ).join("");
+}
+
+function renderProducts() {
+  const prods = filteredProducts();
+  const title = activeCat === "Todos" ? "Todos los productos" : activeCat;
+  document.getElementById("section-title").textContent = title;
+  document.getElementById("section-count").textContent = `${prods.length} producto${prods.length !== 1 ? "s" : ""}`;
+
+  if (prods.length === 0) {
+    document.getElementById("product-grid").innerHTML = `
+      <div class="empty" style="grid-column:1/-1">
+        <div style="font-size:36px; margin-bottom:8px;">🔍</div>
+        <p>No encontramos productos con esa búsqueda.</p>
+      </div>`;
+    return;
+  }
+
+  document.getElementById("product-grid").innerHTML = prods.map(p => `
+    <article class="product-card" onclick="openProduct(${p.id})">
+      <div class="product-img" style="font-size:42px;">${p.emoji}</div>
+      <div class="product-body">
+        <p class="product-cat">${p.categoria}</p>
+        <h3 class="product-name">${p.nombre}</h3>
+        <p class="product-desc">${p.descripcion}</p>
+        <p class="product-price">${CONFIG.moneda}${p.precio} <span class="product-unit">${p.unidad}</span></p>
+      </div>
+    </article>
+  `).join("");
+}
+
+function openProduct(id) {
+  const p = CONFIG.productos.find(x => x.id === id);
+  if (!p) return;
+  const msg = encodeURIComponent(`Hola! Me interesa el siguiente producto:\n\n🪵 *${p.nombre}*\nPrecio: ${CONFIG.moneda}${p.precio} ${p.unidad}\n\n¿Tienen disponibilidad?`);
+
+  document.getElementById("modal-root").innerHTML = `
+    <div class="modal-overlay" onclick="closeModal(event)">
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-img" style="font-size:72px;">${p.emoji}</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-body">
+          <p class="modal-cat">${p.categoria}</p>
+          <h2 class="modal-name">${p.nombre}</h2>
+          <p class="modal-desc">${p.descripcion}</p>
+          <p class="modal-price">${CONFIG.moneda}${p.precio} <span>${p.unidad}</span></p>
+          <div class="modal-tags">
+            ${p.tags.map(t => `<span class="modal-tag">${t}</span>`).join("")}
+          </div>
+          <a class="btn-wa" href="https://wa.me/${CONFIG.whatsapp}?text=${msg}" target="_blank">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.015 22l4.985-1.31A9.945 9.945 0 0 0 12 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2zm.002 18a7.951 7.951 0 0 1-4.055-1.112l-.291-.173-3.003.787.804-2.924-.19-.299A7.963 7.963 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+            Consultar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function closeModal(event) {
+  if (!event || event.target.classList.contains("modal-overlay")) {
+    document.getElementById("modal-root").innerHTML = "";
+  }
+}
+
+// init
+document.getElementById("biz-name").textContent = CONFIG.negocio;
+document.getElementById("mob-name").textContent = CONFIG.negocio;
+document.getElementById("biz-sub").textContent = CONFIG.subtitulo;
+
+// show mobile header on small screens
+if (window.innerWidth <= 600) {
+  document.getElementById("mob-header").style.display = "block";
+}
+window.addEventListener("resize", () => {
+  document.getElementById("mob-header").style.display = window.innerWidth <= 600 ? "block" : "none";
+});
+
+renderCats();
+renderProducts();
+</script>
+</body>
+</html>

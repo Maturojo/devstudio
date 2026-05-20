@@ -57,6 +57,7 @@ const standaloneTools = [
       "Boton directo a WhatsApp o formulario",
       "Diseno claro para celular y PC",
     ],
+    demo: "/turnero/",
   },
   {
     name: "Calendario de eventos o clases",
@@ -68,6 +69,7 @@ const standaloneTools = [
       "Fechas destacadas y detalles por evento",
       "Facil de integrar en una landing o web existente",
     ],
+    demo: "/calendario/",
   },
   {
     name: "Catalogo digital simple",
@@ -79,6 +81,7 @@ const standaloneTools = [
       "Pensado para vender por WhatsApp",
       "Estructura facil de ampliar luego",
     ],
+    demo: "/catalogo/",
   },
   {
     name: "Cotizador o formulario inteligente",
@@ -90,6 +93,7 @@ const standaloneTools = [
       "Entrega de consulta mas ordenada",
       "Enfoque en conversion y practicidad",
     ],
+    demo: "/cotizador/",
   },
 ];
 
@@ -569,9 +573,14 @@ function ToolsPage({ currentPath }) {
                 ))}
               </ul>
 
-              <NavLink to="/contacto" currentPath={currentPath} className="button secondary standalone-button">
-                Quiero esta herramienta
-              </NavLink>
+              <div className="standalone-actions">
+                <a href={tool.demo} target="_blank" rel="noreferrer" className="button primary standalone-button">
+                  Ver demo
+                </a>
+                <NavLink to="/contacto" currentPath={currentPath} className="button secondary standalone-button">
+                  Quiero esta
+                </NavLink>
+              </div>
             </article>
           ))}
         </div>

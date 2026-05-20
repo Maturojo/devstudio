@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendario — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #ff7f50;
+      --accent-dim: rgba(255,127,80,0.12);
+      --bg: #0f0f10;
+      --surface: #1a1917;
+      --surface2: #211f1d;
+      --border: rgba(255,255,255,0.08);
+      --text: #f4efe7;
+      --muted: #9a9490;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: radial-gradient(circle at top, rgba(255,149,43,0.08), transparent 22%),
+                  linear-gradient(180deg, #0f0f10 0%, #171514 48%, #0b0b0c 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell { max-width: 680px; margin: 0 auto; }
+
+    /* header */
+    .app-header { text-align: center; margin-bottom: 28px; }
+    .app-eyebrow {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .app-title { font-size: 26px; font-weight: 600; line-height: 1.2; }
+    .app-sub { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+    /* view toggle */
+    .view-toggle {
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-btn.active { background: var(--accent); color: #0f0f10; }
+
+    /* calendar nav */
+    .cal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cal-nav h2 { font-size: 16px; font-weight: 600; }
+    .nav-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: border-color 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); }
+
+    /* calendar grid */
+    .cal-grid {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-weekday {
+      padding: 10px 4px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cal-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+    }
+    .cal-day {
+      min-height: 64px;
+      padding: 8px 6px 6px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      position: relative;
+    }
+    .cal-day:nth-child(7n) { border-right: none; }
+    .cal-day.other-month { opacity: 0.3; }
+    .cal-day.today .day-num {
+      background: var(--accent);
+      color: #0f0f10;
+      border-radius: 50%;
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cal-day.has-event { cursor: pointer; }
+    .cal-day.has-event:hover { background: rgba(255,255,255,0.03); }
+    .day-num { font-size: 13px; font-weight: 500; margin-bottom: 4px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+    .event-dot {
+      font-size: 10px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(255,127,80,0.3);
+      border-radius: 4px;
+      padding: 2px 5px;
+      color: var(--accent);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      margin-top: 2px;
+    }
+
+    /* list view */
+    .list-view { display: flex; flex-direction: column; gap: 12px; }
+    .list-month-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+      margin-top: 8px;
+    }
+    .list-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .list-item:hover { border-color: var(--accent); }
+    .list-date-block {
+      flex-shrink: 0;
+      text-align: center;
+      width: 44px;
+    }
+    .list-date-day { font-size: 22px; font-weight: 600; line-height: 1; }
+    .list-date-month { font-size: 11px; color: var(--muted); text-transform: uppercase; font-weight: 500; }
+    .list-copy { flex: 1; }
+    .list-copy h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .list-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .list-tag {
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 3px 8px;
+      color: var(--muted);
+    }
+    .list-tag.accent { background: var(--accent-dim); color: var(--accent); }
+
+    /* modal */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+      padding: 16px;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      animation: slideUp 0.25s ease;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: var(--text);
+      border-radius: 6px;
+      width: 28px; height: 28px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-eyebrow { font-size: 11px; color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .modal-title { font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.3; }
+    .modal-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .modal-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .modal-row { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; }
+    .modal-icon { width: 16px; flex-shrink: 0; color: var(--accent); margin-top: 1px; }
+    .modal-wa {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #25d366; color: #fff;
+      border: none; border-radius: 8px; padding: 12px 20px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; width: 100%;
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .footer-badge { text-align: center; margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 500px) {
+      .cal-day { min-height: 48px; padding: 6px 3px 4px; }
+      .event-dot { display: none; }
+      .cal-day.has-event::after {
+        content: '';
+        display: block;
+        width: 5px; height: 5px;
+        background: var(--accent);
+        border-radius: 50%;
+        margin: 2px auto 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="app-header">
+    <p class="app-eyebrow">Agenda de clases</p>
+    <h1 class="app-title" id="biz-name">Studio Move</h1>
+    <p class="app-sub">Clases de yoga, pilates y stretching</p>
+  </header>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="btn-mes" onclick="setView('mes')">Mes</button>
+      <button class="toggle-btn" id="btn-lista" onclick="setView('lista')">Lista</button>
+    </div>
+    <div id="cal-nav-wrap" class="cal-nav" style="flex:1; justify-content:flex-end; margin-bottom:0;">
+      <button class="nav-btn" onclick="changeMonth(-1)">&#8592;</button>
+      <h2 id="cal-title" style="min-width:150px; text-align:center;"></h2>
+      <button class="nav-btn" onclick="changeMonth(1)">&#8594;</button>
+    </div>
+  </div>
+
+  <div id="cal-view"></div>
+  <div id="modal-root"></div>
+
+  <p class="footer-badge">Hecho por <a href="https://devstudio-chi.vercel.app" target="_blank">DevStudio</a></p>
+</div>
+
+<script>
+// ── CONFIGURACIÓN ──────────────────────────────────────────────
+const CONFIG = {
+  negocio: "Studio Move",
+  subtitulo: "Clases de yoga, pilates y stretching",
+  whatsapp: "5492235954195",
+  eventos: [
+    {
+      id: 1, titulo: "Yoga para principiantes",
+      fecha: "2026-05-21", hora: "09:00", duracion: "60 min",
+      lugar: "Sala 1", cupos: 8, precio: "$3.500",
+      descripcion: "Clase introductoria de yoga. No se requiere experiencia previa. Traer mat y ropa cómoda.",
+      tipo: "Yoga",
+    },
+    {
+      id: 2, titulo: "Pilates reformer",
+      fecha: "2026-05-21", hora: "11:00", duracion: "45 min",
+      lugar: "Sala reformer", cupos: 4, precio: "$5.000",
+      descripcion: "Trabajo en reformer con foco en core y postura. Nivel intermedio.",
+      tipo: "Pilates",
+    },
+    {
+      id: 3, titulo: "Stretching profundo",
+      fecha: "2026-05-22", hora: "18:00", duracion: "50 min",
+      lugar: "Sala 2", cupos: 10, precio: "$3.000",
+      descripcion: "Sesión de elongación para mejorar la flexibilidad y aliviar la tensión muscular.",
+      tipo: "Stretching",
+    },
+    {
+      id: 4, titulo: "Yoga avanzado",
+      fecha: "2026-05-24", hora: "09:00", duracion: "75 min",
+      lugar: "Sala 1", cupos: 6, precio: "$4.000",
+      descripcion: "Clase de yoga con posturas avanzadas. Nivel avanzado recomendado.",
+      tipo: "Yoga",
+    },
+    {
+      id: 5, titulo: "Pilates suelo",
+      fecha: "2026-05-26", hora: "10:00", duracion: "45 min",
+      lugar: "Sala 1", cupos: 8, precio: "$3.500",
+      descripcion: "Trabajo de pilates en suelo con colchoneta. Apto para todos los niveles.",
+      tipo: "Pilates",
+    },
+    {
+      id: 6, titulo: "Yoga restaurativo",
+      fecha: "2026-05-28", hora: "17:00", duracion: "60 min",
+      lugar: "Sala 1", cupos: 10, precio: "$3.500",
+      descripcion: "Clase de yoga restaurativo con props. Enfocada en la recuperación y relajación.",
+      tipo: "Yoga",
+    },
+    {
+      id: 7, titulo: "Stretching matutino",
+      fecha: "2026-06-02", hora: "07:30", duracion: "40 min",
+      lugar: "Sala 2", cupos: 12, precio: "$2.500",
+      descripcion: "Rutina de elongación para comenzar bien el día.",
+      tipo: "Stretching",
+    },
+    {
+      id: 8, titulo: "Pilates reformer",
+      fecha: "2026-06-04", hora: "11:00", duracion: "45 min",
+      lugar: "Sala reformer", cupos: 4, precio: "$5.000",
+      descripcion: "Trabajo en reformer con foco en core y postura. Nivel intermedio.",
+      tipo: "Pilates",
+    },
+  ],
+};
+
+const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const DIAS_SEMANA = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+const MESES_CORTOS = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+
+let view = "mes";
+let currentYear = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
+
+function setView(v) {
+  view = v;
+  document.getElementById("btn-mes").classList.toggle("active", v === "mes");
+  document.getElementById("btn-lista").classList.toggle("active", v === "lista");
+  document.getElementById("cal-nav-wrap").style.display = v === "mes" ? "flex" : "none";
+  renderView();
+}
+
+function changeMonth(delta) {
+  currentMonth += delta;
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  renderView();
+}
+
+function eventosDelDia(dateStr) {
+  return CONFIG.eventos.filter(e => e.fecha === dateStr);
+}
+
+function fmtDate(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function renderView() {
+  if (view === "mes") renderMes();
+  else renderLista();
+}
+
+function renderMes() {
+  const title = document.getElementById("cal-title");
+  title.textContent = `${MESES[currentMonth]} ${currentYear}`;
+
+  const first = new Date(currentYear, currentMonth, 1);
+  const last = new Date(currentYear, currentMonth + 1, 0);
+  const today = fmtDate(new Date());
+
+  let cells = [];
+  // padding before
+  for (let i = 0; i < first.getDay(); i++) {
+    const d = new Date(currentYear, currentMonth, 1 - (first.getDay() - i));
+    cells.push({ date: d, otherMonth: true });
+  }
+  for (let d = 1; d <= last.getDate(); d++) {
+    cells.push({ date: new Date(currentYear, currentMonth, d), otherMonth: false });
+  }
+  // padding after
+  const remaining = 42 - cells.length;
+  for (let i = 1; i <= remaining; i++) {
+    cells.push({ date: new Date(currentYear, currentMonth + 1, i), otherMonth: true });
+  }
+
+  const html = `
+    <div class="cal-grid">
+      <div class="cal-weekdays">
+        ${DIAS_SEMANA.map(d => `<div class="cal-weekday">${d}</div>`).join("")}
+      </div>
+      <div class="cal-days">
+        ${cells.map(c => {
+          const ds = fmtDate(c.date);
+          const evs = eventosDelDia(ds);
+          const isToday = ds === today;
+          return `
+            <div class="cal-day ${c.otherMonth ? 'other-month' : ''} ${isToday ? 'today' : ''} ${evs.length ? 'has-event' : ''}"
+              ${evs.length ? `onclick="openEvent(${evs[0].id})"` : ''}>
+              <div class="day-num">${c.date.getDate()}</div>
+              ${evs.slice(0, 2).map(e => `<div class="event-dot">${e.titulo}</div>`).join("")}
+              ${evs.length > 2 ? `<div class="event-dot">+${evs.length-2} más</div>` : ''}
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+  document.getElementById("cal-view").innerHTML = html;
+}
+
+function renderLista() {
+  const sorted = [...CONFIG.eventos].sort((a, b) => a.fecha.localeCompare(b.fecha));
+  let html = '<div class="list-view">';
+  let lastMonth = null;
+
+  sorted.forEach(e => {
+    const d = new Date(e.fecha + "T00:00:00");
+    const monthKey = `${d.getFullYear()}-${d.getMonth()}`;
+    if (monthKey !== lastMonth) {
+      lastMonth = monthKey;
+      html += `<div class="list-month-label">${MESES[d.getMonth()]} ${d.getFullYear()}</div>`;
+    }
+    html += `
+      <div class="list-item" onclick="openEvent(${e.id})">
+        <div class="list-date-block">
+          <div class="list-date-day">${d.getDate()}</div>
+          <div class="list-date-month">${MESES_CORTOS[d.getMonth()]}</div>
+        </div>
+        <div class="list-copy">
+          <h3>${e.titulo}</h3>
+          <div class="list-meta">
+            <span class="list-tag accent">${e.tipo}</span>
+            <span class="list-tag">${e.hora} · ${e.duracion}</span>
+            <span class="list-tag">${e.lugar}</span>
+            <span class="list-tag">${e.precio}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  html += '</div>';
+  document.getElementById("cal-view").innerHTML = html;
+}
+
+function openEvent(id) {
+  const e = CONFIG.eventos.find(x => x.id === id);
+  if (!e) return;
+  const d = new Date(e.fecha + "T00:00:00");
+  const msg = encodeURIComponent(`Hola! Quiero anotarme a la clase:\n\n📋 *${e.titulo}*\n📅 ${DIAS_SEMANA[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]}\n🕐 ${e.hora} · ${e.duracion}\n📍 ${e.lugar}\n\n¿Hay cupos disponibles?`);
+
+  document.getElementById("modal-root").innerHTML = `
+    <div class="modal-overlay" onclick="closeModal(event)">
+      <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <p class="modal-eyebrow">${e.tipo}</p>
+        <h2 class="modal-title">${e.titulo}</h2>
+        <p class="modal-desc">${e.descripcion}</p>
+        <div class="modal-meta">
+          <div class="modal-row">
+            <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>${DIAS_SEMANA[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]} · ${e.hora} (${e.duracion})</span>
+          </div>
+          <div class="modal-row">
+            <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>${e.lugar}</span>
+          </div>
+          <div class="modal-row">
+            <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>${e.cupos} cupos · ${e.precio}</span>
+          </div>
+        </div>
+        <a class="modal-wa" href="https://wa.me/${CONFIG.whatsapp}?text=${msg}" target="_blank">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.015 22l4.985-1.31A9.945 9.945 0 0 0 12 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2zm.002 18a7.951 7.951 0 0 1-4.055-1.112l-.291-.173-3.003.787.804-2.924-.19-.299A7.963 7.963 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+          Anotarme a esta clase
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+function closeModal(event) {
+  if (!event || event.target.classList.contains("modal-overlay")) {
+    document.getElementById("modal-root").innerHTML = "";
+  }
+}
+
+// init
+renderView();
+</script>
+</body>
+</html>

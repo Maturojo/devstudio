@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cotizador — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #ff7f50;
+      --accent-dim: rgba(255,127,80,0.12);
+      --bg: #0f0f10;
+      --surface: #1a1917;
+      --border: rgba(255,255,255,0.08);
+      --text: #f4efe7;
+      --muted: #9a9490;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: radial-gradient(circle at top, rgba(255,149,43,0.08), transparent 22%),
+                  linear-gradient(180deg, #0f0f10 0%, #171514 48%, #0b0b0c 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell { max-width: 580px; margin: 0 auto; }
+
+    /* header */
+    .app-header { text-align: center; margin-bottom: 32px; }
+    .app-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .app-title { font-size: 26px; font-weight: 600; line-height: 1.2; }
+    .app-sub { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+    /* progress */
+    .progress-wrap { margin-bottom: 24px; }
+    .progress-bar-bg {
+      background: var(--border);
+      border-radius: 4px;
+      height: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    .progress-label { font-size: 12px; color: var(--muted); margin-top: 8px; text-align: right; }
+
+    /* card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      animation: fadeSlide 0.3s ease;
+    }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 12px; }
+    .step-question { font-size: 19px; font-weight: 600; margin-bottom: 6px; line-height: 1.3; }
+    .step-hint { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+    /* options */
+    .options-list { display: flex; flex-direction: column; gap: 10px; }
+    .opt-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s, background 0.2s;
+      font-family: inherit;
+    }
+    .opt-btn:hover { border-color: rgba(255,127,80,0.4); background: rgba(255,127,80,0.06); }
+    .opt-btn.selected { border-color: var(--accent); background: var(--accent-dim); }
+    .opt-icon { font-size: 22px; flex-shrink: 0; width: 32px; text-align: center; }
+    .opt-copy strong { display: block; font-size: 14px; font-weight: 600; }
+    .opt-copy span { font-size: 12px; color: var(--muted); }
+
+    /* multi-select note */
+    .multi-note { font-size: 11px; color: var(--accent); margin-bottom: 14px; font-weight: 500; }
+
+    /* text input */
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+    .field textarea { resize: vertical; min-height: 90px; }
+
+    /* btn row */
+    .btn-row { display: flex; gap: 10px; margin-top: 24px; }
+    .btn { border: none; border-radius: 8px; padding: 12px 20px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.1s; flex: 1; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--accent); color: #0f0f10; }
+    .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #25d366; color: #fff;
+      border: none; border-radius: 8px; padding: 13px 20px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; width: 100%; text-decoration: none;
+    }
+
+    /* summary */
+    .summary-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+    .summary-section { margin-bottom: 16px; }
+    .summary-section-label { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 8px; }
+    .summary-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      font-size: 13px; padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-key { color: var(--muted); flex-shrink: 0; }
+    .summary-val { text-align: right; font-weight: 500; }
+
+    /* confirm */
+    .confirm-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-dim); border: 1px solid rgba(255,127,80,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .confirm-icon svg { width: 26px; height: 26px; color: var(--accent); }
+
+    .footer-badge { text-align: center; margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="app-header">
+    <p class="app-eyebrow">Cotizador</p>
+    <h1 class="app-title" id="biz-name">Diseño & Print</h1>
+    <p class="app-sub" id="biz-sub">Completá el formulario y te enviamos un presupuesto</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <p class="progress-label" id="progress-label">Paso 1 de 5</p>
+  </div>
+
+  <div class="card" id="app-card"></div>
+
+  <p class="footer-badge">Hecho por <a href="https://devstudio-chi.vercel.app" target="_blank">DevStudio</a></p>
+</div>
+
+<script>
+// ── CONFIGURACIÓN ──────────────────────────────────────────────
+const CONFIG = {
+  negocio: "Diseño & Print",
+  subtitulo: "Completá el formulario y te enviamos un presupuesto",
+  whatsapp: "5492235954195",
+  pasos: [
+    {
+      id: "servicio",
+      tipo: "opciones",
+      pregunta: "¿Qué necesitás?",
+      hint: "Elegí el servicio principal",
+      opciones: [
+        { valor: "logo", label: "Logo y marca", desc: "Diseño de identidad visual", emoji: "✏️" },
+        { valor: "flyer", label: "Flyer o cartel", desc: "Para redes sociales o impresión", emoji: "🖼️" },
+        { valor: "menu", label: "Menú digital o carta", desc: "Para gastronomía o servicios", emoji: "📋" },
+        { valor: "web", label: "Diseño web", desc: "Maqueta o prototipo de página", emoji: "💻" },
+        { valor: "otro", label: "Otro", desc: "Te cuento por WhatsApp", emoji: "💬" },
+      ],
+    },
+    {
+      id: "uso",
+      tipo: "opciones",
+      pregunta: "¿Para qué se va a usar?",
+      hint: "Puede ayudarnos a enfocar el diseño",
+      opciones: [
+        { valor: "redes", label: "Redes sociales", desc: "Instagram, Facebook, TikTok", emoji: "📱" },
+        { valor: "impresion", label: "Impresión", desc: "Afiches, folletos, papelería", emoji: "🖨️" },
+        { valor: "digital", label: "Web o digital", desc: "Email, web, presentación", emoji: "🌐" },
+        { valor: "todo", label: "Todo lo anterior", desc: "Necesito varias versiones", emoji: "🎯" },
+      ],
+    },
+    {
+      id: "plazo",
+      tipo: "opciones",
+      pregunta: "¿Cuándo lo necesitás?",
+      hint: "Esto nos ayuda a organizar los tiempos",
+      opciones: [
+        { valor: "urgente", label: "Urgente", desc: "En 24-48 horas", emoji: "⚡" },
+        { valor: "semana", label: "Esta semana", desc: "Antes del viernes", emoji: "📅" },
+        { valor: "2semanas", label: "En 2 semanas", desc: "Tengo un poco de margen", emoji: "🗓️" },
+        { valor: "sin_apuro", label: "Sin apuro", desc: "Cuando puedan", emoji: "😌" },
+      ],
+    },
+    {
+      id: "extras",
+      tipo: "multi",
+      pregunta: "¿Qué más incluiría el trabajo?",
+      hint: "Podés elegir varias opciones",
+      opciones: [
+        { valor: "logo_incluido", label: "Incluye logo", desc: "El logo forma parte del trabajo", emoji: "🏷️" },
+        { valor: "texto", label: "Redacción del texto", desc: "Necesito ayuda con el copy", emoji: "✍️" },
+        { valor: "fotos", label: "Fotos de stock", desc: "Necesito imágenes incluidas", emoji: "📷" },
+        { valor: "revisiones", label: "Más de 2 revisiones", desc: "Quiero ajustar hasta quedar conforme", emoji: "🔄" },
+      ],
+    },
+    {
+      id: "contacto",
+      tipo: "contacto",
+      pregunta: "Por último, tus datos",
+      hint: "Para enviarte el presupuesto",
+    },
+  ],
+};
+
+// ── STATE ───────────────────────────────────────────────────────
+let step = 0;
+let respuestas = {};
+
+const totalPasos = CONFIG.pasos.length;
+
+function updateProgress() {
+  const pct = (step / totalPasos) * 100;
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-label").textContent = step < totalPasos
+    ? `Paso ${step + 1} de ${totalPasos}`
+    : "¡Listo!";
+}
+
+function render() {
+  updateProgress();
+  const card = document.getElementById("app-card");
+  if (step >= totalPasos) { renderResumen(card); return; }
+  const paso = CONFIG.pasos[step];
+  if (paso.tipo === "opciones") renderOpciones(card, paso);
+  else if (paso.tipo === "multi") renderMulti(card, paso);
+  else if (paso.tipo === "contacto") renderContacto(card, paso);
+}
+
+function renderOpciones(card, paso) {
+  const sel = respuestas[paso.id] || null;
+  card.innerHTML = `
+    <p class="step-label">Pregunta ${step + 1}</p>
+    <p class="step-question">${paso.pregunta}</p>
+    <p class="step-hint">${paso.hint}</p>
+    <div class="options-list">
+      ${paso.opciones.map(o => `
+        <button class="opt-btn ${sel === o.valor ? 'selected' : ''}" data-val="${o.valor}">
+          <span class="opt-icon">${o.emoji}</span>
+          <span class="opt-copy">
+            <strong>${o.label}</strong>
+            <span>${o.desc}</span>
+          </span>
+        </button>
+      `).join("")}
+    </div>
+    <div class="btn-row">
+      ${step > 0 ? '<button class="btn btn-ghost" id="btn-back">Volver</button>' : ''}
+      <button class="btn btn-primary" id="btn-next" ${!sel ? "disabled" : ""}>Siguiente</button>
+    </div>
+  `;
+
+  card.querySelectorAll(".opt-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      respuestas[paso.id] = btn.dataset.val;
+      render();
+    });
+  });
+  card.querySelector("#btn-next")?.addEventListener("click", () => { step++; render(); });
+  card.querySelector("#btn-back")?.addEventListener("click", () => { step--; render(); });
+}
+
+function renderMulti(card, paso) {
+  if (!respuestas[paso.id]) respuestas[paso.id] = [];
+  const sel = respuestas[paso.id];
+
+  card.innerHTML = `
+    <p class="step-label">Pregunta ${step + 1}</p>
+    <p class="step-question">${paso.pregunta}</p>
+    <p class="multi-note">Podés elegir varias o ninguna</p>
+    <div class="options-list">
+      ${paso.opciones.map(o => `
+        <button class="opt-btn ${sel.includes(o.valor) ? 'selected' : ''}" data-val="${o.valor}">
+          <span class="opt-icon">${o.emoji}</span>
+          <span class="opt-copy">
+            <strong>${o.label}</strong>
+            <span>${o.desc}</span>
+          </span>
+        </button>
+      `).join("")}
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="btn-back">Volver</button>
+      <button class="btn btn-primary" id="btn-next">Siguiente</button>
+    </div>
+  `;
+
+  card.querySelectorAll(".opt-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const v = btn.dataset.val;
+      const idx = sel.indexOf(v);
+      if (idx === -1) sel.push(v); else sel.splice(idx, 1);
+      respuestas[paso.id] = sel;
+      render();
+    });
+  });
+  card.querySelector("#btn-next").addEventListener("click", () => { step++; render(); });
+  card.querySelector("#btn-back").addEventListener("click", () => { step--; render(); });
+}
+
+function renderContacto(card, paso) {
+  const saved = respuestas.contacto || {};
+  card.innerHTML = `
+    <p class="step-label">Último paso</p>
+    <p class="step-question">${paso.pregunta}</p>
+    <p class="step-hint">${paso.hint}</p>
+    <div class="field">
+      <label>Tu nombre</label>
+      <input type="text" id="inp-nombre" placeholder="Ej: Lucía González" value="${saved.nombre || ''}" />
+    </div>
+    <div class="field">
+      <label>WhatsApp o email</label>
+      <input type="text" id="inp-contacto" placeholder="Ej: 2235123456 o tucorreo@mail.com" value="${saved.contacto || ''}" />
+    </div>
+    <div class="field">
+      <label>¿Algo más que quieras contarnos? (opcional)</label>
+      <textarea id="inp-extra" placeholder="Referencia, colores, estilo, detalles del negocio...">${saved.extra || ''}</textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="btn-back">Volver</button>
+      <button class="btn btn-primary" id="btn-next">Ver resumen</button>
+    </div>
+  `;
+  card.querySelector("#btn-back").addEventListener("click", () => { step--; render(); });
+  card.querySelector("#btn-next").addEventListener("click", () => {
+    const nombre = card.querySelector("#inp-nombre").value.trim();
+    const contacto = card.querySelector("#inp-contacto").value.trim();
+    const extra = card.querySelector("#inp-extra").value.trim();
+    if (!nombre || !contacto) { alert("Completá tu nombre y forma de contacto para continuar."); return; }
+    respuestas.contacto = { nombre, contacto, extra };
+    step++;
+    render();
+  });
+}
+
+function labelFor(pasoId, valor) {
+  const paso = CONFIG.pasos.find(p => p.id === pasoId);
+  if (!paso || !paso.opciones) return valor;
+  if (Array.isArray(valor)) {
+    if (valor.length === 0) return "Ninguno";
+    return valor.map(v => {
+      const o = paso.opciones.find(x => x.valor === v);
+      return o ? o.label : v;
+    }).join(", ");
+  }
+  const o = paso.opciones.find(x => x.valor === valor);
+  return o ? o.label : valor;
+}
+
+function renderResumen(card) {
+  const pasosDatos = CONFIG.pasos.filter(p => p.id !== "contacto");
+  const c = respuestas.contacto || {};
+
+  const rows = pasosDatos.map(p => `
+    <div class="summary-row">
+      <span class="summary-key">${p.pregunta}</span>
+      <span class="summary-val">${labelFor(p.id, respuestas[p.id] || (p.tipo === "multi" ? [] : "—"))}</span>
+    </div>
+  `).join("");
+
+  const msgLines = [
+    `Hola! Te envío mi consulta desde el cotizador:\n`,
+    ...pasosDatos.map(p => `*${p.pregunta}*\n${labelFor(p.id, respuestas[p.id] || (p.tipo === "multi" ? [] : "—"))}`),
+    `\n*Nombre:* ${c.nombre}`,
+    `*Contacto:* ${c.contacto}`,
+    c.extra ? `*Detalles:* ${c.extra}` : null,
+    `\n¿Me pueden enviar un presupuesto?`
+  ].filter(Boolean).join("\n");
+
+  const waLink = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msgLines)}`;
+
+  card.innerHTML = `
+    <p class="step-label">Resumen de tu consulta</p>
+    <div class="summary-section">
+      <p class="summary-section-label">Lo que pedís</p>
+      ${rows}
+    </div>
+    <div class="summary-section">
+      <p class="summary-section-label">Tus datos</p>
+      <div class="summary-row"><span class="summary-key">Nombre</span><span class="summary-val">${c.nombre}</span></div>
+      <div class="summary-row"><span class="summary-key">Contacto</span><span class="summary-val">${c.contacto}</span></div>
+      ${c.extra ? `<div class="summary-row"><span class="summary-key">Detalles</span><span class="summary-val" style="max-width:55%">${c.extra}</span></div>` : ''}
+    </div>
+    <a class="btn-wa" href="${waLink}" target="_blank" style="margin-bottom:10px;">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.015 22l4.985-1.31A9.945 9.945 0 0 0 12 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2zm.002 18a7.951 7.951 0 0 1-4.055-1.112l-.291-.173-3.003.787.804-2.924-.19-.299A7.963 7.963 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+      Enviar consulta por WhatsApp
+    </a>
+    <button class="btn btn-ghost" onclick="step=0;respuestas={};render()">Hacer otra consulta</button>
+  `;
+}
+
+// init
+document.getElementById("biz-name").textContent = CONFIG.negocio;
+document.getElementById("biz-sub").textContent = CONFIG.subtitulo;
+render();
+</script>
+</body>
+</html>
