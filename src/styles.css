@@ -800,6 +800,37 @@ button {
   background: #ff9a3d;
 }
 
+.feature-list li.feature-inherited {
+  opacity: 0.42;
+}
+
+.feature-list li.feature-inherited::before {
+  background: rgba(255,255,255,0.35);
+}
+
+.feature-list li.feature-new {
+  font-weight: 500;
+}
+
+.plan-includes-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.plan-includes-check {
+  color: #ff9a3d;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
 .plan-card {
   display: flex;
   flex-direction: column;

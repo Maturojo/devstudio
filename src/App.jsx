@@ -19,6 +19,7 @@ const plans = [
       "WhatsApp o formulario",
       "Dominio y hosting 1 ano",
     ],
+    newFeatures: [],
   },
   {
     name: "Intermedio",
@@ -26,18 +27,30 @@ const plans = [
     description: "Para negocios que necesitan un sitio mas completo y persuasivo.",
     featured: true,
     badge: "Mas elegido",
+    includesFrom: "Basico",
     features: [
+      "Landing clara",
+      "WhatsApp o formulario",
+      "Dominio y hosting 1 ano",
+    ],
+    newFeatures: [
       "Varias paginas",
       "Animaciones suaves",
       "Contenido mas comercial",
-      "Dominio y hosting 1 ano",
     ],
   },
   {
     name: "Avanzado",
     price: "USD 360",
     description: "Pensado para proyectos que requieren mas logica y personalizacion.",
+    includesFrom: "Intermedio",
     features: [
+      "Varias paginas",
+      "Animaciones suaves",
+      "Contenido mas comercial",
+      "Dominio y hosting 1 ano",
+    ],
+    newFeatures: [
       "Funciones a medida",
       "Reservas o catalogos",
       "Integraciones",
@@ -611,10 +624,27 @@ function PlansPage({ currentPath }) {
                 <p className="plan-description">{plan.description}</p>
               </div>
 
+              {plan.includesFrom ? (
+                <div className="plan-includes-banner">
+                  <span className="plan-includes-check">✓</span>
+                  Todo el plan {plan.includesFrom}, mas:
+                </div>
+              ) : null}
+
               <ul className="feature-list">
-                {plan.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
+                {plan.newFeatures && plan.newFeatures.length > 0
+                  ? plan.newFeatures.map((feature) => (
+                      <li key={feature} className="feature-new">{feature}</li>
+                    ))
+                  : plan.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))
+                }
+                {plan.includesFrom ? (
+                  plan.features.map((feature) => (
+                    <li key={feature} className="feature-inherited">{feature}</li>
+                  ))
+                ) : null}
               </ul>
 
               <NavLink to="/contacto" currentPath={currentPath} className="button plan-button">
