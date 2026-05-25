@@ -165,6 +165,35 @@ const portfolioGroups = [
         ctaLabel: "Ver pagina",
         tags: ["Tienda online", "Catalogo", "Checkout"],
       },
+      {
+        title: "Panel administrativo Mate&Co",
+        result:
+          "Construyo un panel interno para gestionar productos, revisar estadisticas, administrar contenido y controlar la informacion clave del ecommerce.",
+        image: "/mateco-admin/DashboardAdmin.png",
+        tags: ["Admin", "Productos", "Analytics"],
+        gallery: [
+          {
+            src: "/mateco-admin/AdminLogin.png",
+            alt: "Login del panel administrativo Mate&Co",
+          },
+          {
+            src: "/mateco-admin/DashboardAdmin.png",
+            alt: "Dashboard del panel administrativo Mate&Co",
+          },
+          {
+            src: "/mateco-admin/ProductosAdmin.png",
+            alt: "Gestion de productos del panel administrativo Mate&Co",
+          },
+          {
+            src: "/mateco-admin/EstidisticasADMIN.png",
+            alt: "Estadisticas del panel administrativo Mate&Co",
+          },
+          {
+            src: "/mateco-admin/ContenidoAdmin.png",
+            alt: "Editor de contenido del panel administrativo Mate&Co",
+          },
+        ],
+      },
     ],
   },
   {
@@ -541,6 +570,21 @@ function ProjectsPage({ setActiveImage }) {
                       <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
                         {item.ctaLabel ?? "Ver demo"}
                       </a>
+                    ) : null}
+                    {item.gallery ? (
+                      <div className="portfolio-gallery" aria-label={`Capturas de ${item.title}`}>
+                        {item.gallery.map((image) => (
+                          <button
+                            key={image.src}
+                            type="button"
+                            className="portfolio-gallery-thumb"
+                            onClick={() => setActiveImage({ src: image.src, alt: image.alt })}
+                            aria-label={`Ver ${image.alt}`}
+                          >
+                            <img src={image.src} alt={image.alt} />
+                          </button>
+                        ))}
+                      </div>
                     ) : null}
                   </div>
                 </article>
