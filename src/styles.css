@@ -609,7 +609,12 @@ button {
 }
 
 .portfolio-grid.single {
-  grid-template-columns: minmax(0, 420px);
+  grid-template-columns: 1fr;
+}
+
+.portfolio-grid.single .portfolio-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(280px, 1fr);
 }
 
 .standalone-grid {
@@ -644,6 +649,12 @@ button {
 .portfolio-group {
   display: grid;
   gap: 18px;
+}
+
+.portfolio-group + .portfolio-group {
+  margin-top: 12px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .portfolio-client {
@@ -1163,6 +1174,10 @@ button {
   .floating-card {
     position: relative;
     bottom: 0;
+  }
+
+  .portfolio-grid.single .portfolio-card {
+    grid-template-columns: 1fr;
   }
 }
 

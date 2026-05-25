@@ -161,7 +161,8 @@ const portfolioGroups = [
         result:
           "Desarrolle una tienda ecommerce completa con inicio comercial, catalogo, carrito, checkout y secciones de marca listas para promocionar productos.",
         image: "/ecommercekit/hero.jpeg",
-        demo: "/ecommercekit/",
+        demo: "https://www.mateandcomdp.com.ar/",
+        ctaLabel: "Ver pagina",
         tags: ["Tienda online", "Catalogo", "Checkout"],
       },
     ],
@@ -538,7 +539,7 @@ function ProjectsPage({ setActiveImage }) {
                     </div>
                     {item.demo ? (
                       <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
-                        Ver demo
+                        {item.ctaLabel ?? "Ver demo"}
                       </a>
                     ) : null}
                   </div>
