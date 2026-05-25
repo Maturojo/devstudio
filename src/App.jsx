@@ -524,6 +524,20 @@ function AboutPage() {
 }
 
 function ProjectsPage({ setActiveImage }) {
+  function openPortfolioImage(item, index = 0) {
+    const gallery = item.gallery ?? [{ src: item.image, alt: item.title }];
+    const fallbackIndex = gallery.findIndex((image) => image.src === item.image);
+    const imageIndex = item.gallery ? index : Math.max(fallbackIndex, 0);
+    const image = gallery[imageIndex] ?? gallery[0];
+
+    setActiveImage({
+      src: image.src,
+      alt: image.alt,
+      gallery,
+      index: imageIndex,
+    });
+  }
+
   return (
     <section className="section portfolio">
       <div className="portfolio-showcase">
@@ -545,13 +559,13 @@ function ProjectsPage({ setActiveImage }) {
               </div>
             </div>
 
-            <div className={`portfolio-grid ${group.items.length === 1 ? "single" : ""}`.trim()}>
+            <div className={`portfolio-grid ${group.items.length === 1 ? "single" : group.items.length === 2 ? "split" : ""}`.trim()}>
               {group.items.map((item) => (
                 <article key={item.title} className="portfolio-card">
                   <button
                     type="button"
                     className="portfolio-visual"
-                    onClick={() => setActiveImage({ src: item.image, alt: item.title })}
+                    onClick={() => openPortfolioImage(item, item.gallery?.findIndex((image) => image.src === item.image) ?? 0)}
                     aria-label={`Ver imagen completa de ${item.title}`}
                   >
                     <img src={item.image} alt={item.title} />
@@ -578,7 +592,7 @@ function ProjectsPage({ setActiveImage }) {
                             key={image.src}
                             type="button"
                             className="portfolio-gallery-thumb"
-                            onClick={() => setActiveImage({ src: image.src, alt: image.alt })}
+                            onClick={() => openPortfolioImage(item, item.gallery.findIndex((galleryImage) => galleryImage.src === image.src))}
                             aria-label={`Ver ${image.alt}`}
                           >
                             <img src={image.src} alt={image.alt} />
@@ -863,6 +877,25 @@ function App() {
     setActiveImage(null);
   }, [currentPath]);
 
+  function changeActiveImage(direction) {
+    setActiveImage((currentImage) => {
+      if (!currentImage?.gallery || currentImage.gallery.length <= 1) {
+        return currentImage;
+      }
+
+      const nextIndex =
+        (currentImage.index + direction + currentImage.gallery.length) % currentImage.gallery.length;
+      const nextImage = currentImage.gallery[nextIndex];
+
+      return {
+        ...currentImage,
+        src: nextImage.src,
+        alt: nextImage.alt,
+        index: nextIndex,
+      };
+    });
+  }
+
   const pageContent = {
     "/": <HomePage whatsappLink={whatsappLink} currentPath={currentPath} />,
     "/sobre-mi": <AboutPage />,
@@ -909,6 +942,32 @@ function App() {
           <button type="button" className="lightbox-close" onClick={() => setActiveImage(null)} aria-label="Cerrar imagen">
             Cerrar
           </button>
+          {activeImage.gallery?.length > 1 ? (
+            <>
+              <button
+                type="button"
+                className="lightbox-nav lightbox-prev"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  changeActiveImage(-1);
+                }}
+                aria-label="Ver imagen anterior"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                className="lightbox-nav lightbox-next"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  changeActiveImage(1);
+                }}
+                aria-label="Ver imagen siguiente"
+              >
+                Siguiente
+              </button>
+            </>
+          ) : null}
           <img className="lightbox-image" src={activeImage.src} alt={activeImage.alt} onClick={(event) => event.stopPropagation()} />
         </div>
       ) : null}

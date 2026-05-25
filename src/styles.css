@@ -642,6 +642,10 @@ button {
   grid-template-columns: 1fr;
 }
 
+.portfolio-grid.split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .portfolio-grid.single .portfolio-card {
   display: grid;
   grid-template-columns: minmax(280px, 0.95fr) minmax(280px, 1fr);
@@ -1122,6 +1126,28 @@ button {
   cursor: pointer;
 }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 15, 16, 0.78);
+  color: #f4efe7;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
 @keyframes pageFade {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -1210,6 +1236,10 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .portfolio-grid.split {
+    grid-template-columns: 1fr;
+  }
+
   .portfolio-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1286,6 +1316,12 @@ button {
 
   .portfolio-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lightbox-nav {
+    top: auto;
+    bottom: 18px;
+    transform: none;
   }
 
   .whatsapp-float {
