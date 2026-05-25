@@ -501,12 +501,12 @@ function ProjectsPage({ setActiveImage }) {
 
         <div className="portfolio-client">
           <div className="portfolio-client-card">
-            <img className="portfolio-client-logo" src="/sur-maderas-logo.png" alt="Logo de Sur Maderas" />
+            <img className="portfolio-client-logo" src="/ecommercekit/logo.jpeg" alt="Logo de Mate&Co" />
             <div>
-              <p className="portfolio-client-name">Sur Maderas</p>
+              <p className="portfolio-client-name">Mate&Co</p>
               <p className="portfolio-client-text">
-                Proyecto real con interfaces y herramientas adaptadas a necesidades
-                comerciales y de gestion.
+                Tienda online real con catalogo, carrito y una experiencia comercial
+                pensada para promocionar productos y recibir consultas.
               </p>
             </div>
           </div>
