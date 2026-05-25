@@ -637,6 +637,11 @@ button {
   gap: 24px;
 }
 
+.portfolio-client {
+  display: grid;
+  gap: 14px;
+}
+
 .portfolio-client-card {
   display: flex;
   align-items: center;

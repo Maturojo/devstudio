@@ -510,6 +510,17 @@ function ProjectsPage({ setActiveImage }) {
               </p>
             </div>
           </div>
+
+          <div className="portfolio-client-card">
+            <img className="portfolio-client-logo" src="/sur-maderas-logo.png" alt="Logo de Sur Maderas" />
+            <div>
+              <p className="portfolio-client-name">Sur Maderas</p>
+              <p className="portfolio-client-text">
+                Proyecto real con interfaces y herramientas adaptadas a necesidades
+                comerciales y de gestion.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="portfolio-grid">
