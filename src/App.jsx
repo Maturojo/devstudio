@@ -66,6 +66,18 @@ const plans = [
 
 const standaloneTools = [
   {
+    name: "Ecommerce para tiendas online",
+    price: "Desde USD 220",
+    description:
+      "Una tienda completa para mostrar productos, recibir pedidos y vender desde una web propia.",
+    features: [
+      "Catalogo de productos con categorias",
+      "Carrito, checkout y contacto por WhatsApp",
+      "Base preparada para panel de gestion e integraciones",
+    ],
+    demo: "/ecommercekit/",
+  },
+  {
     name: "Turnero online",
     price: "Desde USD 60",
     description:
@@ -137,6 +149,17 @@ const targetClients = [
 ];
 
 const portfolioItems = [
+  {
+    title: "Tienda online Mate&Co",
+    problem: "La marca necesitaba una tienda real para presentar productos, generar confianza y llevar al cliente hacia la compra o consulta.",
+    solution:
+      "Arme una experiencia ecommerce con inicio comercial, catalogo, carrito, checkout y secciones de marca listas para promocionar.",
+    result:
+      "El proyecto funciona como muestra concreta de una tienda moderna, clara y responsive para negocios que venden productos.",
+    image: "/ecommercekit/hero.jpeg",
+    demo: "/ecommercekit/",
+    tags: ["Tienda online", "Marca real", "Checkout"],
+  },
   {
     title: "Generador de carteles con base de datos",
     problem: "El negocio necesitaba crear carteles y consultar productos sin perder tiempo buscando datos manualmente.",
@@ -510,6 +533,11 @@ function ProjectsPage({ setActiveImage }) {
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
+                {item.demo ? (
+                  <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
+                    Ver demo
+                  </a>
+                ) : null}
               </div>
             </article>
           ))}
