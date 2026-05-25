@@ -148,47 +148,53 @@ const targetClients = [
   "Marcas",
 ];
 
-const portfolioItems = [
+const portfolioGroups = [
   {
-    title: "Tienda online Mate&Co",
-    problem: "La marca necesitaba una tienda real para presentar productos, generar confianza y llevar al cliente hacia la compra o consulta.",
-    solution:
-      "Arme una experiencia ecommerce con inicio comercial, catalogo, carrito, checkout y secciones de marca listas para promocionar.",
-    result:
-      "El proyecto funciona como muestra concreta de una tienda moderna, clara y responsive para negocios que venden productos.",
-    image: "/ecommercekit/hero.jpeg",
-    demo: "/ecommercekit/",
-    tags: ["Tienda online", "Marca real", "Checkout"],
+    client: "Mate&Co",
+    logo: "/ecommercekit/logo.jpeg",
+    logoAlt: "Logo de Mate&Co",
+    description:
+      "Tienda online real con catalogo, carrito y una experiencia comercial pensada para promocionar productos y recibir consultas.",
+    items: [
+      {
+        title: "Tienda online Mate&Co",
+        result:
+          "Desarrolle una tienda ecommerce completa con inicio comercial, catalogo, carrito, checkout y secciones de marca listas para promocionar productos.",
+        image: "/ecommercekit/hero.jpeg",
+        demo: "/ecommercekit/",
+        tags: ["Tienda online", "Catalogo", "Checkout"],
+      },
+    ],
   },
   {
-    title: "Generador de carteles con base de datos",
-    problem: "El negocio necesitaba crear carteles y consultar productos sin perder tiempo buscando datos manualmente.",
-    solution:
-      "Desarrolle una interfaz para buscar, filtrar y administrar productos con datos dinamicos y una experiencia clara para el equipo.",
-    result:
-      "El proceso quedo mas rapido, ordenado y facil de usar en el trabajo diario.",
-    image: "/portfolio-carteles-real.jpeg",
-    tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
-  },
-  {
-    title: "Landing comercial para negocios",
-    problem: "Muchos negocios tienen redes sociales, pero no un lugar propio donde explicar servicios y generar confianza.",
-    solution:
-      "Arme una pagina orientada a captar consultas, mostrar una propuesta clara y llevar al usuario al contacto directo.",
-    result:
-      "La marca queda mejor presentada y el cliente encuentra rapido que ofrece, por que confiar y como consultar.",
-    image: "/portfolio-landing.svg",
-    tags: ["Responsive", "WhatsApp", "Conversion"],
-  },
-  {
-    title: "Sitio web avanzado a medida",
-    problem: "El proyecto necesitaba una estructura mas completa que una pagina simple y preparada para crecer.",
-    solution:
-      "Construyo una base personalizada con paginas internas, interfaz cuidada y espacio para sumar funciones o integraciones.",
-    result:
-      "El sitio puede evolucionar sin rehacer todo desde cero cuando aparecen nuevas necesidades.",
-    image: "/portfolio-avanzado-real.png",
-    tags: ["Escalable", "Integraciones", "A medida"],
+    client: "Sur Maderas",
+    logo: "/sur-maderas-logo.png",
+    logoAlt: "Logo de Sur Maderas",
+    description:
+      "Proyecto real con interfaces y herramientas adaptadas a necesidades comerciales y de gestion.",
+    items: [
+      {
+        title: "Generador de carteles con base de datos",
+        result:
+          "Desarrolle una interfaz para buscar, filtrar y administrar productos con datos dinamicos, agilizando la creacion de carteles y la consulta interna.",
+        image: "/portfolio-carteles-real.jpeg",
+        tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
+      },
+      {
+        title: "Landing comercial para negocios",
+        result:
+          "Arme una pagina orientada a presentar servicios, generar confianza y llevar al cliente rapidamente hacia el contacto directo.",
+        image: "/portfolio-landing.svg",
+        tags: ["Responsive", "WhatsApp", "Conversion"],
+      },
+      {
+        title: "Sitio web avanzado a medida",
+        result:
+          "Construyo una base personalizada con paginas internas, interfaz cuidada y espacio para sumar nuevas funciones o integraciones.",
+        image: "/portfolio-avanzado-real.png",
+        tags: ["Escalable", "Integraciones", "A medida"],
+      },
+    ],
   },
 ];
 
@@ -499,60 +505,48 @@ function ProjectsPage({ setActiveImage }) {
           </p>
         </div>
 
-        <div className="portfolio-client">
-          <div className="portfolio-client-card">
-            <img className="portfolio-client-logo" src="/ecommercekit/logo.jpeg" alt="Logo de Mate&Co" />
-            <div>
-              <p className="portfolio-client-name">Mate&Co</p>
-              <p className="portfolio-client-text">
-                Tienda online real con catalogo, carrito y una experiencia comercial
-                pensada para promocionar productos y recibir consultas.
-              </p>
-            </div>
-          </div>
-
-          <div className="portfolio-client-card">
-            <img className="portfolio-client-logo" src="/sur-maderas-logo.png" alt="Logo de Sur Maderas" />
-            <div>
-              <p className="portfolio-client-name">Sur Maderas</p>
-              <p className="portfolio-client-text">
-                Proyecto real con interfaces y herramientas adaptadas a necesidades
-                comerciales y de gestion.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="portfolio-grid">
-          {portfolioItems.map((item) => (
-            <article key={item.title} className="portfolio-card">
-              <button
-                type="button"
-                className="portfolio-visual"
-                onClick={() => setActiveImage({ src: item.image, alt: item.title })}
-                aria-label={`Ver imagen completa de ${item.title}`}
-              >
-                <img src={item.image} alt={item.title} />
-                <span className="portfolio-zoom">Ver imagen completa</span>
-              </button>
-
-              <div className="portfolio-copy">
-                <h3>{item.title}</h3>
-                <p>{item.result}</p>
-                <div className="portfolio-tags">
-                  {item.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                {item.demo ? (
-                  <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
-                    Ver demo
-                  </a>
-                ) : null}
+        {portfolioGroups.map((group) => (
+          <div className="portfolio-group" key={group.client}>
+            <div className="portfolio-client-card">
+              <img className="portfolio-client-logo" src={group.logo} alt={group.logoAlt} />
+              <div>
+                <p className="portfolio-client-name">{group.client}</p>
+                <p className="portfolio-client-text">{group.description}</p>
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+
+            <div className={`portfolio-grid ${group.items.length === 1 ? "single" : ""}`.trim()}>
+              {group.items.map((item) => (
+                <article key={item.title} className="portfolio-card">
+                  <button
+                    type="button"
+                    className="portfolio-visual"
+                    onClick={() => setActiveImage({ src: item.image, alt: item.title })}
+                    aria-label={`Ver imagen completa de ${item.title}`}
+                  >
+                    <img src={item.image} alt={item.title} />
+                    <span className="portfolio-zoom">Ver imagen completa</span>
+                  </button>
+
+                  <div className="portfolio-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.result}</p>
+                    <div className="portfolio-tags">
+                      {item.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                    {item.demo ? (
+                      <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
+                        Ver demo
+                      </a>
+                    ) : null}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

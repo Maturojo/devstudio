@@ -608,6 +608,10 @@ button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.portfolio-grid.single {
+  grid-template-columns: minmax(0, 420px);
+}
+
 .standalone-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -635,6 +639,11 @@ button {
 .portfolio-showcase {
   display: grid;
   gap: 24px;
+}
+
+.portfolio-group {
+  display: grid;
+  gap: 18px;
 }
 
 .portfolio-client {
