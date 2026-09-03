@@ -587,6 +587,10 @@ button {
   border-color: rgba(255, 191, 115, 0.24);
 }
 
+.portfolio-gallery-thumb.is-active {
+  border-color: rgba(255, 191, 115, 0.44);
+}
+
 .card-tags span,
 .portfolio-tags span,
 .plan-badge,
@@ -651,6 +655,11 @@ button {
   grid-template-columns: minmax(280px, 0.95fr) minmax(280px, 1fr);
 }
 
+.portfolio-grid.single .portfolio-visual {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
 .standalone-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -711,6 +720,11 @@ button {
   flex: 0 0 auto;
 }
 
+.portfolio-visual-wrap {
+  position: relative;
+  min-height: 100%;
+}
+
 .portfolio-visual {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -748,6 +762,56 @@ button {
 .portfolio-visual:hover .portfolio-zoom {
   opacity: 1;
   transform: translateY(0);
+}
+
+.portfolio-slide-control {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 15, 16, 0.72);
+  color: #f4efe7;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.portfolio-slide-prev {
+  left: 10px;
+}
+
+.portfolio-slide-next {
+  right: 10px;
+}
+
+.portfolio-slide-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  z-index: 2;
+  display: inline-flex;
+  gap: 7px;
+  transform: translateX(-50%);
+  padding: 7px 9px;
+  border-radius: 999px;
+  background: rgba(15, 15, 16, 0.72);
+}
+
+.portfolio-slide-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  cursor: pointer;
+}
+
+.portfolio-slide-dots button.is-active {
+  background: #ffbf73;
 }
 
 .portfolio-copy {

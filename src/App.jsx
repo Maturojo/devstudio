@@ -207,10 +207,32 @@ const portfolioGroups = [
         title: "Pagina de Liga de Football Americano",
         result:
           "Desarrolle un sitio institucional y deportivo con secciones para equipos, jugadores, calendario, noticias, tienda e inscripcion de nuevos jugadores.",
-        image: "/football-league/hero.jpg",
+        image: "/football-league/slide-1.png",
         demo: "https://football-two-rouge.vercel.app/",
         ctaLabel: "Ver pagina",
         tags: ["Liga deportiva", "Fixture", "Inscripciones"],
+        gallery: [
+          {
+            src: "/football-league/slide-1.png",
+            alt: "Portada de la Liga de Football Americano",
+          },
+          {
+            src: "/football-league/slide-2.png",
+            alt: "Modalidades de entrenamiento de la Liga de Football Americano",
+          },
+          {
+            src: "/football-league/slide-3.png",
+            alt: "Equipos de la Liga de Football Americano",
+          },
+          {
+            src: "/football-league/slide-4.png",
+            alt: "Estadisticas generales de la Liga de Football Americano",
+          },
+          {
+            src: "/football-league/slide-5.png",
+            alt: "Tabla de lideres de la Liga de Football Americano",
+          },
+        ],
       },
     ],
   },
@@ -541,21 +563,111 @@ function AboutPage() {
   );
 }
 
-function ProjectsPage({ setActiveImage }) {
-  function openPortfolioImage(item, index = 0) {
-    const gallery = item.gallery ?? [{ src: item.image, alt: item.title }];
-    const fallbackIndex = gallery.findIndex((image) => image.src === item.image);
-    const imageIndex = item.gallery ? index : Math.max(fallbackIndex, 0);
-    const image = gallery[imageIndex] ?? gallery[0];
+function PortfolioCard({ item, onOpenImage }) {
+  const slides = item.gallery ?? [{ src: item.image, alt: item.title }];
+  const initialSlideIndex = Math.max(slides.findIndex((image) => image.src === item.image), 0);
+  const [activeSlide, setActiveSlide] = React.useState(initialSlideIndex);
+  const currentSlide = slides[activeSlide] ?? slides[0];
+  const hasSlides = slides.length > 1;
 
-    setActiveImage({
+  function changeSlide(direction) {
+    setActiveSlide((currentIndex) => (currentIndex + direction + slides.length) % slides.length);
+  }
+
+  function openSlide(index = activeSlide) {
+    const image = slides[index] ?? slides[0];
+
+    onOpenImage({
       src: image.src,
       alt: image.alt,
-      gallery,
-      index: imageIndex,
+      gallery: slides,
+      index,
     });
   }
 
+  return (
+    <article className="portfolio-card">
+      <div className="portfolio-visual-wrap">
+        <button
+          type="button"
+          className="portfolio-visual"
+          onClick={() => openSlide()}
+          aria-label={`Ver imagen completa de ${item.title}`}
+        >
+          <img src={currentSlide.src} alt={currentSlide.alt} />
+          <span className="portfolio-zoom">Ver imagen completa</span>
+        </button>
+
+        {hasSlides ? (
+          <>
+            <button
+              type="button"
+              className="portfolio-slide-control portfolio-slide-prev"
+              onClick={() => changeSlide(-1)}
+              aria-label="Ver slide anterior"
+            >
+              Ant
+            </button>
+            <button
+              type="button"
+              className="portfolio-slide-control portfolio-slide-next"
+              onClick={() => changeSlide(1)}
+              aria-label="Ver slide siguiente"
+            >
+              Sig
+            </button>
+            <div className="portfolio-slide-dots" aria-label="Slides disponibles">
+              {slides.map((image, index) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  className={index === activeSlide ? "is-active" : ""}
+                  onClick={() => setActiveSlide(index)}
+                  aria-label={`Ir al slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+
+      <div className="portfolio-copy">
+        <h3>{item.title}</h3>
+        <p>{item.result}</p>
+        <div className="portfolio-tags">
+          {item.tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+        {item.demo ? (
+          <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
+            {item.ctaLabel ?? "Ver demo"}
+          </a>
+        ) : null}
+        {item.gallery ? (
+          <div className="portfolio-gallery" aria-label={`Capturas de ${item.title}`}>
+            {item.gallery.map((image, index) => (
+              <button
+                key={image.src}
+                type="button"
+                className={`portfolio-gallery-thumb ${index === activeSlide ? "is-active" : ""}`.trim()}
+                onClick={() => {
+                  setActiveSlide(index);
+                  openSlide(index);
+                }}
+                aria-label={`Ver ${image.alt}`}
+              >
+                <img src={image.src} alt={image.alt} />
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
+function ProjectsPage({ setActiveImage }) {
   return (
     <section className="section portfolio">
       <div className="portfolio-showcase">
@@ -579,47 +691,7 @@ function ProjectsPage({ setActiveImage }) {
 
             <div className={`portfolio-grid ${group.items.length === 1 ? "single" : group.items.length === 2 ? "split" : ""}`.trim()}>
               {group.items.map((item) => (
-                <article key={item.title} className="portfolio-card">
-                  <button
-                    type="button"
-                    className="portfolio-visual"
-                    onClick={() => openPortfolioImage(item, item.gallery?.findIndex((image) => image.src === item.image) ?? 0)}
-                    aria-label={`Ver imagen completa de ${item.title}`}
-                  >
-                    <img src={item.image} alt={item.title} />
-                    <span className="portfolio-zoom">Ver imagen completa</span>
-                  </button>
-
-                  <div className="portfolio-copy">
-                    <h3>{item.title}</h3>
-                    <p>{item.result}</p>
-                    <div className="portfolio-tags">
-                      {item.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                    {item.demo ? (
-                      <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
-                        {item.ctaLabel ?? "Ver demo"}
-                      </a>
-                    ) : null}
-                    {item.gallery ? (
-                      <div className="portfolio-gallery" aria-label={`Capturas de ${item.title}`}>
-                        {item.gallery.map((image) => (
-                          <button
-                            key={image.src}
-                            type="button"
-                            className="portfolio-gallery-thumb"
-                            onClick={() => openPortfolioImage(item, item.gallery.findIndex((galleryImage) => galleryImage.src === image.src))}
-                            aria-label={`Ver ${image.alt}`}
-                          >
-                            <img src={image.src} alt={image.alt} />
-                          </button>
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
+                <PortfolioCard key={item.title} item={item} onOpenImage={setActiveImage} />
               ))}
             </div>
           </div>
