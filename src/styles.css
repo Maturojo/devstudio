@@ -1006,12 +1006,15 @@ button {
 
 .standalone-actions {
   display: flex;
-  gap: 8px;
-  margin-top: auto;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 4px;
 }
 
 .standalone-actions .standalone-button {
-  flex: 1;
+  flex: 0 1 170px;
+  min-height: 42px;
+  padding: 10px 16px;
   text-align: center;
 }
 
