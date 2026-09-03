@@ -197,6 +197,24 @@ const portfolioGroups = [
     ],
   },
   {
+    client: "Liga de Football Americano",
+    logo: "/football-league/logo.png",
+    logoAlt: "Logo de la Liga de Football Americano",
+    description:
+      "Pagina deportiva real para presentar la liga, mostrar equipos, fixture, estadisticas, noticias, eventos e inscripciones.",
+    items: [
+      {
+        title: "Pagina de Liga de Football Americano",
+        result:
+          "Desarrolle un sitio institucional y deportivo con secciones para equipos, jugadores, calendario, noticias, tienda e inscripcion de nuevos jugadores.",
+        image: "/football-league/hero.jpg",
+        demo: "https://football-two-rouge.vercel.app/",
+        ctaLabel: "Ver pagina",
+        tags: ["Liga deportiva", "Fixture", "Inscripciones"],
+      },
+    ],
+  },
+  {
     client: "Sur Maderas",
     logo: "/sur-maderas-logo.png",
     logoAlt: "Logo de Sur Maderas",
