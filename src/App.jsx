@@ -586,7 +586,7 @@ function PortfolioCard({ item, onOpenImage }) {
   }
 
   return (
-    <article className="portfolio-card">
+    <article className={`portfolio-card ${hasSlides ? "has-slides" : ""}`.trim()}>
       <div className="portfolio-visual-wrap">
         <button
           type="button"

@@ -562,6 +562,7 @@ button {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
   margin-top: 18px;
+  max-width: 520px;
 }
 
 .portfolio-gallery-thumb {
@@ -579,8 +580,8 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: left top;
+  object-fit: contain;
+  object-position: center;
 }
 
 .portfolio-gallery-thumb:hover {
@@ -652,12 +653,17 @@ button {
 
 .portfolio-grid.single .portfolio-card {
   display: grid;
-  grid-template-columns: minmax(280px, 0.95fr) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: stretch;
 }
 
 .portfolio-grid.single .portfolio-visual {
-  height: 100%;
+  height: clamp(260px, 28vw, 380px);
   aspect-ratio: auto;
+}
+
+.portfolio-grid.single .portfolio-copy {
+  align-self: center;
 }
 
 .standalone-grid {
@@ -722,12 +728,12 @@ button {
 
 .portfolio-visual-wrap {
   position: relative;
-  min-height: 100%;
+  min-height: 0;
 }
 
 .portfolio-visual {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 2 / 1;
   overflow: hidden;
   background: #1a1715;
   border: 0;
@@ -742,6 +748,15 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: left top;
+}
+
+.portfolio-card.has-slides .portfolio-visual {
+  background: #0f1114;
+}
+
+.portfolio-card.has-slides .portfolio-visual img {
+  object-fit: contain;
+  object-position: center;
 }
 
 .portfolio-zoom {
@@ -770,13 +785,16 @@ button {
   z-index: 2;
   transform: translateY(-50%);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(15, 15, 16, 0.72);
+  background: rgba(15, 15, 16, 0.82);
   color: #f4efe7;
-  border-radius: 8px;
-  padding: 8px 10px;
+  border-radius: 999px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
 }
 
 .portfolio-slide-prev {
@@ -790,14 +808,14 @@ button {
 .portfolio-slide-dots {
   position: absolute;
   left: 50%;
-  bottom: 12px;
+  bottom: 14px;
   z-index: 2;
   display: inline-flex;
   gap: 7px;
   transform: translateX(-50%);
   padding: 7px 9px;
   border-radius: 999px;
-  background: rgba(15, 15, 16, 0.72);
+  background: rgba(15, 15, 16, 0.82);
 }
 
 .portfolio-slide-dots button {
@@ -1298,6 +1316,11 @@ button {
 
   .portfolio-grid.single .portfolio-card {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-grid.single .portfolio-visual {
+    height: auto;
+    aspect-ratio: 2 / 1;
   }
 
   .portfolio-grid.split {
