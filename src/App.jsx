@@ -5,7 +5,6 @@ const navigation = [
   { label: "Sobre mi", path: "/sobre-mi" },
   { label: "Proyectos", path: "/proyectos" },
   { label: "Herramientas", path: "/herramientas" },
-  { label: "Planes", path: "/planes" },
   { label: "Contacto", path: "/contacto" },
 ];
 
@@ -67,7 +66,7 @@ const plans = [
 const standaloneTools = [
   {
     name: "Ecommerce para tiendas online",
-    price: "Desde USD 220",
+    price: "Desde USD 150",
     description:
       "Una tienda completa para mostrar productos, recibir pedidos y vender desde una web propia.",
     features: [
@@ -75,7 +74,7 @@ const standaloneTools = [
       "Carrito, checkout y contacto por WhatsApp",
       "Base preparada para panel de gestion e integraciones",
     ],
-    demo: "/ecommercekit/",
+    demo: "/ecommercekit/index.html",
   },
   {
     name: "Turnero online",
@@ -87,7 +86,7 @@ const standaloneTools = [
       "Boton directo a WhatsApp o formulario",
       "Diseno claro para celular y PC",
     ],
-    demo: "/turnero/",
+    demo: "/turnero/index.html",
   },
   {
     name: "Calendario de eventos o clases",
@@ -99,7 +98,7 @@ const standaloneTools = [
       "Fechas destacadas y detalles por evento",
       "Facil de integrar en una landing o web existente",
     ],
-    demo: "/calendario/",
+    demo: "/calendario/index.html",
   },
   {
     name: "Catalogo digital simple",
@@ -111,7 +110,7 @@ const standaloneTools = [
       "Pensado para vender por WhatsApp",
       "Estructura facil de ampliar luego",
     ],
-    demo: "/catalogo/",
+    demo: "/catalogo/index.html",
   },
   {
     name: "Cotizador o formulario inteligente",
@@ -123,7 +122,31 @@ const standaloneTools = [
       "Entrega de consulta mas ordenada",
       "Enfoque en conversion y practicidad",
     ],
-    demo: "/cotizador/",
+    demo: "/cotizador/index.html",
+  },
+  {
+    name: "Menu digital con pedidos",
+    price: "Desde USD 90",
+    description:
+      "Una carta online para gastronomia con categorias, carrito y pedido directo por WhatsApp.",
+    features: [
+      "Menu filtrable por categorias",
+      "Carrito simple con total automatico",
+      "Pedido armado listo para enviar por WhatsApp",
+    ],
+    demo: "/menu-digital/index.html",
+  },
+  {
+    name: "Calculadora de envios",
+    price: "Desde USD 75",
+    description:
+      "Costos de entrega claros segun zona, tipo de pedido y reglas comerciales.",
+    features: [
+      "Zonas y costos configurables",
+      "Envio bonificado segun monto minimo",
+      "Consulta final con resumen por WhatsApp",
+    ],
+    demo: "/calculadora-envios/index.html",
   },
 ];
 
@@ -341,7 +364,13 @@ function normalizePath(pathname) {
     return "/";
   }
 
-  return pathname.replace(/\/+$/, "");
+  const cleanPath = pathname.replace(/\/+$/, "");
+
+  if (cleanPath === "/planes") {
+    return "/herramientas";
+  }
+
+  return cleanPath;
 }
 
 function navigateTo(path) {
@@ -417,8 +446,8 @@ function HomePage({ whatsappLink, currentPath }) {
             </p>
 
             <div className="hero-actions">
-              <NavLink to="/planes" currentPath={currentPath} className="button primary">
-                Ver planes
+              <NavLink to="/herramientas" currentPath={currentPath} className="button primary">
+                Ver herramientas
               </NavLink>
               <a className="button secondary" href={whatsappLink} target="_blank" rel="noreferrer">
                 Hablar por WhatsApp
@@ -733,7 +762,7 @@ function ToolsPage({ currentPath }) {
                 <li>Funciona sin internet una vez instalada</li>
               </ul>
               <a
-                href="/organizador/"
+                href="/organizador/index.html"
                 target="_blank"
                 rel="noreferrer"
                 className="button primary own-tool-button"
@@ -991,7 +1020,6 @@ function App() {
     "/sobre-mi": <AboutPage />,
     "/proyectos": <ProjectsPage setActiveImage={setActiveImage} />,
     "/herramientas": <ToolsPage currentPath={currentPath} />,
-    "/planes": <PlansPage currentPath={currentPath} />,
     "/contacto": <ContactPage whatsappLink={whatsappLink} />,
   };
 

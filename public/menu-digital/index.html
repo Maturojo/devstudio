@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu digital - Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #ff7f50;
+      --accent-dim: rgba(255,127,80,0.12);
+      --bg: #0f0f10;
+      --surface: #1a1917;
+      --surface2: #24211f;
+      --border: rgba(255,255,255,0.08);
+      --text: #f4efe7;
+      --muted: #aaa19a;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,127,80,0.16), transparent 26%),
+        linear-gradient(180deg, #0f0f10 0%, #171514 54%, #0b0b0c 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 40px; }
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(15,15,16,0.88);
+      backdrop-filter: blur(16px);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+    .brand h1 { font-size: 18px; line-height: 1.1; }
+    .brand p { margin-top: 3px; color: var(--muted); font-size: 13px; }
+    .cart-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: var(--accent);
+      color: #111;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.55fr);
+      gap: 22px;
+      align-items: stretch;
+      padding: 34px 0 18px;
+    }
+    .hero-copy {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+      min-height: 260px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .hero h2 { max-width: 11ch; font-size: clamp(34px, 6vw, 68px); line-height: 0.95; }
+    .hero-copy > p:not(.eyebrow) { max-width: 48ch; color: var(--muted); font-size: 16px; }
+    .hero-card {
+      display: grid;
+      align-content: end;
+      min-height: 260px;
+      padding: 22px;
+      border: 1px solid rgba(255,127,80,0.24);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,127,80,0.08), rgba(255,255,255,0.02)),
+        var(--surface);
+    }
+    .hero-card strong { display: block; font-size: 42px; line-height: 1; }
+    .hero-card span { color: var(--muted); font-size: 14px; }
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0 18px;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .filter-btn.active { border-color: rgba(255,127,80,0.46); background: var(--accent-dim); color: var(--accent); }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .dish {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+    }
+    .dish-icon {
+      display: grid;
+      place-items: center;
+      width: 74px;
+      height: 74px;
+      border-radius: 10px;
+      background: var(--surface2);
+      font-size: 32px;
+    }
+    .dish h3 { font-size: 16px; line-height: 1.2; }
+    .dish p { margin: 6px 0 10px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .dish-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .price { color: var(--accent); font-size: 17px; font-weight: 700; }
+    .add {
+      border: 1px solid rgba(255,127,80,0.34);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .order-panel {
+      position: sticky;
+      top: 92px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(26,25,23,0.92);
+      backdrop-filter: blur(14px);
+    }
+    .order-panel h2 { font-size: 18px; margin-bottom: 12px; }
+    .order-list { display: grid; gap: 10px; min-height: 54px; }
+    .empty { color: var(--muted); font-size: 13px; }
+    .line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .line button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .line-total { margin-top: 12px; display: flex; justify-content: space-between; font-weight: 700; }
+    .field { display: grid; gap: 6px; margin-top: 14px; }
+    .field label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font: inherit;
+    }
+    .send {
+      display: flex;
+      justify-content: center;
+      margin-top: 14px;
+      border-radius: 9px;
+      padding: 13px;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .footer-badge { text-align: center; margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 900px) {
+      .hero, .layout { grid-template-columns: 1fr; }
+      .order-panel { position: static; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 20px, 1120px); }
+      .topbar { grid-template-columns: 1fr; }
+      .cart-button { width: 100%; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .dish { grid-template-columns: 62px 1fr; }
+      .dish-icon { width: 62px; height: 62px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">MC</div>
+        <div>
+          <h1 id="biz-name">Mesa Chica</h1>
+          <p>Menu digital con pedidos por WhatsApp</p>
+        </div>
+      </div>
+      <button class="cart-button" type="button" onclick="document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">
+        Ver pedido <span id="cart-count">0</span>
+      </button>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Demo gastronomica</p>
+        <h2>Menu listo para pedir</h2>
+        <p>Ideal para restaurantes, bares, cafeterias y emprendimientos de comida que quieren recibir pedidos mas ordenados.</p>
+      </div>
+      <div class="hero-card">
+        <span>Promocion del dia</span>
+        <strong>15% OFF</strong>
+        <span>en combos seleccionados</span>
+      </div>
+    </section>
+
+    <nav class="filters" id="filters" aria-label="Categorias del menu"></nav>
+
+    <main class="layout">
+      <section class="menu-grid" id="menu-grid"></section>
+
+      <aside class="order-panel" id="pedido">
+        <h2>Tu pedido</h2>
+        <div class="order-list" id="order-list"></div>
+        <div class="line-total"><span>Total</span><span id="total">$0</span></div>
+        <div class="field">
+          <label>Nombre</label>
+          <input id="client-name" type="text" placeholder="Tu nombre" oninput="renderOrder()" />
+        </div>
+        <div class="field">
+          <label>Entrega</label>
+          <select id="delivery" onchange="renderOrder()">
+            <option>Retiro por local</option>
+            <option>Envio a domicilio</option>
+          </select>
+        </div>
+        <a class="send" id="send-link" href="#" target="_blank" rel="noreferrer">Enviar por WhatsApp</a>
+      </aside>
+    </main>
+
+    <p class="footer-badge">Hecho por <a href="https://devstudio-chi.vercel.app" target="_blank">DevStudio</a></p>
+  </div>
+
+  <script>
+    const CONFIG = {
+      negocio: "Mesa Chica",
+      whatsapp: "5492235954195",
+      moneda: "$",
+      items: [
+        { id: 1, cat: "Entradas", name: "Papas rusticas", desc: "Con cheddar, verdeo y alioli suave.", price: 5200, icon: "🍟" },
+        { id: 2, cat: "Entradas", name: "Empanadas caseras", desc: "Carne cortada a cuchillo o caprese.", price: 1200, icon: "🥟" },
+        { id: 3, cat: "Principales", name: "Burger doble", desc: "Doble medallon, queso, panceta y salsa de la casa.", price: 7900, icon: "🍔" },
+        { id: 4, cat: "Principales", name: "Milanesa completa", desc: "Con fritas, huevo y guarnicion a eleccion.", price: 9200, icon: "🍽️" },
+        { id: 5, cat: "Pizzas", name: "Muzzarella", desc: "Salsa de tomate, muzzarella y aceitunas.", price: 7600, icon: "🍕" },
+        { id: 6, cat: "Pizzas", name: "Napolitana", desc: "Tomate fresco, ajo, oregano y muzzarella.", price: 8300, icon: "🍕" },
+        { id: 7, cat: "Bebidas", name: "Limonada", desc: "Jarra con limon, menta y jengibre.", price: 3600, icon: "🍋" },
+        { id: 8, cat: "Bebidas", name: "Gaseosa 500ml", desc: "Linea Coca-Cola o agua saborizada.", price: 1900, icon: "🥤" },
+        { id: 9, cat: "Postres", name: "Chocotorta", desc: "Porcion individual con dulce de leche.", price: 3300, icon: "🍰" },
+        { id: 10, cat: "Postres", name: "Flan casero", desc: "Con crema o dulce de leche.", price: 2900, icon: "🍮" },
+      ],
+    };
+
+    let activeCat = "Todos";
+    let cart = {};
+
+    const money = (n) => CONFIG.moneda + n.toLocaleString("es-AR");
+    const categories = () => ["Todos", ...new Set(CONFIG.items.map((item) => item.cat))];
+
+    function renderFilters() {
+      document.getElementById("filters").innerHTML = categories().map((cat) =>
+        `<button class="filter-btn ${activeCat === cat ? "active" : ""}" onclick="activeCat='${cat}';renderMenu();renderFilters();">${cat}</button>`
+      ).join("");
+    }
+
+    function renderMenu() {
+      const items = CONFIG.items.filter((item) => activeCat === "Todos" || item.cat === activeCat);
+      document.getElementById("menu-grid").innerHTML = items.map((item) => `
+        <article class="dish">
+          <div class="dish-icon">${item.icon}</div>
+          <div>
+            <h3>${item.name}</h3>
+            <p>${item.desc}</p>
+            <div class="dish-bottom">
+              <span class="price">${money(item.price)}</span>
+              <button class="add" type="button" onclick="addItem(${item.id})">Agregar</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function addItem(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      renderOrder();
+    }
+
+    function removeItem(id) {
+      if (!cart[id]) return;
+      cart[id] -= 1;
+      if (cart[id] <= 0) delete cart[id];
+      renderOrder();
+    }
+
+    function renderOrder() {
+      const rows = Object.entries(cart).map(([id, qty]) => {
+        const item = CONFIG.items.find((entry) => entry.id === Number(id));
+        return { ...item, qty, subtotal: item.price * qty };
+      });
+      const total = rows.reduce((sum, row) => sum + row.subtotal, 0);
+      document.getElementById("cart-count").textContent = rows.reduce((sum, row) => sum + row.qty, 0);
+      document.getElementById("total").textContent = money(total);
+      document.getElementById("order-list").innerHTML = rows.length
+        ? rows.map((row) => `
+            <div class="line">
+              <span>${row.qty}x ${row.name}<br><strong>${money(row.subtotal)}</strong></span>
+              <button type="button" onclick="removeItem(${row.id})">-</button>
+            </div>
+          `).join("")
+        : `<p class="empty">Todavia no agregaste productos.</p>`;
+
+      const name = document.getElementById("client-name").value.trim() || "Sin nombre";
+      const delivery = document.getElementById("delivery").value;
+      const detail = rows.map((row) => `${row.qty}x ${row.name} - ${money(row.subtotal)}`).join("\n");
+      const message = rows.length
+        ? `Hola! Quiero hacer este pedido:\n\n${detail}\n\nTotal: ${money(total)}\nEntrega: ${delivery}\nNombre: ${name}`
+        : "Hola! Quiero consultar por el menu.";
+      document.getElementById("send-link").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+    }
+
+    document.getElementById("biz-name").textContent = CONFIG.negocio;
+    renderFilters();
+    renderMenu();
+    renderOrder();
+  </script>
+</body>
+</html>

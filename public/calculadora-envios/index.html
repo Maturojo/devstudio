@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de envios - Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #ff7f50;
+      --accent-dim: rgba(255,127,80,0.12);
+      --bg: #0f0f10;
+      --surface: #1a1917;
+      --border: rgba(255,255,255,0.08);
+      --text: #f4efe7;
+      --muted: #a79f98;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(255,149,43,0.1), transparent 24%),
+        linear-gradient(180deg, #0f0f10 0%, #171514 52%, #0b0b0c 100%);
+      padding: 24px 16px 42px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell { width: min(980px, 100%); margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.48fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+    .hero-copy, .summary-card, .calculator {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+    }
+    .hero-copy { display: grid; align-content: center; gap: 14px; min-height: 260px; padding: 28px; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1 { max-width: 12ch; font-size: clamp(34px, 5.2vw, 58px); line-height: 0.98; }
+    .hero-copy p:not(.eyebrow) { max-width: 48ch; color: var(--muted); font-size: 15px; }
+    .summary-card {
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      min-height: 260px;
+      padding: 24px;
+      border-color: rgba(255,127,80,0.22);
+      background:
+        linear-gradient(180deg, rgba(255,127,80,0.08), rgba(255,255,255,0.02)),
+        var(--surface);
+    }
+    .summary-card span { color: var(--muted); font-size: 13px; }
+    .summary-card strong { display: block; color: var(--accent); font-size: 44px; line-height: 1; }
+    .summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .mini {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.035);
+    }
+    .mini b { display: block; font-size: 15px; }
+    .mini small { color: var(--muted); }
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+      gap: 0;
+      overflow: hidden;
+    }
+    .form { padding: 24px; border-right: 1px solid var(--border); }
+    .result { padding: 24px; background: rgba(255,255,255,0.02); }
+    .section-title { font-size: 18px; margin-bottom: 16px; }
+    .field { display: grid; gap: 7px; margin-bottom: 14px; }
+    .field label { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 13px 14px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+    .field input:focus, .field select:focus { border-color: rgba(255,127,80,0.42); }
+    .switches { display: grid; gap: 8px; margin: 16px 0 4px; }
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.035);
+      color: var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .check input { accent-color: var(--accent); }
+    .result-box {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255,127,80,0.25);
+      border-radius: 10px;
+      background: var(--accent-dim);
+      margin-bottom: 16px;
+    }
+    .price { color: var(--accent); font-size: 34px; line-height: 1; font-weight: 700; }
+    .rows { display: grid; gap: 10px; }
+    .row { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    .row strong { color: var(--text); text-align: right; }
+    .send {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 16px;
+      border-radius: 9px;
+      padding: 13px;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .note { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .footer-badge { text-align: center; margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 820px) {
+      .hero, .calculator { grid-template-columns: 1fr; }
+      .form { border-right: 0; border-bottom: 1px solid var(--border); }
+    }
+    @media (max-width: 520px) {
+      body { padding: 12px 10px 34px; }
+      .hero-copy, .summary-card, .form, .result { padding: 18px; }
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Demo logistica</p>
+        <h1>Envios claros antes de comprar</h1>
+        <p>Una herramienta simple para que el cliente calcule costo, tiempos y forma de entrega antes de escribir o cerrar el pedido.</p>
+      </div>
+      <aside class="summary-card">
+        <span>Costo estimado</span>
+        <strong id="hero-price">$0</strong>
+        <div class="summary-grid">
+          <div class="mini"><b id="hero-time">-</b><small>Tiempo</small></div>
+          <div class="mini"><b id="hero-zone">-</b><small>Zona</small></div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="calculator">
+      <section class="form">
+        <h2 class="section-title">Datos del pedido</h2>
+        <div class="field">
+          <label>Zona</label>
+          <select id="zone" onchange="calculate()"></select>
+        </div>
+        <div class="field">
+          <label>Tipo de pedido</label>
+          <select id="type" onchange="calculate()">
+            <option value="normal">Paquete chico o mediano</option>
+            <option value="large">Producto grande</option>
+            <option value="fragile">Producto fragil</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Total de la compra</label>
+          <input id="cart-total" type="number" min="0" value="28000" oninput="calculate()" />
+        </div>
+        <div class="field">
+          <label>Distancia extra en km</label>
+          <input id="extra-km" type="number" min="0" value="0" oninput="calculate()" />
+        </div>
+        <div class="switches">
+          <label class="check"><input id="same-day" type="checkbox" onchange="calculate()" /> Entrega en el dia</label>
+          <label class="check"><input id="insurance" type="checkbox" onchange="calculate()" /> Embalaje reforzado</label>
+        </div>
+      </section>
+
+      <aside class="result">
+        <h2 class="section-title">Resultado</h2>
+        <div class="result-box">
+          <span>Total de envio</span>
+          <strong class="price" id="result-price">$0</strong>
+          <span id="free-shipping"></span>
+        </div>
+        <div class="rows" id="breakdown"></div>
+        <a class="send" id="send-link" href="#" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+        <p class="note">Los valores son de muestra. En una web real se configuran zonas, reglas, minimo de compra y costos segun el negocio.</p>
+      </aside>
+    </main>
+
+    <p class="footer-badge">Hecho por <a href="https://devstudio-chi.vercel.app" target="_blank">DevStudio</a></p>
+  </div>
+
+  <script>
+    const CONFIG = {
+      whatsapp: "5492235954195",
+      freeFrom: 45000,
+      zones: [
+        { id: "centro", name: "Centro", base: 1800, time: "24 hs" },
+        { id: "norte", name: "Zona Norte", base: 2600, time: "24 a 48 hs" },
+        { id: "sur", name: "Zona Sur", base: 2900, time: "24 a 48 hs" },
+        { id: "periferia", name: "Periferia", base: 3900, time: "48 hs" },
+      ],
+      modifiers: {
+        normal: { label: "Paquete chico o mediano", amount: 0 },
+        large: { label: "Producto grande", amount: 1700 },
+        fragile: { label: "Producto fragil", amount: 1300 },
+      },
+      kmPrice: 420,
+      sameDay: 1600,
+      insurance: 900,
+    };
+
+    const money = (n) => "$" + Math.max(0, n).toLocaleString("es-AR");
+
+    function populateZones() {
+      document.getElementById("zone").innerHTML = CONFIG.zones.map((zone) =>
+        `<option value="${zone.id}">${zone.name}</option>`
+      ).join("");
+    }
+
+    function calculate() {
+      const zone = CONFIG.zones.find((entry) => entry.id === document.getElementById("zone").value);
+      const type = CONFIG.modifiers[document.getElementById("type").value];
+      const cartTotal = Number(document.getElementById("cart-total").value || 0);
+      const extraKm = Number(document.getElementById("extra-km").value || 0);
+      const sameDay = document.getElementById("same-day").checked;
+      const insurance = document.getElementById("insurance").checked;
+
+      const rows = [
+        ["Zona", zone.name, zone.base],
+        ["Tipo", type.label, type.amount],
+        ["Km extra", `${extraKm} km`, extraKm * CONFIG.kmPrice],
+      ];
+      if (sameDay) rows.push(["Rapidez", "Entrega en el dia", CONFIG.sameDay]);
+      if (insurance) rows.push(["Extra", "Embalaje reforzado", CONFIG.insurance]);
+
+      const rawTotal = rows.reduce((sum, row) => sum + row[2], 0);
+      const hasFreeShipping = cartTotal >= CONFIG.freeFrom && !sameDay;
+      const total = hasFreeShipping ? 0 : rawTotal;
+
+      document.getElementById("hero-price").textContent = money(total);
+      document.getElementById("result-price").textContent = money(total);
+      document.getElementById("hero-time").textContent = sameDay ? "Hoy" : zone.time;
+      document.getElementById("hero-zone").textContent = zone.name;
+      document.getElementById("free-shipping").textContent = hasFreeShipping
+        ? `Envio bonificado por compra mayor a ${money(CONFIG.freeFrom)}.`
+        : `Compra minima para envio bonificado: ${money(CONFIG.freeFrom)}.`;
+      document.getElementById("breakdown").innerHTML = rows.map((row) => `
+        <div class="row"><span>${row[0]} - ${row[1]}</span><strong>${money(row[2])}</strong></div>
+      `).join("");
+
+      const message = [
+        "Hola! Quiero consultar por un envio.",
+        `Zona: ${zone.name}`,
+        `Tipo: ${type.label}`,
+        `Compra: ${money(cartTotal)}`,
+        `Km extra: ${extraKm}`,
+        sameDay ? "Entrega en el dia: si" : "Entrega en el dia: no",
+        insurance ? "Embalaje reforzado: si" : "Embalaje reforzado: no",
+        `Costo estimado: ${money(total)}`,
+      ].join("\n");
+      document.getElementById("send-link").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+    }
+
+    populateZones();
+    calculate();
+  </script>
+</body>
+</html>
