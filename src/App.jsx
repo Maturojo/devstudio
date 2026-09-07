@@ -1,587 +1,158 @@
 import React from "react";
+import {
+  benefitPoints,
+  budgetOptions,
+  contactConfig,
+  getWhatsappLink,
+  heroIndicators,
+  navigation,
+  processSteps,
+  projectGroups,
+  reasons,
+  services,
+  tools,
+} from "./siteData";
 
-const navigation = [
-  { label: "Inicio", path: "/" },
-  { label: "Sobre mi", path: "/sobre-mi" },
-  { label: "Proyectos", path: "/proyectos" },
-  { label: "Herramientas", path: "/herramientas" },
-  { label: "Contacto", path: "/contacto" },
-];
-
-const plans = [
-  {
-    name: "Basico",
-    price: "USD 80",
-    description: "Ideal para una web simple, clara y profesional.",
-    features: [
-      "Diseno responsive para celular y PC",
-      "Presentacion clara de servicios o productos",
-      "Contacto directo por WhatsApp",
-      "Dominio y hosting incluido 1 ano",
-    ],
-    newFeatures: [],
-  },
-  {
-    name: "Intermedio",
-    price: "USD 180",
-    description: "Para negocios que necesitan un sitio mas completo y persuasivo.",
-    featured: true,
-    badge: "Mas elegido",
-    includesFrom: "Basico",
-    features: [
-      "Diseno responsive para celular y PC",
-      "Presentacion clara de servicios o productos",
-      "Contacto directo por WhatsApp",
-      "Dominio y hosting incluido 1 ano",
-    ],
-    newFeatures: [
-      "Varias paginas con navegacion",
-      "Seccion de trabajos o portfolio",
-      "Testimonios y seccion de confianza",
-      "Animaciones y cuidado visual avanzado",
-    ],
-  },
-  {
-    name: "Avanzado",
-    price: "USD 360",
-    description: "Pensado para proyectos que requieren mas logica y personalizacion.",
-    includesFrom: "Intermedio",
-    features: [
-      "Varias paginas con navegacion",
-      "Seccion de trabajos o portfolio",
-      "Testimonios y seccion de confianza",
-      "Animaciones y cuidado visual avanzado",
-      "Diseno responsive para celular y PC",
-      "Dominio y hosting incluido 1 ano",
-    ],
-    newFeatures: [
-      "Funcionalidad personalizada a tu negocio",
-      "Reservas, catalogos o formularios complejos",
-      "Integraciones con sistemas o plataformas",
-      "Base preparada para seguir creciendo",
-    ],
-  },
-];
-
-const standaloneTools = [
-  {
-    name: "Ecommerce para tiendas online",
-    price: "Desde USD 150",
-    description:
-      "Una tienda completa para mostrar productos, recibir pedidos y vender desde una web propia.",
-    features: [
-      "Catalogo de productos con categorias",
-      "Carrito, checkout y contacto por WhatsApp",
-      "Base preparada para panel de gestion e integraciones",
-    ],
-    demo: "/ecommercekit/index.html",
-  },
-  {
-    name: "Turnero online",
-    price: "Desde USD 60",
-    description:
-      "Reservas simples para negocios que trabajan con horarios.",
-    features: [
-      "Turnos por dia y horario",
-      "Boton directo a WhatsApp o formulario",
-      "Diseno claro para celular y PC",
-    ],
-    demo: "/turnero/index.html",
-  },
-  {
-    name: "Calendario de eventos o clases",
-    price: "Desde USD 55",
-    description:
-      "Fechas, clases y actividades en una vista clara.",
-    features: [
-      "Vista mensual o por listado",
-      "Fechas destacadas y detalles por evento",
-      "Facil de integrar en una landing o web existente",
-    ],
-    demo: "/calendario/index.html",
-  },
-  {
-    name: "Catalogo digital simple",
-    price: "Desde USD 70",
-    description:
-      "Productos o servicios listos para consultar por WhatsApp.",
-    features: [
-      "Categorias, imagenes y descripciones",
-      "Pensado para vender por WhatsApp",
-      "Estructura facil de ampliar luego",
-    ],
-    demo: "/catalogo/index.html",
-  },
-  {
-    name: "Cotizador o formulario inteligente",
-    price: "Desde USD 85",
-    description:
-      "Consultas mas ordenadas desde el primer mensaje.",
-    features: [
-      "Campos personalizados segun tu rubro",
-      "Entrega de consulta mas ordenada",
-      "Enfoque en conversion y practicidad",
-    ],
-    demo: "/cotizador/index.html",
-  },
-  {
-    name: "Menu digital con pedidos",
-    price: "Desde USD 90",
-    description:
-      "Una carta online para gastronomia con categorias, carrito y pedido directo por WhatsApp.",
-    features: [
-      "Menu filtrable por categorias",
-      "Carrito simple con total automatico",
-      "Pedido armado listo para enviar por WhatsApp",
-    ],
-    demo: "/menu-digital/index.html",
-  },
-  {
-    name: "Calculadora de envios",
-    price: "Desde USD 75",
-    description:
-      "Costos de entrega claros segun zona, tipo de pedido y reglas comerciales.",
-    features: [
-      "Zonas y costos configurables",
-      "Envio bonificado segun monto minimo",
-      "Consulta final con resumen por WhatsApp",
-    ],
-    demo: "/calculadora-envios/index.html",
-  },
-];
-
-const processSteps = [
-  "Idea y objetivo",
-  "Estructura visual",
-  "Desarrollo",
-  "Publicacion",
-];
-
-const benefits = [
-  "Web clara",
-  "Lista para celular",
-  "Contacto directo",
-  "Base para crecer",
-];
-
-const targetClients = [
-  "Emprendedores",
-  "Negocios locales",
-  "Profesionales",
-  "Marcas",
-];
-
-const portfolioGroups = [
-  {
-    client: "Mate&Co",
-    logo: "/ecommercekit/logo.jpeg",
-    logoAlt: "Logo de Mate&Co",
-    description:
-      "Tienda online real con catalogo, carrito y una experiencia comercial pensada para promocionar productos y recibir consultas.",
-    items: [
-      {
-        title: "Tienda online Mate&Co",
-        result:
-          "Desarrolle una tienda ecommerce completa con inicio comercial, catalogo, carrito, checkout y secciones de marca listas para promocionar productos.",
-        image: "/ecommercekit/hero.jpeg",
-        demo: "https://www.mateandcomdp.com.ar/",
-        ctaLabel: "Ver pagina",
-        tags: ["Tienda online", "Catalogo", "Checkout"],
-      },
-      {
-        title: "Panel administrativo Mate&Co",
-        result:
-          "Construyo un panel interno para gestionar productos, revisar estadisticas, administrar contenido y controlar la informacion clave del ecommerce.",
-        image: "/mateco-admin/DashboardAdmin.png",
-        tags: ["Admin", "Productos", "Analytics"],
-        gallery: [
-          {
-            src: "/mateco-admin/AdminLogin.png",
-            alt: "Login del panel administrativo Mate&Co",
-          },
-          {
-            src: "/mateco-admin/DashboardAdmin.png",
-            alt: "Dashboard del panel administrativo Mate&Co",
-          },
-          {
-            src: "/mateco-admin/ProductosAdmin.png",
-            alt: "Gestion de productos del panel administrativo Mate&Co",
-          },
-          {
-            src: "/mateco-admin/EstidisticasADMIN.png",
-            alt: "Estadisticas del panel administrativo Mate&Co",
-          },
-          {
-            src: "/mateco-admin/ContenidoAdmin.png",
-            alt: "Editor de contenido del panel administrativo Mate&Co",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    client: "Liga de Football Americano",
-    logo: "/football-league/logo.png",
-    logoAlt: "Logo de la Liga de Football Americano",
-    description:
-      "Pagina deportiva real para presentar la liga, mostrar equipos, fixture, estadisticas, noticias, eventos e inscripciones.",
-    items: [
-      {
-        title: "Pagina de Liga de Football Americano",
-        result:
-          "Desarrolle un sitio institucional y deportivo con secciones para equipos, jugadores, calendario, noticias, tienda e inscripcion de nuevos jugadores.",
-        image: "/football-league/slide-1.png",
-        demo: "https://football-two-rouge.vercel.app/",
-        ctaLabel: "Ver pagina",
-        tags: ["Liga deportiva", "Fixture", "Inscripciones"],
-        gallery: [
-          {
-            src: "/football-league/slide-1.png",
-            alt: "Portada de la Liga de Football Americano",
-          },
-          {
-            src: "/football-league/slide-2.png",
-            alt: "Modalidades de entrenamiento de la Liga de Football Americano",
-          },
-          {
-            src: "/football-league/slide-3.png",
-            alt: "Equipos de la Liga de Football Americano",
-          },
-          {
-            src: "/football-league/slide-4.png",
-            alt: "Estadisticas generales de la Liga de Football Americano",
-          },
-          {
-            src: "/football-league/slide-5.png",
-            alt: "Tabla de lideres de la Liga de Football Americano",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    client: "Sur Maderas",
-    logo: "/sur-maderas-logo.png",
-    logoAlt: "Logo de Sur Maderas",
-    description:
-      "Proyecto real con interfaces y herramientas adaptadas a necesidades comerciales y de gestion.",
-    items: [
-      {
-        title: "Generador de carteles con base de datos",
-        result:
-          "Desarrolle una interfaz para buscar, filtrar y administrar productos con datos dinamicos, agilizando la creacion de carteles y la consulta interna.",
-        image: "/portfolio-carteles-real.jpeg",
-        tags: ["Base de datos", "Panel de gestion", "Carga dinamica"],
-      },
-      {
-        title: "Landing comercial para negocios",
-        result:
-          "Arme una pagina orientada a presentar servicios, generar confianza y llevar al cliente rapidamente hacia el contacto directo.",
-        image: "/portfolio-landing.svg",
-        tags: ["Responsive", "WhatsApp", "Conversion"],
-      },
-      {
-        title: "Sitio web avanzado a medida",
-        result:
-          "Construyo una base personalizada con paginas internas, interfaz cuidada y espacio para sumar nuevas funciones o integraciones.",
-        image: "/portfolio-avanzado-real.png",
-        tags: ["Escalable", "Integraciones", "A medida"],
-      },
-    ],
-  },
-];
-
-const faqs = [
-  {
-    question: "Que incluye cada plan?",
-    answer:
-      "Cada plan incluye diseno responsive, desarrollo web, dominio, hosting y certificado SSL por 1 ano. La diferencia esta en el nivel de personalizacion, cantidad de paginas y funcionalidades.",
-  },
-  {
-    question: "Puedo tener varias paginas dentro del sitio?",
-    answer:
-      "Si. Podemos armar un sitio con inicio, servicios, proyectos, preguntas frecuentes, contacto y las paginas que mejor le sirvan a tu negocio.",
-  },
-  {
-    question: "Cuanto tarda en estar lista una web?",
-    answer:
-      "Depende del alcance. Una web simple puede estar lista en pocos dias y un sitio mas completo con varias paginas o herramientas puede requerir mas tiempo.",
-  },
-  {
-    question: "Puedo pedir cambios una vez terminada?",
-    answer:
-      "Si, siempre podemos hacer ajustes y mejoras. La idea es que tu sitio quede alineado con tu negocio y se vea profesional antes de publicarlo.",
-  },
-];
-
-const aboutPoints = [
-  "Trato directo",
-  "Diseno claro",
-  "Foco comercial",
-];
-
-const routeMeta = {
-  "/": {
-    eyebrow: "Sitios web con estructura profesional",
-    title: "Tu negocio necesita una web seria, clara y lista para crecer.",
-    text:
-      "Desarrollo sitios web con varias paginas, navegacion clara y foco comercial para emprendedores, marcas y negocios que quieren verse profesionales y convertir mejor.",
-  },
-  "/sobre-mi": {
-    eyebrow: "Enfoque",
-    title: "Diseno sitios claros para negocios reales.",
-    text:
-      "Menos vueltas, mas claridad visual y una estructura pensada para convertir visitas en consultas.",
-  },
-  "/proyectos": {
-    eyebrow: "Trabajos",
-    title: "Interfaces simples para necesidades concretas.",
-    text:
-      "Sitios, paneles y herramientas creadas para verse bien y funcionar rapido.",
-  },
-  "/herramientas": {
-    eyebrow: "Herramientas",
-    title: "Funciones simples para sumar a tu web.",
-    text:
-      "Reservas, catalogos, formularios y pequenas apps listas para usar.",
-  },
-  "/planes": {
-    eyebrow: "Planes",
-    title: "Elige una base y la hacemos crecer.",
-    text:
-      "Precios claros para empezar con una web simple o avanzar hacia algo mas completo.",
-  },
-  "/contacto": {
-    eyebrow: "Contacto",
-    title: "Contame que necesitas. Lo ordenamos.",
-    text:
-      "Escribime por WhatsApp o dejame un mensaje y vemos la mejor forma de publicarlo.",
-  },
-};
-
-function normalizePath(pathname) {
-  if (!pathname || pathname === "/") {
-    return "/";
-  }
-
-  const cleanPath = pathname.replace(/\/+$/, "");
-
-  if (cleanPath === "/planes") {
-    return "/herramientas";
-  }
-
-  return cleanPath;
-}
-
-function navigateTo(path) {
-  const nextPath = normalizePath(path);
-
-  if (window.location.pathname !== nextPath) {
-    window.history.pushState({}, "", nextPath);
-    window.dispatchEvent(new PopStateEvent("popstate"));
-  }
-}
-
-function useCurrentPath() {
-  const [path, setPath] = React.useState(() => normalizePath(window.location.pathname));
+function Header() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const onChange = () => setPath(normalizePath(window.location.pathname));
+    document.body.classList.toggle("menu-open", menuOpen);
+    return () => document.body.classList.remove("menu-open");
+  }, [menuOpen]);
 
-    window.addEventListener("popstate", onChange);
-    return () => window.removeEventListener("popstate", onChange);
-  }, []);
-
-  return path;
-}
-
-function NavLink({ to, currentPath, children, className = "" }) {
-  const active = currentPath === to;
+  function handleNavClick() {
+    setMenuOpen(false);
+  }
 
   return (
-    <a
-      href={to}
-      className={`${className} ${active ? "is-active" : ""}`.trim()}
-      onClick={(event) => {
-        event.preventDefault();
-        navigateTo(to);
-      }}
-      aria-current={active ? "page" : undefined}
-    >
-      {children}
-    </a>
+    <header className="site-header">
+      <a className="skip-link" href="#contenido">
+        Saltar al contenido
+      </a>
+      <nav className="site-nav" aria-label="Principal">
+        <a className="brand" href="#inicio" onClick={handleNavClick}>
+          <span className="brand-mark" aria-hidden="true" />
+          <span>DevStudio</span>
+        </a>
+
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-label={menuOpen ? "Cerrar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div id="main-navigation" className={`nav-panel ${menuOpen ? "is-open" : ""}`}>
+          <div className="nav-links">
+            {navigation.map((item) => (
+              <a key={item.href} href={item.href} onClick={handleNavClick}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+          <a className="button nav-cta" href={getWhatsappLink()} target="_blank" rel="noreferrer">
+            Hablemos
+          </a>
+        </div>
+      </nav>
+    </header>
   );
 }
 
-function PageHero({ currentPath }) {
-  const meta = routeMeta[currentPath] ?? routeMeta["/"];
-
+function Hero() {
   return (
-    <section className="page-hero">
-      <div>
-        <p className="eyebrow">{meta.eyebrow}</p>
-        <h1>{meta.title}</h1>
-        <p className="page-hero-text">{meta.text}</p>
+    <section id="inicio" className="hero section-band">
+      <div className="hero-copy">
+        <p className="eyebrow">Desarrollo y diseno web para negocios</p>
+        <h1>Creamos paginas web que hacen crecer tu negocio.</h1>
+        <p className="hero-text">
+          Disenamos sitios modernos, rapidos y adaptados a todos los dispositivos para
+          que tus clientes encuentren tu negocio, conozcan tus servicios y puedan
+          contactarte facilmente.
+        </p>
+        <div className="hero-actions" aria-label="Acciones principales">
+          <a className="button primary" href={getWhatsappLink()} target="_blank" rel="noreferrer">
+            Quiero mi pagina web
+          </a>
+          <a className="button secondary" href="#proyectos">
+            Ver proyectos
+          </a>
+        </div>
+        <ul className="hero-indicators" aria-label="Caracteristicas principales">
+          {heroIndicators.map((indicator) => (
+            <li key={indicator}>{indicator}</li>
+          ))}
+        </ul>
       </div>
-      <div className="page-hero-mark" aria-hidden="true">
-        <span />
-        <span />
-        <span />
+
+      <div className="hero-visual" aria-hidden="true">
+        <div className="browser-card">
+          <div className="browser-bar">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="browser-content">
+            <div className="mock-nav" />
+            <div className="mock-hero">
+              <span />
+              <strong />
+              <p />
+              <p />
+            </div>
+            <div className="mock-grid">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+        </div>
+        <div className="floating-note note-top">
+          <span>Consulta</span>
+          <strong>WhatsApp integrado</strong>
+        </div>
+        <div className="floating-note note-bottom">
+          <span>Publicacion</span>
+          <strong>Lista para compartir</strong>
+        </div>
       </div>
     </section>
   );
 }
 
-function HomePage({ whatsappLink, currentPath }) {
+function ProblemBenefit() {
   return (
-    <>
-      <section className="hero hero-home">
-        <div className="hero-content">
-          <div className="hero-copy">
-            <p className="eyebrow">Matias Rojo | Desarrollo web</p>
-            <h1>Paginas web simples, modernas y listas para vender.</h1>
-            <p className="hero-text">
-              Diseno y desarrollo sitios claros para negocios que quieren verse mejor,
-              compartir su propuesta y recibir consultas por WhatsApp.
-            </p>
+    <section className="section-band problem-section">
+      <div className="section-heading">
+        <p className="eyebrow">Presencia profesional</p>
+        <h2>Tu negocio merece algo mas que un Instagram.</h2>
+        <p>
+          Una web bien pensada ordena la informacion importante, transmite confianza
+          y le da a cada visita un camino simple para consultar.
+        </p>
+      </div>
 
-            <div className="hero-actions">
-              <NavLink to="/herramientas" currentPath={currentPath} className="button primary">
-                Ver herramientas
-              </NavLink>
-              <a className="button secondary" href={whatsappLink} target="_blank" rel="noreferrer">
-                Hablar por WhatsApp
-              </a>
-            </div>
+      <div className="benefit-layout">
+        <article className="benefit-main">
+          <span className="section-number">01</span>
+          <h3>Un lugar propio para que te encuentren, entiendan y escriban.</h3>
+          <p>
+            Redes sociales ayudan, pero no siempre explican todo. Tu pagina puede
+            funcionar como base comercial: servicios, productos, ubicacion, horarios,
+            preguntas frecuentes y contacto en un solo lugar.
+          </p>
+        </article>
 
-            <ul className="hero-metrics">
-              <li>
-                <strong>Desde USD 80</strong>
-                <span>landing inicial</span>
-              </li>
-              <li>
-                <strong>1 ano</strong>
-                <span>dominio y hosting</span>
-              </li>
-              <li>
-                <strong>100%</strong>
-                <span>responsive</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="hero-visual" aria-hidden="true">
-            <div className="browser-frame">
-              <div className="browser-top">
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="browser-preview">
-                <div className="preview-nav" />
-                <div className="preview-hero">
-                  <span />
-                  <strong />
-                  <p />
-                  <p />
-                </div>
-                <div className="preview-grid">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-            </div>
-            <div className="motion-card motion-card-one">
-              <span>WhatsApp</span>
-              <strong>Consulta recibida</strong>
-            </div>
-            <div className="motion-card motion-card-two">
-              <span>Web publicada</span>
-              <strong>Lista para compartir</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section compact-section">
-        <div className="section-heading">
-          <p className="eyebrow">Lo que ofrezco</p>
-          <h2>Una presencia online clara, sin vueltas.</h2>
-        </div>
         <div className="benefit-grid">
-          {benefits.map((benefit) => (
-            <article className="info-card" key={benefit}>
-              <span className="card-dot" />
-              <p>{benefit}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section target-clients">
-        <div className="section-heading">
-          <p className="eyebrow">Para quien es</p>
-          <h2>Hecha para negocios que necesitan verse mas confiables.</h2>
-        </div>
-        <div className="target-grid">
-          {targetClients.map((client) => (
-            <article className="info-card" key={client}>
-              <span className="card-dot" />
-              <p>{client}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section split-feature">
-        <div className="split-copy">
-          <p className="eyebrow">Estructura</p>
-          <h2>Todo ordenado para que el cliente entienda rapido.</h2>
-          <p>
-            Inicio, servicios, trabajos y contacto. Solo lo necesario para presentar
-            tu negocio y llevar la visita a la consulta.
-          </p>
-          <NavLink to="/proyectos" currentPath={currentPath} className="button secondary">
-            Ver proyectos
-          </NavLink>
-        </div>
-
-        <div className="split-panel">
-          <article className="info-card">
-            <span className="card-dot" />
-            <p>Inicio claro</p>
-          </article>
-          <article className="info-card">
-            <span className="card-dot" />
-            <p>Servicios visibles</p>
-          </article>
-          <article className="info-card">
-            <span className="card-dot" />
-            <p>Contacto directo</p>
-          </article>
-        </div>
-      </section>
-    </>
-  );
-}
-
-function AboutPage() {
-  return (
-    <section className="section about">
-      <div className="about-panel">
-        <div className="about-copy">
-          <p className="eyebrow">Sobre mi</p>
-          <h2>Hola, soy Matias. Desarrollo webs simples, prolijas y utiles.</h2>
-          <p>
-            Trabajo directo con cada cliente para ordenar la idea, darle una buena
-            presencia y dejarla lista para compartir.
-          </p>
-        </div>
-
-        <div className="about-list">
-          {aboutPoints.map((point) => (
-            <article className="about-card" key={point}>
+          {benefitPoints.map((point) => (
+            <article className="mini-card" key={point}>
               <span className="card-dot" />
               <p>{point}</p>
             </article>
@@ -592,512 +163,395 @@ function AboutPage() {
   );
 }
 
-function PortfolioCard({ item, onOpenImage }) {
-  const slides = item.gallery ?? [{ src: item.image, alt: item.title }];
-  const initialSlideIndex = Math.max(slides.findIndex((image) => image.src === item.image), 0);
-  const [activeSlide, setActiveSlide] = React.useState(initialSlideIndex);
-  const currentSlide = slides[activeSlide] ?? slides[0];
-  const hasSlides = slides.length > 1;
-
-  function changeSlide(direction) {
-    setActiveSlide((currentIndex) => (currentIndex + direction + slides.length) % slides.length);
-  }
-
-  function openSlide(index = activeSlide) {
-    const image = slides[index] ?? slides[0];
-
-    onOpenImage({
-      src: image.src,
-      alt: image.alt,
-      gallery: slides,
-      index,
-    });
-  }
-
+function Services() {
   return (
-    <article className={`portfolio-card ${hasSlides ? "has-slides" : ""}`.trim()}>
-      <div className="portfolio-visual-wrap">
-        <button
-          type="button"
-          className="portfolio-visual"
-          onClick={() => openSlide()}
-          aria-label={`Ver imagen completa de ${item.title}`}
-        >
-          <img src={currentSlide.src} alt={currentSlide.alt} />
-          <span className="portfolio-zoom">Ver imagen completa</span>
-        </button>
-
-        {hasSlides ? (
-          <>
-            <button
-              type="button"
-              className="portfolio-slide-control portfolio-slide-prev"
-              onClick={() => changeSlide(-1)}
-              aria-label="Ver slide anterior"
-            >
-              Ant
-            </button>
-            <button
-              type="button"
-              className="portfolio-slide-control portfolio-slide-next"
-              onClick={() => changeSlide(1)}
-              aria-label="Ver slide siguiente"
-            >
-              Sig
-            </button>
-            <div className="portfolio-slide-dots" aria-label="Slides disponibles">
-              {slides.map((image, index) => (
-                <button
-                  key={image.src}
-                  type="button"
-                  className={index === activeSlide ? "is-active" : ""}
-                  onClick={() => setActiveSlide(index)}
-                  aria-label={`Ir al slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </>
-        ) : null}
+    <section id="servicios" className="section-band">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">Servicios</p>
+          <h2>Soluciones claras para vender, mostrar y gestionar mejor.</h2>
+        </div>
+        <p>
+          El foco no esta en la tecnologia, sino en resolver una necesidad concreta
+          del negocio con una experiencia simple para el cliente final.
+        </p>
       </div>
 
-      <div className="portfolio-copy">
-        <h3>{item.title}</h3>
-        <p>{item.result}</p>
-        <div className="portfolio-tags">
-          {item.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-        {item.demo ? (
-          <a href={item.demo} target="_blank" rel="noreferrer" className="button primary portfolio-demo">
-            {item.ctaLabel ?? "Ver demo"}
-          </a>
-        ) : null}
-        {item.gallery ? (
-          <div className="portfolio-gallery" aria-label={`Capturas de ${item.title}`}>
-            {item.gallery.map((image, index) => (
-              <button
-                key={image.src}
-                type="button"
-                className={`portfolio-gallery-thumb ${index === activeSlide ? "is-active" : ""}`.trim()}
-                onClick={() => {
-                  setActiveSlide(index);
-                  openSlide(index);
-                }}
-                aria-label={`Ver ${image.alt}`}
-              >
-                <img src={image.src} alt={image.alt} />
-              </button>
-            ))}
-          </div>
-        ) : null}
-      </div>
-    </article>
-  );
-}
-
-function ProjectsPage({ setActiveImage }) {
-  return (
-    <section className="section portfolio">
-      <div className="portfolio-showcase">
-        <div className="section-heading portfolio-heading">
-          <p className="eyebrow">Ultimos proyectos</p>
-          <h2>Proyectos reales, interfaces claras.</h2>
-          <p className="portfolio-intro">
-            Algunas muestras de sitios, paneles y herramientas hechas para negocios.
-          </p>
-        </div>
-
-        {portfolioGroups.map((group) => (
-          <div className="portfolio-group" key={group.client}>
-            <div className="portfolio-client-card">
-              <img className="portfolio-client-logo" src={group.logo} alt={group.logoAlt} />
-              <div>
-                <p className="portfolio-client-name">{group.client}</p>
-                <p className="portfolio-client-text">{group.description}</p>
-              </div>
-            </div>
-
-            <div className={`portfolio-grid ${group.items.length === 1 ? "single" : group.items.length === 2 ? "split" : ""}`.trim()}>
-              {group.items.map((item) => (
-                <PortfolioCard key={item.title} item={item} onOpenImage={setActiveImage} />
-              ))}
-            </div>
-          </div>
+      <div className="services-grid">
+        {services.map((service, index) => (
+          <article className="service-card" key={service.name}>
+            <span className="service-index">0{index + 1}</span>
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <a
+              className="service-link"
+              href={getWhatsappLink(`Hola! Queria consultar por ${service.name.toLowerCase()} para mi negocio.`)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {service.cta}
+            </a>
+          </article>
         ))}
       </div>
     </section>
   );
 }
 
-function ToolsPage({ currentPath }) {
+function ProjectCard({ project, onOpenGallery }) {
+  const gallery = project.gallery ?? [project.image];
+
   return (
-    <>
-      <section className="section own-tools">
-        <div className="section-heading">
-          <p className="eyebrow">Herramientas propias</p>
-          <h2>Apps simples, hechas para resolver cosas concretas.</h2>
-        </div>
-
-        <div className="own-tools-grid">
-          <article className="own-tool-card">
-            <div className="own-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
-              </svg>
-            </div>
-            <div className="own-tool-copy">
-              <div className="own-tool-header">
-                <p className="plan-name">Organizador</p>
-                <span className="own-tool-badge">Gratis - PWA</span>
-              </div>
-              <p className="standalone-description">
-                Control de ingresos, gastos y recordatorios. Se instala desde el navegador
-                y funciona en PC o celular.
-              </p>
-              <ul className="feature-list">
-                <li>Registro de ingresos y egresos por mes</li>
-                <li>Recordatorios con alertas de vencimiento</li>
-                <li>Graficos y balance mensual</li>
-                <li>Funciona sin internet una vez instalada</li>
-              </ul>
-              <a
-                href="/organizador/index.html"
-                target="_blank"
-                rel="noreferrer"
-                className="button primary own-tool-button"
-              >
-                Abrir e instalar
-              </a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="section standalone-tools">
-        <div className="section-heading">
-          <p className="eyebrow">Herramientas por separado</p>
-          <h2>Funciones puntuales para sumar a tu negocio.</h2>
-          <p className="standalone-intro">
-            Si ya tienes una web, podemos agregar solo lo que falta.
-          </p>
-        </div>
-
-        <div className="standalone-grid">
-          {standaloneTools.map((tool) => (
-            <article key={tool.name} className="standalone-card">
-              <div className="standalone-header">
-                <div>
-                  <p className="plan-name">{tool.name}</p>
-                  <h3>{tool.price}</h3>
-                </div>
-                <span className="standalone-badge">Solucion puntual</span>
-              </div>
-
-              <p className="standalone-description">{tool.description}</p>
-
-              <ul className="feature-list">
-                {tool.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
-
-              <div className="standalone-actions">
-                <a href={tool.demo} target="_blank" rel="noreferrer" className="button primary standalone-button">
-                  Ver demo
-                </a>
-                <NavLink to="/contacto" currentPath={currentPath} className="button secondary standalone-button">
-                  Quiero esta
-                </NavLink>
-              </div>
-            </article>
+    <article className={`project-card ${project.isPlaceholder ? "is-placeholder" : ""}`}>
+      <button
+        type="button"
+        className="project-image"
+        onClick={() => onOpenGallery(project, 0)}
+        aria-label={`Ver imagen de ${project.name}`}
+      >
+        <img src={project.image} alt={`Vista previa de ${project.name}`} loading="lazy" />
+        {project.isPlaceholder ? <span className="project-label">Placeholder editable</span> : null}
+      </button>
+      <div className="project-copy">
+        <p className="project-category">{project.category}</p>
+        <h3>{project.name}</h3>
+        <p>{project.description}</p>
+        <div className="tag-list" aria-label="Caracteristicas del proyecto">
+          {project.technologies.map((tech) => (
+            <span key={tech}>{tech}</span>
           ))}
         </div>
-      </section>
-    </>
-  );
-}
-
-function PlansPage({ currentPath }) {
-  return (
-    <>
-      <section className="section">
-        <div className="section-heading">
-          <p className="eyebrow">Planes</p>
-          <h2>Tres formas simples de empezar.</h2>
-        </div>
-
-        <div className="plans-grid">
-          {plans.map((plan) => (
-            <article key={plan.name} className={`plan-card ${plan.featured ? "featured" : ""}`}>
-              <div className="plan-header">
-                <div className="plan-topline">
-                  <p className="plan-name">{plan.name}</p>
-                  {plan.badge ? <p className="plan-badge">{plan.badge}</p> : null}
-                </div>
-                <h3>{plan.price}</h3>
-                <p className="plan-note">Unico pago</p>
-                <p className="plan-description">{plan.description}</p>
-              </div>
-
-              {plan.includesFrom ? (
-                <div className="plan-includes-banner">
-                  <span className="plan-includes-check">✓</span>
-                  Todo el plan {plan.includesFrom}, mas:
-                </div>
-              ) : null}
-
-              <ul className="feature-list">
-                {plan.newFeatures && plan.newFeatures.length > 0
-                  ? plan.newFeatures.map((feature) => (
-                      <li key={feature} className="feature-new">{feature}</li>
-                    ))
-                  : plan.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
-                    ))
-                }
-                {plan.includesFrom ? (
-                  plan.features.map((feature) => (
-                    <li key={feature} className="feature-inherited">{feature}</li>
-                  ))
-                ) : null}
-              </ul>
-
-              <NavLink to="/contacto" currentPath={currentPath} className="button plan-button">
-                Solicitar este plan
-              </NavLink>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section faq">
-        <div className="section-heading">
-          <p className="eyebrow">Preguntas frecuentes</p>
-          <h2>Lo importante antes de avanzar.</h2>
-        </div>
-
-        <div className="faq-list">
-          {faqs.map((item) => (
-            <details className="faq-item" key={item.question}>
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      <section className="section workflow">
-        <div className="section-heading">
-          <p className="eyebrow">Proceso</p>
-          <h2>De la idea a la web publicada.</h2>
-        </div>
-
-        <div className="steps">
-          {processSteps.map((step, index) => (
-            <article className="step-card" key={step}>
-              <span className="step-number">0{index + 1}</span>
-              <p>{step}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </>
-  );
-}
-
-function ContactPage({ whatsappLink }) {
-  return (
-    <section className="section contact">
-      <div className="contact-panel">
-        <div className="contact-copy">
-          <p className="eyebrow">Contacto</p>
-          <h2>Mandame tu idea y la bajamos a una web clara.</h2>
-          <p>
-            Podes escribirme por WhatsApp o dejar el mensaje aca. Te respondo con una
-            propuesta simple para empezar.
-          </p>
-          <div className="contact-direct">
-            <a href="mailto:maturojo123mdq@gmail.com">maturojo123mdq@gmail.com</a>
-            <a href={whatsappLink} target="_blank" rel="noreferrer">
-              WhatsApp
+        <div className="project-actions">
+          {project.url ? (
+            <a className="button small primary" href={project.url} target="_blank" rel="noreferrer">
+              Ver online
             </a>
-          </div>
+          ) : null}
+          {gallery.length > 1 ? (
+            <button type="button" className="button small secondary" onClick={() => onOpenGallery(project, 0)}>
+              Ver capturas
+            </button>
+          ) : null}
+          {project.repository ? (
+            <a className="button small secondary" href={project.repository} target="_blank" rel="noreferrer">
+              Repositorio
+            </a>
+          ) : null}
         </div>
+      </div>
+    </article>
+  );
+}
 
-        <form className="contact-form" action="https://formsubmit.co/maturojo123mdq@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="Nueva consulta desde DevStudio" />
-          <input type="hidden" name="_next" value="https://devstudio-chi.vercel.app/contacto" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
+function Projects({ onOpenGallery }) {
+  return (
+    <section id="proyectos" className="section-band projects-section">
+      <div className="section-heading">
+        <p className="eyebrow">Proyectos</p>
+        <h2>Algunos de nuestros trabajos</h2>
+        <p>
+          Estructura reutilizable para mostrar proyectos reales con imagen, categoria,
+          descripcion, tecnologias y enlaces opcionales.
+        </p>
+      </div>
 
-          <label className="form-field">
-            <span>Nombre</span>
-            <input type="text" name="name" placeholder="Tu nombre" required />
-          </label>
-
-          <label className="form-field">
-            <span>Email</span>
-            <input type="email" name="email" placeholder="tuemail@ejemplo.com" required />
-          </label>
-
-          <label className="form-field">
-            <span>Mensaje</span>
-            <textarea name="message" rows="5" placeholder="Cuentame que tipo de web o herramienta necesitas" required />
-          </label>
-
-          <button className="button primary form-submit" type="submit">
-            Enviar consulta
-          </button>
-        </form>
+      <div className="project-groups">
+        {projectGroups.map((group) => (
+          <section
+            className={`project-group ${group.projects.length === 1 ? "is-single" : "is-pair"}`}
+            key={group.name}
+            aria-labelledby={`project-group-${group.name}`}
+          >
+            <div className="project-group-heading">
+              <img className="project-group-logo" src={group.logo} alt={group.logoAlt} loading="lazy" />
+              <div>
+                <p className="project-group-kicker">Proyecto</p>
+                <h3 id={`project-group-${group.name}`}>{group.name}</h3>
+                <p>{group.description}</p>
+              </div>
+            </div>
+            <div className="projects-grid">
+              {group.projects.map((project) => (
+                <ProjectCard key={project.name} project={project} onOpenGallery={onOpenGallery} />
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     </section>
   );
 }
 
-function Footer({ currentPath }) {
+function Tools() {
+  return (
+    <section id="herramientas" className="section-band tools-section">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">Herramientas</p>
+          <h2>Demos listas para imaginar que podria tener tu web.</h2>
+        </div>
+        <p>
+          Son ejemplos funcionales que pueden adaptarse a un comercio, profesional o
+          PyME: turnos, catalogos, pedidos, cotizadores y pequenas soluciones internas.
+        </p>
+      </div>
+
+      <div className="tools-grid">
+        {tools.map((tool) => (
+          <article className="tool-card" key={tool.name}>
+            <div>
+              <h3>{tool.name}</h3>
+              <p>{tool.description}</p>
+            </div>
+            <div className="tag-list" aria-label={`Caracteristicas de ${tool.name}`}>
+              {tool.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+            <div className="tool-actions">
+              <a className="button small primary" href={tool.demo} target="_blank" rel="noreferrer">
+                Ver demo
+              </a>
+              <a
+                className="tool-link"
+                href={getWhatsappLink(`Hola! Queria consultar por una herramienta tipo ${tool.name}.`)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Consultar
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  return (
+    <section id="proceso" className="section-band process-section">
+      <div className="section-heading">
+        <p className="eyebrow">Como trabajamos</p>
+        <h2>Un proceso simple, sin vueltas tecnicas.</h2>
+      </div>
+
+      <div className="process-timeline">
+        {processSteps.map((step) => (
+          <article className="process-card" key={step.number}>
+            <span>{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function WhyDevStudio() {
+  return (
+    <section className="section-band why-section">
+      <div className="why-panel">
+        <div className="section-heading">
+          <p className="eyebrow">Por que DevStudio</p>
+          <h2>Una web pensada para tu negocio, no una plantilla mas.</h2>
+        </div>
+        <div className="reason-grid">
+          {reasons.map((reason) => (
+            <article className="mini-card" key={reason}>
+              <span className="card-dot" />
+              <p>{reason}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BudgetOptions() {
+  return (
+    <section className="section-band budget-section">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">Presupuesto</p>
+          <h2>Tres formas de empezar segun lo que necesita tu negocio.</h2>
+        </div>
+        <p>
+          Cada proyecto se presupuesta segun alcance, contenido y funcionalidades.
+          Asi evitamos precios cerrados que no encajan con necesidades reales.
+        </p>
+      </div>
+
+      <div className="budget-grid">
+        {budgetOptions.map((option) => (
+          <article className="budget-card" key={option.name}>
+            <h3>{option.name}</h3>
+            <p>{option.description}</p>
+            <strong>Consultar presupuesto</strong>
+            <a
+              className="button secondary"
+              href={getWhatsappLink(`Hola! Queria consultar presupuesto por ${option.name}.`)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Consultar por WhatsApp
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section id="contacto" className="final-cta section-band">
+      <div>
+        <p className="eyebrow">Contacto</p>
+        <h2>Tenes un negocio? Hagamos algo juntos.</h2>
+        <p>Contanos que necesitas y te ayudamos a encontrar la mejor solucion.</p>
+      </div>
+      <a className="button primary" href={getWhatsappLink()} target="_blank" rel="noreferrer">
+        Hablemos por WhatsApp
+      </a>
+    </section>
+  );
+}
+
+function Footer() {
+  const year = new Date().getFullYear();
+  const socialLinks = [
+    contactConfig.instagram ? { label: "Instagram", href: contactConfig.instagram } : null,
+    contactConfig.github ? { label: "GitHub", href: contactConfig.github } : null,
+  ].filter(Boolean);
+
   return (
     <footer className="site-footer">
       <div className="footer-grid">
-        <div className="footer-brand">
-          <p className="footer-title">DevStudio</p>
-          <p>Diseno y desarrollo por Matias Rojo</p>
+        <div>
+          <a className="footer-brand" href="#inicio">
+            <span className="brand-mark" aria-hidden="true" />
+            <span>DevStudio</span>
+          </a>
+          <p>Desarrollo y diseno de paginas web para negocios y empresas.</p>
         </div>
-
-        <div className="footer-links footer-nav">
+        <nav className="footer-nav" aria-label="Navegacion secundaria">
           {navigation.map((item) => (
-            <NavLink key={item.path} to={item.path} currentPath={currentPath} className="footer-link">
+            <a key={item.href} href={item.href}>
               {item.label}
-            </NavLink>
+            </a>
+          ))}
+        </nav>
+        <div className="footer-contact">
+          <a href={getWhatsappLink()} target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
+          <a href={`mailto:${contactConfig.email}`}>{contactConfig.email}</a>
+          {socialLinks.map((link) => (
+            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+              {link.label}
+            </a>
           ))}
         </div>
-
-        <div className="footer-meta">
-          <p>Desarrollo web a medida</p>
-          <p>Dominio, hosting y SSL incluidos por 1 ano</p>
-        </div>
       </div>
-
-      <div className="footer-bottom">
-        <p>&copy; 2026 DevStudio. Todos los derechos reservados.</p>
-      </div>
+      <p className="copyright">&copy; {year} DevStudio. Todos los derechos reservados.</p>
     </footer>
   );
 }
 
+function Lightbox({ activeGallery, onClose, onStep }) {
+  if (!activeGallery) {
+    return null;
+  }
+
+  const currentImage = activeGallery.images[activeGallery.index];
+
+  return (
+    <div className="lightbox" role="dialog" aria-modal="true" aria-label={activeGallery.name} onClick={onClose}>
+      <button type="button" className="lightbox-close" onClick={onClose} aria-label="Cerrar imagen">
+        Cerrar
+      </button>
+      {activeGallery.images.length > 1 ? (
+        <>
+          <button
+            type="button"
+            className="lightbox-nav lightbox-prev"
+            onClick={(event) => {
+              event.stopPropagation();
+              onStep(-1);
+            }}
+            aria-label="Imagen anterior"
+          >
+            Anterior
+          </button>
+          <button
+            type="button"
+            className="lightbox-nav lightbox-next"
+            onClick={(event) => {
+              event.stopPropagation();
+              onStep(1);
+            }}
+            aria-label="Imagen siguiente"
+          >
+            Siguiente
+          </button>
+        </>
+      ) : null}
+      <img
+        className="lightbox-image"
+        src={currentImage}
+        alt={`Captura de ${activeGallery.name}`}
+        onClick={(event) => event.stopPropagation()}
+      />
+    </div>
+  );
+}
+
 function App() {
-  const whatsappLink =
-    "https://wa.me/5492235954195?text=Hola%20DevStudio%2C%20quiero%20consultar%20por%20una%20pagina%20web.";
-  const currentPath = useCurrentPath();
-  const [activeImage, setActiveImage] = React.useState(null);
+  const [activeGallery, setActiveGallery] = React.useState(null);
 
-  React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setActiveImage(null);
-  }, [currentPath]);
+  function openGallery(project, index) {
+    setActiveGallery({
+      name: project.name,
+      images: project.gallery ?? [project.image],
+      index,
+    });
+  }
 
-  function changeActiveImage(direction) {
-    setActiveImage((currentImage) => {
-      if (!currentImage?.gallery || currentImage.gallery.length <= 1) {
-        return currentImage;
+  function stepGallery(direction) {
+    setActiveGallery((gallery) => {
+      if (!gallery) {
+        return gallery;
       }
 
-      const nextIndex =
-        (currentImage.index + direction + currentImage.gallery.length) % currentImage.gallery.length;
-      const nextImage = currentImage.gallery[nextIndex];
-
       return {
-        ...currentImage,
-        src: nextImage.src,
-        alt: nextImage.alt,
-        index: nextIndex,
+        ...gallery,
+        index: (gallery.index + direction + gallery.images.length) % gallery.images.length,
       };
     });
   }
 
-  const pageContent = {
-    "/": <HomePage whatsappLink={whatsappLink} currentPath={currentPath} />,
-    "/sobre-mi": <AboutPage />,
-    "/proyectos": <ProjectsPage setActiveImage={setActiveImage} />,
-    "/herramientas": <ToolsPage currentPath={currentPath} />,
-    "/contacto": <ContactPage whatsappLink={whatsappLink} />,
-  };
-
   return (
     <>
-      <div className="page-shell">
-        <header className="site-header">
-          <div className="topbar site-nav">
-            <NavLink to="/" currentPath={currentPath} className="brand">
-              <span className="brand-mark" />
-              <span>DevStudio</span>
-            </NavLink>
-
-            <nav className="nav-links" aria-label="Principal">
-              {navigation.map((item) => (
-                <NavLink key={item.path} to={item.path} currentPath={currentPath} className="nav-link">
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
-
-            <NavLink to="/contacto" currentPath={currentPath} className="button nav-cta">
-              Consultar
-            </NavLink>
-          </div>
-        </header>
-
-        <main>
-          {currentPath !== "/" ? <PageHero currentPath={currentPath} /> : null}
-          {pageContent[currentPath] ?? pageContent["/"]}
-        </main>
-
-        <Footer currentPath={currentPath} />
-      </div>
-
-      {activeImage ? (
-        <div className="lightbox" role="dialog" aria-modal="true" aria-label={activeImage.alt} onClick={() => setActiveImage(null)}>
-          <button type="button" className="lightbox-close" onClick={() => setActiveImage(null)} aria-label="Cerrar imagen">
-            Cerrar
-          </button>
-          {activeImage.gallery?.length > 1 ? (
-            <>
-              <button
-                type="button"
-                className="lightbox-nav lightbox-prev"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  changeActiveImage(-1);
-                }}
-                aria-label="Ver imagen anterior"
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                className="lightbox-nav lightbox-next"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  changeActiveImage(1);
-                }}
-                aria-label="Ver imagen siguiente"
-              >
-                Siguiente
-              </button>
-            </>
-          ) : null}
-          <img className="lightbox-image" src={activeImage.src} alt={activeImage.alt} onClick={(event) => event.stopPropagation()} />
-        </div>
-      ) : null}
-
-      <a className="whatsapp-float" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Contactar por WhatsApp">
-        <span className="whatsapp-icon" aria-hidden="true">
-          <svg viewBox="0 0 32 32" role="img" aria-hidden="true">
-            <path fill="currentColor" d="M19.11 17.21c-.29-.14-1.72-.85-1.99-.95-.27-.1-.46-.14-.66.14s-.75.95-.92 1.15c-.17.19-.34.22-.63.07-.29-.14-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.57-.49-.5-.66-.5h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-.98 2.45.05 1.45 1.03 2.85 1.17 3.04.14.19 2.02 3.09 4.89 4.33.68.29 1.22.47 1.64.6.69.22 1.32.19 1.81.12.55-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.56-.34Z" />
-            <path fill="currentColor" d="M16.03 3.2c-7.08 0-12.82 5.74-12.82 12.82 0 2.26.59 4.47 1.7 6.41L3.1 28.8l6.55-1.72a12.78 12.78 0 0 0 6.38 1.71h.01c7.08 0 12.82-5.74 12.82-12.82S23.11 3.2 16.03 3.2Zm0 23.45h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.89 1.02 1.04-3.79-.25-.39a10.66 10.66 0 1 1 8.9 4.87Z" />
-          </svg>
-        </span>
+      <Header />
+      <main id="contenido" className="page-shell">
+        <Hero />
+        <ProblemBenefit />
+        <Services />
+        <Projects onOpenGallery={openGallery} />
+        <Tools />
+        <Process />
+        <WhyDevStudio />
+        <BudgetOptions />
+        <FinalCta />
+      </main>
+      <Footer />
+      <a className="whatsapp-float" href={getWhatsappLink()} target="_blank" rel="noreferrer" aria-label="Contactar por WhatsApp">
+        <span>WA</span>
       </a>
+      <Lightbox activeGallery={activeGallery} onClose={() => setActiveGallery(null)} onStep={stepGallery} />
     </>
   );
 }
